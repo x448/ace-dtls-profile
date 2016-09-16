@@ -6,6 +6,10 @@ ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
 Expires: March 20, 2017                          Universitaet Bremen TZI
+                                                             G. Selander
+                                                                Ericsson
+                                                                L. Seitz
+                                                     SICS Swedish ICT AB
                                                       September 16, 2016
 
 
@@ -42,14 +46,10 @@ Status of This Memo
 
    This Internet-Draft will expire on March 20, 2017.
 
-Copyright Notice
 
-   Copyright (c) 2016 IETF Trust and the persons identified as the
-   document authors.  All rights reserved.
 
-   This document is subject to BCP 78 and the IETF Trust's Legal
-   Provisions Relating to IETF Documents
-   (http://trustee.ietf.org/license-info) in effect on the date of
+
+
 
 
 
@@ -58,6 +58,14 @@ Gerdes, et al.           Expires March 20, 2017                 [Page 1]
 Internet-Draft                  CoAP-DTLS                 September 2016
 
 
+Copyright Notice
+
+   Copyright (c) 2016 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (http://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
@@ -68,7 +76,7 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-     1.1.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Protocol  . . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.2.  Unauthorized Resource Request Message . . . . . . . . . .   4
@@ -94,14 +102,6 @@ Table of Contents
 
    (See Abstract for now.)
 
-1.1.  Terminology
-
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-   document are to be interpreted as described in RFC 2119 [RFC2119].
-
-   Readers are expected to be familiar with the terms and concepts
-   described in [I-D.ietf-ace-oauth-authz].
 
 
 
@@ -113,6 +113,15 @@ Gerdes, et al.           Expires March 20, 2017                 [Page 2]
 
 Internet-Draft                  CoAP-DTLS                 September 2016
 
+
+1.1.  Terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in RFC 2119 [RFC2119].
+
+   Readers are expected to be familiar with the terms and concepts
+   described in [I-D.ietf-ace-oauth-authz].
 
 2.  Protocol
 
@@ -152,6 +161,15 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
                         Figure 1: Protocol overview
 
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 3]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    To determine the AS in charge of a resource hosted at the RS, C MAY
    send an initial Unauthorized Resource Request message to RS.  RS then
    denies the request and sends the address of its AS back to C.
@@ -162,14 +180,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
    Once C knows AS's address, it can send an access token request to the
    /token endpoint at the AS as specified in [I-D.ietf-ace-oauth-authz].
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 3]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
-
    If AS decides that the request is to be authorized it generates an
    access token response for C containing a "profile" parameter with the
    value "coap_dtls" to indicate that this profile MUST be used, and a
@@ -207,6 +217,15 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    proper AS Information to enable the Client to request an access token
    from RS's Authorization Server as described in Section 2.3.
 
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 4]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    The response code MUST be 4.01 (Unauthorized) in case the sender of
    the Unauthorized Resource Request message is not authenticated, or if
    RS has no valid access token for C.  If RS has an access token for C
@@ -218,14 +237,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    Note:  The use of the response codes 4.03 and 4.05 is intended to
       prevent infinite loops where a dumb Client optimistically tries to
       access a requested resource with any access token received from
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 4]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
-
       AS.  As malicious clients could pretend to be C to determine C's
       privileges, these detailed response codes must be used only when a
       certain level of security is already available which can be
@@ -263,6 +274,14 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
                  Figure 2: AS Information payload example
 
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 5]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    In this example, the attribute As points the receiver of this message
    to the URI "coaps://as.example.com/token" to request access
    permissions.  The originator of the AS Information payload (i.e., RS)
@@ -274,13 +293,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    Note: There is an ongoing discussion how freshness of access tokens
       can be achieved in constrained environments.  This specification
       for
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 5]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
       now assumes that RS and AS have a common understanding of time
       that
@@ -318,18 +330,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    "coap").
 
    An example Access Token request from C to RS is depicted in Figure 4.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -862,22 +862,22 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    Email: cabo@tzi.org
 
 
+   Goeran Selander
+   Ericsson
+   Faroegatan 6
+   Kista  164 80
+   Sweden
+
+   Email: goran.selander@ericsson.com
 
 
+   Ludwig Seitz
+   SICS Swedish ICT AB
+   Scheelevaegen 17
+   Lund  223 70
+   Sweden
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+   Email: ludwig@sics.se
 
 
 
