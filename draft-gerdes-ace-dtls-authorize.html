@@ -297,7 +297,7 @@ li, p {
 <link href="#rfc.authors" rel="Chapter"/>
 
 
-  <meta name="generator" content="xml2rfc version 2.5.1 - http://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.5.2 - http://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Gerdes, S., Bergmann, O., Bormann, C., Selander, G., and L. Seitz" />
@@ -429,7 +429,7 @@ li, p {
    | --- Token Request  ----------------------------&gt; |
    |                            |                     |
    | &lt;---------------------------- Access Token ----- |
-   |                             + Client Information |
+   |                               + RS Information   |
 
 </pre>
 <p class="figure">Figure 1: Retrieving an Access Token</p>
@@ -462,7 +462,7 @@ li, p {
   <li>RS has no valid access token for the sender of the request regarding the requested action on that resource.</li>
   <li>RS has a valid access token for the sender of the request, but this does not allow the requested action on the requested resource.</li>
 </ul>
-<p id="rfc.section.2.1.p.3">Note: These conditions ensure that RS can handle requests autonomously once access was granted and a secure channel has been established between C and RS. The resource <samp>/authz-info</samp> must be publicly accessible to upload new access tokens to RS (cf. <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>).</p>
+<p id="rfc.section.2.1.p.3">Note: These conditions ensure that RS can handle requests autonomously once access was granted and a secure channel has been established between C and RS. The resource <samp>/authz-info</samp> is publicly accessible to be able to upload new access tokens to RS (cf. <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>).</p>
 <p id="rfc.section.2.1.p.4">Unauthorized Resource Request messages MUST be denied with a client error response. In this response, the Resource Server SHOULD provide proper AS Information to enable the Client to request an access token from RS&#8217;s Authorization Server as described in <a href="#as-info">Section 2.2</a>.</p>
 <p id="rfc.section.2.1.p.5">The response code MUST be 4.01 (Unauthorized) in case the sender of the Unauthorized Resource Request message is not authenticated, or if RS has no valid access token for C. If RS has an access token for C but not for the resource that C has requested, RS MUST reject the request with a 4.03 (Forbidden). If RS has an access token for C but it does not cover the action C requested on the resource, RS MUST reject the request with a 4.05 (Method Not Allowed).</p>
 <p/>
@@ -524,7 +524,7 @@ a2                                   # map(2)
      aud:           "tempSensor4711",
      token_type:    pop,
      alg:           ES256,
-     profile:       [ coap_dtls ]
+     profile:       [ coap_dtls ],
      cnf: {
        COSE_Key: {
          kty: EC2,
@@ -572,7 +572,7 @@ a2                                   # map(2)
 <p id="rfc.section.4.p.5">TODO: Add example for encrypted shared secrets.</p>
 <h1 id="rfc.section.4.1"><a href="#rfc.section.4.1">4.1.</a> <a href="#as-to-client-response-1" id="as-to-client-response-1">AS-to-Client Response</a></h1>
 <p id="rfc.section.4.1.p.1">When AS has received an Access Token request it has to evaluate the access request information contained therein.  To grant access to the requested resource, AS constructs an Access Token as specified in <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>. For use with this profile, the attribute <samp>profile</samp> is set to <samp>coap_dtls</samp>.</p>
-<p id="rfc.section.4.1.p.2">Depending on the requested token type and algorithm in the Access Token request, AS adds the following Client Information to the response:</p>
+<p id="rfc.section.4.1.p.2">Depending on the requested token type and algorithm in the Access Token request, AS adds the following RS Information to the response:</p>
 <p id="rfc.section.4.1.p.3">A newly generated session key. This specification describes a method for AS to derive a session key from a shared secret with RS, and attributes from the Access Token request such as the <samp>aud</samp> and <samp>client_secret</samp> parameters. The generated key is transferred as parameter <samp>k</samp> in a <samp>COSE_Key</samp> object. (See <a href="https://tools.ietf.org/html/draft-ietf-cose-msg-18#section-7">Section 7 of cose-msg</a>.)</p>
 <p id="rfc.section.4.1.p.4">AS SHOULD set Max-Age according to the Access Token lifetime in its response.</p>
 <p><a href="#at-response">Figure 7</a> shows an example AS response containing a new Access Token.  The information is transferred as a CBOR data structure as specified in <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>. The Max-Age option tells the receiving Client how long this token will be valid.</p>
@@ -672,7 +672,7 @@ a2                                   # map(2)
    | --- Token Request  ----------------------------&gt; |
    |                            |                     |
    | &lt;---------------------------- New Access Token - |
-   |                             + Client Information |
+   |                               + RS Information   |
    |                            |                     |
    | &lt;== renegotiate session =&gt; |                     |
    |     + New Access Token     |                     |
