@@ -78,21 +78,21 @@ Table of Contents
    3.  RawPublicKey Mode . . . . . . . . . . . . . . . . . . . . . .   7
      3.1.  AS-to-Client Response . . . . . . . . . . . . . . . . . .   8
      3.2.  DTLS Channel Setup Between C and RS . . . . . . . . . . .   8
-     3.3.  Examples  . . . . . . . . . . . . . . . . . . . . . . . .   8
-   4.  PreSharedKey Mode . . . . . . . . . . . . . . . . . . . . . .   8
+     3.3.  Examples  . . . . . . . . . . . . . . . . . . . . . . . .   9
+   4.  PreSharedKey Mode . . . . . . . . . . . . . . . . . . . . . .   9
      4.1.  AS-to-Client Response . . . . . . . . . . . . . . . . . .   9
-     4.2.  DTLS Channel Setup Between C and RS . . . . . . . . . . .  10
+     4.2.  DTLS Channel Setup Between C and RS . . . . . . . . . . .  11
      4.3.  Authorized Communication  . . . . . . . . . . . . . . . .  11
-     4.4.  Dynamic Update of Authorization Information . . . . . . .  12
-       4.4.1.  Handling of Ticket Transfer Messages  . . . . . . . .  13
+     4.4.  Dynamic Update of Authorization Information . . . . . . .  13
+       4.4.1.  Handling of Ticket Transfer Messages  . . . . . . . .  14
      4.5.  DTLS PSK Generation Methods . . . . . . . . . . . . . . .  14
        4.5.1.  DTLS PSK Transfer . . . . . . . . . . . . . . . . . .  14
-       4.5.2.  Distributed Key Derivation  . . . . . . . . . . . . .  14
+       4.5.2.  Distributed Key Derivation  . . . . . . . . . . . . .  15
      4.6.  Examples  . . . . . . . . . . . . . . . . . . . . . . . .  15
    5.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
      5.1.  Unprotected AS Information  . . . . . . . . . . . . . . .  15
-     5.2.  Use of Nonces for Replay Protection . . . . . . . . . . .  15
-     5.3.  Privacy . . . . . . . . . . . . . . . . . . . . . . . . .  15
+     5.2.  Use of Nonces for Replay Protection . . . . . . . . . . .  16
+     5.3.  Privacy . . . . . . . . . . . . . . . . . . . . . . . . .  16
    6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  16
      6.1.  Normative References  . . . . . . . . . . . . . . . . . .  16
      6.2.  Informative References  . . . . . . . . . . . . . . . . .  17
@@ -122,6 +122,12 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    parameter in the DTLS PSK handshake is used to transfer the access
    token from the client to the resource server.
 
+   Note: While the scope of this draft is on client and resource server
+
+      communicating using CoAP over DTLS, it is expected that it applies
+      also to CoAP over TLS, possibly with minor modifications.
+      However, that is out of scope for this version of the draft.
+
 1.1.  Terminology
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -145,6 +151,25 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    message flow in this scenario (messages in square brackets are
    optional):
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 3]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
       C                            RS                   AS
       | [-- Resource Request --->] |                     |
       |                            |                     |
@@ -161,14 +186,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    To determine the AS in charge of a resource hosted at the RS, C MAY
    send an initial Unauthorized Resource Request message to RS.  RS then
    denies the request and sends the address of its AS back to C.
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 3]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
    Instead of the initial Unauthorized Resource Request message, C MAY
    look up the desired resource in a resource directory (cf.
@@ -195,6 +212,20 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    mode.  Figure 2 depicts the common protocol flow for the DTLS profile
    after C has retrieved the Access Token from AS.
 
+
+
+
+
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 4]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
       C                            RS                   AS
       | [--- Access Token ------>] |                     |
       |                            |                     |
@@ -219,13 +250,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    public keys while Section 4 defines how pre-shared keys are used in
    this profile.
 
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 4]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
-
 2.1.  Unauthorized Resource Request Message
 
    The optional Unauthorized Resource Request message is a request for a
@@ -249,6 +273,15 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    accessible to be able to upload new access tokens to RS (cf.
    [I-D.ietf-ace-oauth-authz]).
 
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 5]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    Unauthorized Resource Request messages MUST be denied with a client
    error response.  In this response, the Resource Server SHOULD provide
    proper AS Information to enable the Client to request an access token
@@ -269,18 +302,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
       privileges, these detailed response codes must be used only when a
       certain level of security is already available which can be
       achieved only when the Client is authenticated.
-
-
-
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 5]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
 2.2.  AS Information
 
@@ -309,6 +330,14 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
                  Figure 3: AS Information payload example
 
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 6]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    In this example, the attribute AS points the receiver of this message
    to the URI "coaps://as.example.com/token" to request access
    permissions.  The originator of the AS Information payload (i.e., RS)
@@ -326,17 +355,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    The examples in this document are written in CBOR diagnostic notation
    to improve readability.  Figure 4 illustrates the binary encoding of
    the message payload shown in Figure 3.
-
-
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 6]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
    a2                                   # map(2)
        00                               # unsigned(0) (=AS)
@@ -362,6 +380,20 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
    An example Access Token request from C to RS is depicted in Figure 5.
 
+
+
+
+
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 7]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
       POST coaps://as.example.com/token
       Content-Format: application/cbor
       {
@@ -386,14 +418,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    by the audience string "tempSensor4711" on the AS using a raw public
    key.
 
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 7]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
-
 3.1.  AS-to-Client Response
 
    TODO
@@ -416,6 +440,15 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
    The Access Token is constructed by AS such that RS can associate the
    Access Token with the Client's public key.
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 8]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
 
 3.3.  Examples
 
@@ -440,15 +473,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    [I-D.selander-ace-object-security] exchange (for "coap").
 
    An example Access Token request from C to RS is depicted in Figure 6.
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 8]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
       POST coaps://as.example.com/token
       Content-Format: application/cbor
@@ -475,6 +499,13 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    [I-D.ietf-ace-oauth-authz].  For use with this profile, the attribute
    "profile" is set to "coap_dtls".
 
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 9]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    Depending on the requested token type and algorithm in the Access
    Token request, AS adds the following RS Information to the response:
 
@@ -492,19 +523,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    The information is transferred as a CBOR data structure as specified
    in [I-D.ietf-ace-oauth-authz].  The Max-Age option tells the
    receiving Client how long this token will be valid.
-
-
-
-
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 9]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
       2.01 Created
       Content-Format: application/cbor
@@ -531,6 +549,19 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    constructed according to Section 5.2 of RFC 6749 [3], (cf.
    Section 6.3 of [I-D.ietf-ace-oauth-authz]).
 
+
+
+
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 10]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
        4.00 Bad Request
        Content-Format: application/cbor
        {
@@ -553,14 +584,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
    2.  C uses the key conveyed in the "cnf" field of the AS response as
        PSK when constructing the premaster secret.
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 10]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
    Note1: As RS cannot provide C with a meaningful PSK identity hint in
 
@@ -587,6 +610,14 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    channel between C and RS ties the authorization information contained
    in the "psk_identity" field to this channel.  Any request that RS
    receives on this channel is checked against these authorization
+
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 11]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    rules.  Incoming CoAP requests that are not authorized with respect
    to this Access Token MUST be rejected by RS with 4.01 response as
    described in Section 2.1.
@@ -610,14 +641,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
    Note that the authorization information is not restricted to a single
    resource URI.  For example, role-based authorization can be used to
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 11]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
-
    authorize a collection of semantically connected resources
    simultaneously.  Implicit authorization also provides access rights
    to authenticated clients for all actions on all resources that RS
@@ -642,6 +665,15 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    Section 2.2) as response to its requests, it SHOULD request a new
    Access Token from AS to continue communication with RS.
 
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 12]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
 4.4.  Dynamic Update of Authorization Information
 
    Once a security association exists between a Client and a Resource
@@ -658,21 +690,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    Figure 9 depicts the message flow where C requests a new Access Token
    after a security association between C and RS has been established
    using this protocol.
-
-
-
-
-
-
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 12]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
       C                            RS                   AS
       | <== DTLS channel + AT ===> |                     |
@@ -701,6 +718,18 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    between C and RS may be renegotiated with the new Access Token as
    described in Section 4.4.1.
 
+
+
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 13]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
 4.4.1.  Handling of Ticket Transfer Messages
 
    If the security association with RS still exists and RS has indicated
@@ -722,14 +751,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
       which is achieved by having performed a successful DTLS handshake
       with the Access Token as psk_identity.  This could even be done
       within the existing DTLS session while the previous Access Token
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 13]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
-
       is still valid.  To do so, a newly retrieved Access Token would be
       transmitted to the "/token" endpoint of RS.
 
@@ -757,6 +778,14 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    o  AS MUST include a representation of the DTLS PSK in "cnf" field of
       its response to C.
 
+
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 14]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    o  AS must ensure that the DTLS PSK is transferred to C using
       encrypted channels.
 
@@ -778,13 +807,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
       scope of this document.  They MAY use their preshared key as
       K(AS,RS).  (TODO: Negotiation of the key derivation algorithm
       between AS and RS.)
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 14]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
    o  AS MUST include a representation of the DTLS PSK in the "cnf"
       field in its response to C which MUST be sent over a secure
@@ -813,6 +835,13 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    authorization servers.  AS information responses referring to a URI
    not listed there would be ignored.
 
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 15]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
 5.2.  Use of Nonces for Replay Protection
 
    RS may add a nonce to the AS Information message sent as a response
@@ -831,16 +860,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    already exists, more detailed information may be included with an
    error response to provide C with sufficient information to react on
    that particular error.
-
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 15]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
 6.  References
 
@@ -868,6 +887,17 @@ Internet-Draft                  CoAP-DTLS                 September 2016
               RFC 3986, DOI 10.17487/RFC3986, January 2005,
               <http://www.rfc-editor.org/info/rfc3986>.
 
+
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 16]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    [RFC4279]  Eronen, P., Ed. and H. Tschofenig, Ed., "Pre-Shared Key
               Ciphersuites for Transport Layer Security (TLS)",
               RFC 4279, DOI 10.17487/RFC4279, December 2005,
@@ -886,17 +916,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    [RFC6347]  Rescorla, E. and N. Modadugu, "Datagram Transport Layer
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
               January 2012, <http://www.rfc-editor.org/info/rfc6347>.
-
-
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 16]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
    [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
               Specifications and Registration Procedures", BCP 13,
@@ -928,6 +947,13 @@ Internet-Draft                  CoAP-DTLS                 September 2016
               DOI 10.17487/RFC5988, October 2010,
               <http://www.rfc-editor.org/info/rfc5988>.
 
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 17]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
               Transport Layer Security (TLS)", RFC 6655,
               DOI 10.17487/RFC6655, July 2012,
@@ -946,13 +972,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
               Application Protocol (CoAP)", RFC 7641,
               DOI 10.17487/RFC7641, September 2015,
               <http://www.rfc-editor.org/info/rfc7641>.
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 17]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
    [RFC7959]  Bormann, C. and Z. Shelby, Ed., "Block-Wise Transfers in
               the Constrained Application Protocol (CoAP)", RFC 7959,
@@ -979,6 +998,18 @@ Authors' Addresses
    Email: gerdes@tzi.org
 
 
+
+
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 18]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    Olaf Bergmann
    Universitaet Bremen TZI
    Postfach 330440
@@ -999,17 +1030,6 @@ Authors' Addresses
    Email: cabo@tzi.org
 
 
-
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 18]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
-
    Goeran Selander
    Ericsson
    Faroegatan 6
@@ -1026,26 +1046,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    Sweden
 
    Email: ludwig@sics.se
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
