@@ -273,6 +273,7 @@ li, p {
 <link href="#rfc.section.2" rel="Chapter" title="2 Protocol Overview"/>
 <link href="#rfc.section.2.1" rel="Chapter" title="2.1 Unauthorized Resource Request Message"/>
 <link href="#rfc.section.2.2" rel="Chapter" title="2.2 AS Information"/>
+<link href="#rfc.section.2.3" rel="Chapter" title="2.3 Dynamic Update of Authorization Information"/>
 <link href="#rfc.section.3" rel="Chapter" title="3 RawPublicKey Mode"/>
 <link href="#rfc.section.3.1" rel="Chapter" title="3.1 AS-to-Client Response"/>
 <link href="#rfc.section.3.2" rel="Chapter" title="3.2 DTLS Channel Setup Between C and RS"/>
@@ -282,8 +283,7 @@ li, p {
 <link href="#rfc.section.4.1" rel="Chapter" title="4.1 AS-to-Client Response"/>
 <link href="#rfc.section.4.2" rel="Chapter" title="4.2 DTLS Channel Setup Between C and RS"/>
 <link href="#rfc.section.4.3" rel="Chapter" title="4.3 Authorized Communication"/>
-<link href="#rfc.section.4.4" rel="Chapter" title="4.4 Dynamic Update of Authorization Information"/>
-<link href="#rfc.section.4.4.1" rel="Chapter" title="4.4.1 Handling of Ticket Transfer Messages"/>
+<link href="#rfc.section.4.4" rel="Chapter" title="4.4 Updating Authorization Information"/>
 <link href="#rfc.section.4.5" rel="Chapter" title="4.5 DTLS PSK Generation Methods"/>
 <link href="#rfc.section.4.5.1" rel="Chapter" title="4.5.1 DTLS PSK Transfer"/>
 <link href="#rfc.section.4.5.2" rel="Chapter" title="4.5.2 Distributed Key Derivation"/>
@@ -385,6 +385,7 @@ li, p {
 </ul><li>2.   <a href="#rfc.section.2">Protocol Overview</a></li>
 <ul><li>2.1.   <a href="#rfc.section.2.1">Unauthorized Resource Request Message</a></li>
 <li>2.2.   <a href="#rfc.section.2.2">AS Information</a></li>
+<li>2.3.   <a href="#rfc.section.2.3">Dynamic Update of Authorization Information</a></li>
 </ul><li>3.   <a href="#rfc.section.3">RawPublicKey Mode</a></li>
 <ul><li>3.1.   <a href="#rfc.section.3.1">AS-to-Client Response</a></li>
 <li>3.2.   <a href="#rfc.section.3.2">DTLS Channel Setup Between C and RS</a></li>
@@ -394,9 +395,8 @@ li, p {
 <ul><li>4.1.   <a href="#rfc.section.4.1">AS-to-Client Response</a></li>
 <li>4.2.   <a href="#rfc.section.4.2">DTLS Channel Setup Between C and RS</a></li>
 <li>4.3.   <a href="#rfc.section.4.3">Authorized Communication</a></li>
-<li>4.4.   <a href="#rfc.section.4.4">Dynamic Update of Authorization Information</a></li>
-<ul><li>4.4.1.   <a href="#rfc.section.4.4.1">Handling of Ticket Transfer Messages</a></li>
-</ul><li>4.5.   <a href="#rfc.section.4.5">DTLS PSK Generation Methods</a></li>
+<li>4.4.   <a href="#rfc.section.4.4">Updating Authorization Information</a></li>
+<li>4.5.   <a href="#rfc.section.4.5">DTLS PSK Generation Methods</a></li>
 <ul><li>4.5.1.   <a href="#rfc.section.4.5.1">DTLS PSK Transfer</a></li>
 <li>4.5.2.   <a href="#rfc.section.4.5.2">Distributed Key Derivation</a></li>
 </ul><li>4.6.   <a href="#rfc.section.4.6">Examples</a></li>
@@ -520,10 +520,34 @@ a2                                   # map(2)
        e0a156bb3f
 </pre>
 <p class="figure">Figure 4: AS Information example encoded in CBOR</p>
+<h1 id="rfc.section.2.3"><a href="#rfc.section.2.3">2.3.</a> <a href="#update" id="update">Dynamic Update of Authorization Information</a></h1>
+<p id="rfc.section.2.3.p.1">Once a security association exists between a Client and a Resource Server, the Client can update the authorization information stored at RS at any time. To do so, the Client requests from AS a new Access Token for the intended action on the respective resource and uploads this Access Token to the <samp>/authz-info</samp> resource on RS.</p>
+<p><a href="#update-overview">Figure 5</a> depicts the message flow where C requests a new Access Token after a security association between C and RS has been established using this protocol.</p>
+<div id="rfc.figure.5"/>
+<div id="update-overview"/>
+<pre>
+   C                            RS                   AS
+   | &lt;===== DTLS channel =====&gt; |                     |
+   |        + Access Token      |                     |
+   |                            |                     |
+   | --- Token Request  ----------------------------&gt; |
+   |                            |                     |
+   | &lt;---------------------------- New Access Token - |
+   |                               + RS Information   |
+   |                            |                     |
+   | --- Update /authz-info --&gt; |                     |
+   |     + New Access Token     |                     |
+   |                            |                     |
+   | == Authorized Request ===&gt; |                     |
+   |                            |                     |
+   | &lt;=== Protected Resource == |                     |
+
+</pre>
+<p class="figure">Figure 5: Overview of Dynamic Update Operation</p>
 <h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#rpk-mode" id="rpk-mode">RawPublicKey Mode</a></h1>
 <p id="rfc.section.3.p.1">To retrieve an access token for the resource that C wants to access, C requests an Access Token from AS. The Access Token request is constructed as specified in <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>. The parameter <samp>profile</samp> MUST include <samp>coap_dtls</samp> to indicate C&#8217;s support for this profile and MAY include other profiles as specified in <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>). C MUST add a <samp>cnf</samp> object carrying either its raw public key or a unique identifier for a public key that it has previously made known to AS.</p>
-<p id="rfc.section.3.p.2">An example Access Token request from C to RS is depicted in <a href="#rpk-authorization-message-example">Figure 5</a>.</p>
-<div id="rfc.figure.5"/>
+<p id="rfc.section.3.p.2">An example Access Token request from C to RS is depicted in <a href="#rpk-authorization-message-example">Figure 6</a>.</p>
+<div id="rfc.figure.6"/>
 <div id="rpk-authorization-message-example"/>
 <pre>
    POST coaps://as.example.com/token
@@ -541,7 +565,7 @@ a2                                   # map(2)
      }
    }
 </pre>
-<p class="figure">Figure 5: Access Token Request Example for RPK Mode</p>
+<p class="figure">Figure 6: Access Token Request Example for RPK Mode</p>
 <p id="rfc.section.3.p.3">The example shows an Access Token request for the resource identified by the audience string &#8220;tempSensor4711&#8221; on the AS  using a raw public key.</p>
 <h1 id="rfc.section.3.1"><a href="#rfc.section.3.1">3.1.</a> <a href="#as-to-client-response" id="as-to-client-response">AS-to-Client Response</a></h1>
 <p id="rfc.section.3.1.p.1">TODO</p>
@@ -572,8 +596,8 @@ a2                                   # map(2)
 <h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#psk-mode" id="psk-mode">PreSharedKey Mode</a></h1>
 <p id="rfc.section.4.p.1">To retrieve an access token for the resource that C wants to access, C requests an Access Token from AS. The Access Token request is constructed as specified in <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>. The parameter <samp>profile</samp> MUST include <samp>coap_dtls</samp> to indicate C&#8217;s support for this profile and MAY include other profiles as specified in <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>). C MAY add a <samp>cnf</samp> object carrying an identifier for a symmetric key to be used by AS to construct the proof-of-possession token. This identifier MUST specify a symmetric key that was previously generated by AS as a session key for the communication between C and RS.</p>
 <p id="rfc.section.4.p.2">If a symmetric proof-of-possession key (c.f. <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>) is requested C must ensure that the Access Token request is sent over a secure channel that guarantees authentication, message integrity and confidentiality. This could be, e.g., a DTLS channel (for &#8220;coaps&#8221;) or an OSCOAP <a href="#I-D.selander-ace-object-security">[I-D.selander-ace-object-security]</a> exchange (for &#8220;coap&#8221;).</p>
-<p id="rfc.section.4.p.3">An example Access Token request from C to RS is depicted in <a href="#authorization-message-example">Figure 6</a>.</p>
-<div id="rfc.figure.6"/>
+<p id="rfc.section.4.p.3">An example Access Token request from C to RS is depicted in <a href="#authorization-message-example">Figure 7</a>.</p>
+<div id="rfc.figure.7"/>
 <div id="authorization-message-example"/>
 <pre>
    POST coaps://as.example.com/token
@@ -583,7 +607,7 @@ a2                                   # map(2)
      aud:           "tempSensor4711"
    }
 </pre>
-<p class="figure">Figure 6: Access Token request example</p>
+<p class="figure">Figure 7: Access Token request example</p>
 <p id="rfc.section.4.p.4">The example shows an Access Token request for the resource identified by the audience string &#8220;tempSensor4711&#8221; on the AS. Note that the <samp>profile</samp> parameter in the Client-to-AS request is optional. When C includes this parameter is the Client-to-AS request, it MUST include <samp>coap_dtls</samp> in the parameter value.</p>
 <p id="rfc.section.4.p.5">TODO: Add example for encrypted shared secrets.</p>
 <h1 id="rfc.section.4.1"><a href="#rfc.section.4.1">4.1.</a> <a href="#as-to-client-response-1" id="as-to-client-response-1">AS-to-Client Response</a></h1>
@@ -591,8 +615,8 @@ a2                                   # map(2)
 <p id="rfc.section.4.1.p.2">Depending on the requested token type and algorithm in the Access Token request, AS adds the following RS Information to the response:</p>
 <p id="rfc.section.4.1.p.3">A newly generated session key. This specification describes a method for AS to derive a session key from a shared secret with RS, and attributes from the Access Token request such as the <samp>aud</samp> and <samp>client_secret</samp> parameters. The generated key is transferred as parameter <samp>k</samp> in a <samp>COSE_Key</samp> object. (See <a href="https://tools.ietf.org/html/draft-ietf-cose-msg-18#section-7">Section 7 of cose-msg</a>.)</p>
 <p id="rfc.section.4.1.p.4">AS SHOULD set Max-Age according to the Access Token lifetime in its response.</p>
-<p><a href="#at-response">Figure 7</a> shows an example AS response containing a new Access Token.  The information is transferred as a CBOR data structure as specified in <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>. The Max-Age option tells the receiving Client how long this token will be valid.</p>
-<div id="rfc.figure.7"/>
+<p><a href="#at-response">Figure 8</a> shows an example AS response containing a new Access Token.  The information is transferred as a CBOR data structure as specified in <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>. The Max-Age option tells the receiving Client how long this token will be valid.</p>
+<div id="rfc.figure.8"/>
 <div id="at-response"/>
 <pre>
    2.01 Created
@@ -614,9 +638,9 @@ a2                                   # map(2)
       }
    }
 </pre>
-<p class="figure">Figure 7: Example Access Token response</p>
+<p class="figure">Figure 8: Example Access Token response</p>
 <p id="rfc.section.4.1.p.6">A response that declines any operation on the requested resource is constructed according to <a href="https://tools.ietf.org/html/rfc6749#section-5.2">Section 5.2 of RFC 6749</a>, (cf. Section 6.3 of <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>).</p>
-<div id="rfc.figure.8"/>
+<div id="rfc.figure.9"/>
 <div id="token-reject"/>
 <pre>
     4.00 Bad Request
@@ -625,7 +649,7 @@ a2                                   # map(2)
       error: invalid_request
     }
 </pre>
-<p class="figure">Figure 8: Example Access Token response with reject</p>
+<p class="figure">Figure 9: Example Access Token response with reject</p>
 <h1 id="rfc.section.4.2"><a href="#rfc.section.4.2">4.2.</a> <a href="#dtls-channel" id="dtls-channel">DTLS Channel Setup Between C and RS</a></h1>
 <p id="rfc.section.4.2.p.1">When C receives an Access Token from AS, it checks if the payload contains an <samp>access_token</samp> field and a <samp>cnf</samp> object. With this information C can initiate establishment of a new DTLS channel with RS. To use DTLS with pre-shared keys, C follows the PSK key exchange algorithm specified in Section 2 of <a href="#RFC4279">[RFC4279]</a>, with the following additional requirements:</p>
 <p/>
@@ -666,49 +690,10 @@ a2                                   # map(2)
   <li>with response code 4.05 (Method Not Allowed) when the resource URI specified in the request covered by the authorization information but not the requested action.</li>
 </ol>
 <p id="rfc.section.4.3.p.8">C cannot always know a priori if a Authorized Resource Request will succeed. If C repeatedly gets AS Information messages (cf. <a href="#as-info">Section 2.2</a>) as response to its requests, it SHOULD request a new Access Token from AS to continue communication with RS.</p>
-<h1 id="rfc.section.4.4"><a href="#rfc.section.4.4">4.4.</a> <a href="#update" id="update">Dynamic Update of Authorization Information</a></h1>
-<p id="rfc.section.4.4.p.1">Once a security association exists between a Client and a Resource Server, the Client can update the authorization information stored at RS at any time. To do so, the Client requests a new Access Token for the intended action on the respective resource and from AS as described in <a href="#psk-mode">Section 4</a>.</p>
-<p/>
-
-<dl>
-  <dt>Note:</dt>
-  <dd style="margin-left: 8">Requesting a new Access Token also can be a Client&#8217;s reaction on a 4.03 or 4.05 error that it has received in response to a request over a DTLS channel that was setup as specified in <a href="#dtls-channel">Section 4.2</a>.</dd>
-</dl>
-<p><a href="#update-overview">Figure 9</a> depicts the message flow where C requests a new Access Token after a security association between C and RS has been established using this protocol.</p>
-<div id="rfc.figure.9"/>
-<div id="update-overview"/>
-<pre>
-   C                            RS                   AS
-   | &lt;== DTLS channel + AT ===&gt; |                     |
-   |                            |                     |
-   | --- Resource Request ----&gt; |                     |
-   |                            |                     |
-   | &lt;-- 4.0x + AS Information  |                     |
-   |                            |                     |
-   | --- Token Request  ----------------------------&gt; |
-   |                            |                     |
-   | &lt;---------------------------- New Access Token - |
-   |                               + RS Information   |
-   |                            |                     |
-   | &lt;== renegotiate session =&gt; |                     |
-   |     + New Access Token     |                     |
-   |                            |                     |
-   | == Authorized Request ===&gt; |                     |
-   |                            |                     |
-   | &lt;=== Protected Resource == |                     |
-
-</pre>
-<p class="figure">Figure 9: Overview of Dynamic Update Operation</p>
-<p id="rfc.section.4.4.p.4">The major difference between dynamic update of authorization information and the initial handshake is that the DTLS session between C and RS may be renegotiated with the new Access Token as described in <a href="#ticket-handle">Section 4.4.1</a>.</p>
-<h1 id="rfc.section.4.4.1"><a href="#rfc.section.4.4.1">4.4.1.</a> <a href="#ticket-handle" id="ticket-handle">Handling of Ticket Transfer Messages</a></h1>
-<p id="rfc.section.4.4.1.p.1">If the security association with RS still exists and RS has indicated support for session renegotiation according to <a href="#RFC5746">[RFC5746]</a>, the new Access Token SHOULD be used to renegotiate the existing DTLS session. In this case, the Access Token is used as <samp>psk_identity</samp> as defined in <a href="#dtls-channel">Section 4.2</a>. Otherwise, the Client MUST perform a new DTLS handshake according to <a href="#dtls-channel">Section 4.2</a> that replaces the existing DTLS session.</p>
-<p id="rfc.section.4.4.1.p.2">After successful completion of the DTLS handshake RS updates the existing authorization information for C according to the new Access Token.</p>
-<p/>
-
-<dl>
-  <dt>Note:</dt>
-  <dd style="margin-left: 8">No mutual authentication between C and RS is required for dynamic updates when a DTLS channel exists that has been established as defined in <a href="#dtls-channel">Section 4.2</a>. RS only needs to verify the authenticity and integrity of the Access Token issued by AS which is achieved by having performed a successful DTLS handshake with the Access Token as psk_identity. This could even be done within the existing DTLS session while the previous Access Token is still valid.  To do so, a newly retrieved Access Token would be transmitted to the <samp>/token</samp> endpoint of RS.</dd>
-</dl>
+<h1 id="rfc.section.4.4"><a href="#rfc.section.4.4">4.4.</a> <a href="#updating-authorization-information" id="updating-authorization-information">Updating Authorization Information</a></h1>
+<p id="rfc.section.4.4.p.1">Usually, the authorization information that RS keeps for C is updated by uploading a new Access Token as described in <a href="#update">Section 2.3</a>.</p>
+<p id="rfc.section.4.4.p.2">If the security association with RS still exists and RS has indicated support for session renegotiation according to <a href="#RFC5746">[RFC5746]</a>, the new Access Token MAY be used to renegotiate the existing DTLS session. In this case, the Access Token is used as <samp>psk_identity</samp> as defined in <a href="#dtls-channel">Section 4.2</a>. The Client MAY also perform a new DTLS handshake according to <a href="#dtls-channel">Section 4.2</a> that replaces the existing DTLS session.</p>
+<p id="rfc.section.4.4.p.3">After successful completion of the DTLS handshake RS updates the existing authorization information for C according to the new Access Token.</p>
 <h1 id="rfc.section.4.5"><a href="#rfc.section.4.5">4.5.</a> <a href="#key-generation" id="key-generation">DTLS PSK Generation Methods</a></h1>
 <p id="rfc.section.4.5.p.1">One goal of this profile is to provide for a DTLS PSK shared between C and RS. AS and RS MUST negotiate the method for the DTLS PSK generation.</p>
 <h1 id="rfc.section.4.5.1"><a href="#rfc.section.4.5.1">4.5.1.</a> <a href="#key-transfer" id="key-transfer">DTLS PSK Transfer</a></h1>
