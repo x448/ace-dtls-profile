@@ -20,7 +20,7 @@ Datagram Transport Layer Security (DTLS) Profile for Authentication and
 Abstract
 
    This specification defines a profile for delegating client
-   authentication and authorization in a constrained environment for
+   authentication and authorization in a constrained environment by
    establishing a Datagram Transport Layer Security (DTLS) channel
    between resource-constrained nodes.  The protocol relies on DTLS for
    communication security between entities in a constrained network.  A
@@ -84,7 +84,7 @@ Table of Contents
    5.  Security Considerations . . . . . . . . . . . . . . . . . . .  13
      5.1.  Unprotected AS Information  . . . . . . . . . . . . . . .  13
      5.2.  Use of Nonces for Replay Protection . . . . . . . . . . .  13
-     5.3.  Privacy . . . . . . . . . . . . . . . . . . . . . . . . .  13
+     5.3.  Privacy . . . . . . . . . . . . . . . . . . . . . . . . .  14
    6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
      6.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
      6.2.  Informative References  . . . . . . . . . . . . . . . . .  15
@@ -101,11 +101,11 @@ Table of Contents
    communication security, proof of possession, and server
    authentication.  Optionally the client and the resource server may
    also use CoAP over DTLS to communicate with the authorization server.
+   This specification supports the DTLS PSK handshake [RFC4279] and the
+   DTLS handshake with Raw Public Keys (RPK) [RFC7250].
+
    The DTLS PSK handshake [RFC4279] provides the proof-of-possession for
    the key tied to the access token.  Furthermore the psk_identity
-   parameter in the DTLS PSK handshake is used to transfer the access
-   token from the client to the resource server.
-
 
 
 
@@ -113,6 +113,15 @@ Gerdes, et al.           Expires March 20, 2017                 [Page 2]
 
 Internet-Draft                  CoAP-DTLS                 September 2016
 
+
+   parameter in the DTLS PSK handshake is used to transfer the access
+   token from the client to the resource server.
+
+   The DTLS RPK handshake [RFC7250] requires client authentication to
+   provide proof-of-possession for the key tied to the access token.
+   Here the access token needs to be transferred to the resource server
+   before the handshake is initiated, as described in section 8.1 of
+   draft-ietf-ace-oauth-authz. [1]
 
    Note: While the scope of this draft is on client and resource server
 
@@ -143,6 +152,24 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    message flow in this scenario (messages in square brackets are
    optional):
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 3]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
       C                            RS                   AS
       | [-- Resource Request --->] |                     |
       |                            |                     |
@@ -160,16 +187,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    send an initial Unauthorized Resource Request message to RS.  RS then
    denies the request and sends the address of its AS back to C.
 
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 3]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
-
    Instead of the initial Unauthorized Resource Request message, C MAY
    look up the desired resource in a resource directory (cf.
    [I-D.ietf-core-resource-directory]).
@@ -177,24 +194,37 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    Once C knows AS's address, it can send an Access Token request to the
    /token endpoint at the AS as specified in [I-D.ietf-ace-oauth-authz].
    If C wants to use the CoAP RawPublicKey mode as described in
-   Section 9 of RFC 7252 [1] it MUST provide a key or key identifier
+   Section 9 of RFC 7252 [2] it MUST provide a key or key identifier
    within a "cnf" object in the token request.  If AS decides that the
    request is to be authorized it generates an access token response for
    C containing a "profile" parameter with the value "coap_dtls" to
    indicate that this profile MUST be used for communication between C
    and RS.  Is also adds a "cnf" parameter with additional data for the
-   establishment of a secure DTLS channel between C and RS.
+   establishment of a secure DTLS channel between C and RS.  The
+   semantics of the 'cnf' parameter depend on the type of key used
+   between C and RS, see Section 3 and Section 4.
 
    The Access Token returned by AS then can be used by C to establish a
    new DTLS session with RS.  When C intends to use asymmetric
    cryptography in the DTLS handshake with RS, C MUST upload the Access
    Token to the "/authz-info" resource on RS before starting the DTLS
-   handshake.  If only symmetric cryptography is used between C and RS,
-   the Access Token MAY instead be transferred in the DTLS
-   ClientKeyExchange message (see Section 4.1).
+   handshake, as described in section 8.1 of draft-ietf-ace-oauth-authz
+   [3].  If only symmetric cryptography is used between C and RS, the
+   Access Token MAY instead be transferred in the DTLS ClientKeyExchange
+   message (see Section 4.1).
 
    Figure 2 depicts the common protocol flow for the DTLS profile after
    C has retrieved the Access Token from AS.
+
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 4]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
 
       C                            RS                   AS
       | [--- Access Token ------>] |                     |
@@ -217,15 +247,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    Depending on the desired CoAP security mode, the Client-to-AS
    request, AS-to-Client response and DTLS session establishment carry
    slightly different information.  Section 3 addresses the use of raw
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 4]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
-
    public keys while Section 4 defines how pre-shared keys are used in
    this profile.
 
@@ -252,6 +273,15 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    accessible to be able to upload new access tokens to RS (cf.
    [I-D.ietf-ace-oauth-authz]).
 
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 5]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    Unauthorized Resource Request messages MUST be denied with a client
    error response.  In this response, the Resource Server SHOULD provide
    proper AS Information to enable the Client to request an access token
@@ -272,15 +302,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
       privileges, these detailed response codes must be used only when a
       certain level of security is already available which can be
       achieved only when the Client is authenticated.
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 5]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
 2.2.  AS Information
 
@@ -309,6 +330,14 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
                  Figure 3: AS Information payload example
 
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 6]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    In this example, the attribute AS points the receiver of this message
    to the URI "coaps://as.example.com/token" to request access
    permissions.  The originator of the AS Information payload (i.e., RS)
@@ -326,17 +355,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    The examples in this document are written in CBOR diagnostic notation
    to improve readability.  Figure 4 illustrates the binary encoding of
    the message payload shown in Figure 3.
-
-
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 6]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
    a2                                   # map(2)
        00                               # unsigned(0) (=AS)
@@ -357,14 +375,25 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    resource hosted by RS.
 
    On the server side (i.e., RS), successful establishment of the DTLS
-   channel mutually authenticates C and RS.  Any request that RS
-   receives on this channel MUST be checked against these authorization
-   rules that are associated with the identity of C.  Incoming CoAP
-   requests that are not authorized with respect to any Access Token
-   that is associated with C MUST be rejected by RS with 4.01 response
-   as described in Section 2.1.
+   channel binds C to the access token, functioning as a proof-of-
+   possession associated key.  Any request that RS receives on this
+   channel MUST be checked against these authorization rules that are
+   associated with the identity of C.  Incoming CoAP requests that are
+   not authorized with respect to any Access Token that is associated
+   with C MUST be rejected by RS with 4.01 response as described in
+   Section 2.1.
 
    Note: The identity of C is determined by the authentication process
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 7]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
       during the DTLS handshake.  In the asymmetric case, the public key
       will define C's identity, while in the PSK case, C's identity is
       defined by the session key generated by AS for this communication.
@@ -385,15 +414,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    5.  The request method is an authorized action on the resource with
        respect to the authorization information.
 
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 7]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
-
    Incoming CoAP requests received on a secure DTLS channel MUST be
    rejected
 
@@ -408,7 +428,7 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    C cannot always know a priori if a Authorized Resource Request will
    succeed.  If C repeatedly gets AS Information messages (cf.
    Section 2.2) as response to its requests, it SHOULD request a new
-   Access Token from AS to continue communication with RS.
+   Access Token from AS in order to continue communication with RS.
 
 2.4.  Dynamic Update of Authorization Information
 
@@ -420,6 +440,15 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    Figure 5 depicts the message flow where C requests a new Access Token
    after a security association between C and RS has been established
    using this protocol.
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 8]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
 
       C                            RS                   AS
       | <===== DTLS channel =====> |                     |
@@ -439,16 +468,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
               Figure 5: Overview of Dynamic Update Operation
-
-
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 8]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
 3.  RawPublicKey Mode
 
@@ -480,6 +499,13 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    by the audience string "tempSensor4711" on the AS using a raw public
    key.
 
+
+
+Gerdes, et al.           Expires March 20, 2017                 [Page 9]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    When AS authorizes a request, it will return an Access Token and a
    "cnf" object in the AS-to-Client response.  Before C initiates the
    DTLS handshake with RS, it MUST send a "POST" request containing the
@@ -498,16 +524,8 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    The Access Token is constructed by AS such that RS can associate the
    Access Token with the Client's public key.  If CBOR web tokens
    [I-D.ietf-ace-cbor-web-token] are used as recommended in
-
-
-
-Gerdes, et al.           Expires March 20, 2017                 [Page 9]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
-
    [I-D.ietf-ace-oauth-authz], the AS MUST include a "COSE_Key" object
-   in the "cnf" field of the Access Token.  This "COSE_Key" object MAY
+   in the "cnf" claim of the Access Token.  This "COSE_Key" object MAY
    contain a reference to a key for C that is already known by RS (e.g.,
    from previous communication).  If the AS has no certain knowledge
    that the Client's key is already known to RS, the Client's public key
@@ -530,29 +548,11 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    [I-D.ietf-ace-oauth-authz]), C must ensure that the Access Token
    request is sent over a secure channel that guarantees authentication,
    message integrity and confidentiality.  This could be, e.g., a DTLS
-   channel (for "coaps") or an OSCOAP [I-D.selander-ace-object-security]
+   channel (for "coaps") or an OSCOAP [I-D.ietf-core-object-security]
    exchange (for "coap").
 
    When AS authorizes C it returns an AS-to-Client response with the
    profile parameter set to "coap_dtls" and a "cnf" parameter carrying a
-   "COSE_Key" object that contains the symmetric session key to be used
-   between C and RS as illustrated in Figure 7.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -561,6 +561,9 @@ Gerdes, et al.           Expires March 20, 2017                [Page 10]
 
 Internet-Draft                  CoAP-DTLS                 September 2016
 
+
+   "COSE_Key" object that contains the symmetric session key to be used
+   between C and RS as illustrated in Figure 7.
 
       2.01 Created
       Content-Format: application/cbor
@@ -589,7 +592,7 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    the receiving Client how long this token will be valid.
 
    A response that declines any operation on the requested resource is
-   constructed according to Section 5.2 of RFC 6749 [2], (cf.
+   constructed according to Section 5.2 of RFC 6749 [4], (cf.
    Section 6.3 of [I-D.ietf-ace-oauth-authz]).
 
        4.00 Bad Request
@@ -603,13 +606,10 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 4.1.  DTLS Channel Setup Between C and RS
 
    When C receives an Access Token from AS, it checks if the payload
-   contains an "access_token" field and a "cnf" object.  With this
-   information C can initiate establishment of a new DTLS channel with
-   RS.  To use DTLS with pre-shared keys, C follows the PSK key exchange
-   algorithm specified in Section 2 of [RFC4279] using the key conveyed
-   in the "cnf" field of the AS response as PSK when constructing the
-   premaster secret.
-
+   contains an "access_token" parameter and a "cnf" parameter.  With
+   this information C can initiate establishment of a new DTLS channel
+   with RS.  To use DTLS with pre-shared keys, C follows the PSK key
+   exchange algorithm specified in Section 2 of [RFC4279] using the key
 
 
 
@@ -617,6 +617,9 @@ Gerdes, et al.           Expires March 20, 2017                [Page 11]
 
 Internet-Draft                  CoAP-DTLS                 September 2016
 
+
+   conveyed in the "cnf" parameter of the AS response as PSK when
+   constructing the premaster secret.
 
    In PreSharedKey mode, the knowledge of the session key by C and RS is
    used for mutual authentication between both peers.  Therefore, RS
@@ -651,21 +654,18 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    key that is used as session key between C and RS.
 
    While C can retrieve the session key from the contents of the "cnf"
-   field in the AS-to-Client response, RS uses the information contained
-   in the "cnf" field of the Access Token to determine the actual
-   session key.  Usually, this is done by including a "COSE_Key" object
-   carrying either a key that has been encrypted with a shared secret
-   between AS and RS, or a key identifier that can be used by RS to
-   lookup the session key.
+   parameter in the AS-to-Client response, RS uses the information
+   contained in the "cnf" claim of the Access Token to determine the
+   actual session key.  Usually, this is done by including a "COSE_Key"
+   object carrying either a key that has been encrypted with a shared
+   secret between AS and RS, or a key identifier that can be used by RS
+   to lookup the session key.
 
    Instead of the "COSE_Key" object, AS MAY include a "COSE_KDF_Context"
    object to enable RS to calculate the session key from the Access
    Token.  The "COSE_KDF_Context" MUST contain a "PartyUInfo" field
    carrying a nonce that has been used by AS to construct the session
    key.
-
-   This specification mandates that at least the key derivation
-   algorithm "HKDF SHA-256" as defined in [I-D.ietf-cose-msg] MUST be
 
 
 
@@ -674,6 +674,8 @@ Gerdes, et al.           Expires March 20, 2017                [Page 12]
 Internet-Draft                  CoAP-DTLS                 September 2016
 
 
+   This specification mandates that at least the key derivation
+   algorithm "HKDF SHA-256" as defined in [I-D.ietf-cose-msg] MUST be
    supported.  This key derivation function is the default when no
    "AlgorithmID" field is included in the "COSE_KDF_Context" object.
 
@@ -716,12 +718,10 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    randomized nonce is preferred to prevent disclosure of information
    about RS's internal clock characteristics.
 
-5.3.  Privacy
 
-   An unprotected response to an unauthorized request (c.f. {#as-info})
-   may disclose information about RS and/or its existing relationship
-   with C.  It is advisable to include as little information as possible
-   in an unencrypted response.  When a DTLS session between C and RS
+
+
+
 
 
 
@@ -730,6 +730,12 @@ Gerdes, et al.           Expires March 20, 2017                [Page 13]
 Internet-Draft                  CoAP-DTLS                 September 2016
 
 
+5.3.  Privacy
+
+   An unprotected response to an unauthorized request (c.f. {#as-info})
+   may disclose information about RS and/or its existing relationship
+   with C.  It is advisable to include as little information as possible
+   in an unencrypted response.  When a DTLS session between C and RS
    already exists, more detailed information may be included with an
    error response to provide C with sufficient information to react on
    that particular error.
@@ -770,6 +776,16 @@ Internet-Draft                  CoAP-DTLS                 September 2016
               DOI 10.17487/RFC5226, May 2008,
               <http://www.rfc-editor.org/info/rfc5226>.
 
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 14]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
+
    [RFC5746]  Rescorla, E., Ray, M., Dispensa, S., and N. Oskov,
               "Transport Layer Security (TLS) Renegotiation Indication
               Extension", RFC 5746, DOI 10.17487/RFC5746, February 2010,
@@ -778,13 +794,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    [RFC6347]  Rescorla, E. and N. Modadugu, "Datagram Transport Layer
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
               January 2012, <http://www.rfc-editor.org/info/rfc6347>.
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 14]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
    [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
               Specifications and Registration Procedures", BCP 13,
@@ -807,6 +816,11 @@ Internet-Draft                  CoAP-DTLS                 September 2016
               "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-01
               (work in progress), July 2016.
 
+   [I-D.ietf-core-object-security]
+              Selander, G., Mattsson, J., Palombini, F., and L. Seitz,
+              "Object Security of CoAP (OSCOAP)", draft-ietf-core-
+              object-security-00 (work in progress), October 2016.
+
    [I-D.ietf-core-resource-directory]
               Shelby, Z., Koster, M., Bormann, C., and P. Stok, "CoRE
               Resource Directory", draft-ietf-core-resource-directory-08
@@ -814,16 +828,19 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
    [I-D.ietf-cose-msg]
               Schaad, J., "CBOR Object Signing and Encryption (COSE)",
-              draft-ietf-cose-msg-22 (work in progress), October 2016.
-
-   [I-D.selander-ace-object-security]
-              Selander, G., Mattsson, J., Palombini, F., and L. Seitz,
-              "Object Security of CoAP (OSCOAP)", draft-selander-ace-
-              object-security-06 (work in progress), October 2016.
+              draft-ietf-cose-msg-23 (work in progress), October 2016.
 
    [RFC5988]  Nottingham, M., "Web Linking", RFC 5988,
               DOI 10.17487/RFC5988, October 2010,
               <http://www.rfc-editor.org/info/rfc5988>.
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 15]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
 
    [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
               Transport Layer Security (TLS)", RFC 6655,
@@ -833,14 +850,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    [RFC6690]  Shelby, Z., "Constrained RESTful Environments (CoRE) Link
               Format", RFC 6690, DOI 10.17487/RFC6690, August 2012,
               <http://www.rfc-editor.org/info/rfc6690>.
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 15]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
-
 
    [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
               Weiler, S., and T. Kivinen, "Using Raw Public Keys in
@@ -865,11 +874,29 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 6.3.  URIs
 
-   [1] https://tools.ietf.org/html/rfc7252#section-9
+   [1] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
+       03#section-8.1
 
-   [2] https://tools.ietf.org/html/rfc6749#section-5.2
+   [2] https://tools.ietf.org/html/rfc7252#section-9
+
+   [3] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
+       03#section-8.1
+
+   [4] https://tools.ietf.org/html/rfc6749#section-5.2
 
 Authors' Addresses
+
+
+
+
+
+
+
+
+Gerdes, et al.           Expires March 20, 2017                [Page 16]
+
+Internet-Draft                  CoAP-DTLS                 September 2016
+
 
    Stefanie Gerdes
    Universitaet Bremen TZI
@@ -889,13 +916,6 @@ Authors' Addresses
 
    Phone: +49-421-218-63904
    Email: bergmann@tzi.org
-
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 16]
-
-Internet-Draft                  CoAP-DTLS                 September 2016
 
 
    Carsten Bormann
@@ -924,26 +944,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    Sweden
 
    Email: ludwig@sics.se
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
