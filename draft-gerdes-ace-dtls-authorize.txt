@@ -89,7 +89,7 @@ Table of Contents
    7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
      7.2.  Informative References  . . . . . . . . . . . . . . . . .  15
-     7.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  15
+     7.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  16
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  16
 
 1.  Introduction
@@ -321,7 +321,7 @@ Internet-Draft                  CoAP-DTLS                   October 2016
    freshness in case that the RS and AS do not have synchronized clocks.
 
    Figure 3 shows an example for an AS Information message payload using
-   CBOR diagnostic notation.
+   CBOR [RFC7049] diagnostic notation.
 
        4.01 Unauthorized
        Content-Format: application/ace+cbor
@@ -817,6 +817,10 @@ Internet-Draft                  CoAP-DTLS                   October 2016
               DOI 10.17487/RFC6655, July 2012,
               <http://www.rfc-editor.org/info/rfc6655>.
 
+   [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
+              Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
+              October 2013, <http://www.rfc-editor.org/info/rfc7049>.
+
    [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
               Weiler, S., and T. Kivinen, "Using Raw Public Keys in
               Transport Layer Security (TLS) and Datagram Transport
@@ -828,12 +832,8 @@ Internet-Draft                  CoAP-DTLS                   October 2016
               TLS", RFC 7251, DOI 10.17487/RFC7251, June 2014,
               <http://www.rfc-editor.org/info/rfc7251>.
 
-7.3.  URIs
 
-   [1] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       03#section-8.1
 
-   [2] https://tools.ietf.org/html/rfc7252#section-9
 
 
 
@@ -841,6 +841,13 @@ Gerdes, et al.             Expires May 4, 2017                 [Page 15]
 
 Internet-Draft                  CoAP-DTLS                   October 2016
 
+
+7.3.  URIs
+
+   [1] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
+       03#section-8.1
+
+   [2] https://tools.ietf.org/html/rfc7252#section-9
 
    [3] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        03#section-8.1
@@ -881,13 +888,6 @@ Authors' Addresses
    Email: cabo@tzi.org
 
 
-   Goeran Selander
-   Ericsson
-   Faroegatan 6
-   Kista  164 80
-   Sweden
-
-   Email: goran.selander@ericsson.com
 
 
 
@@ -898,6 +898,15 @@ Gerdes, et al.             Expires May 4, 2017                 [Page 16]
 Internet-Draft                  CoAP-DTLS                   October 2016
 
 
+   Goeran Selander
+   Ericsson
+   Faroegatan 6
+   Kista  164 80
+   Sweden
+
+   Email: goran.selander@ericsson.com
+
+
    Ludwig Seitz
    SICS Swedish ICT AB
    Scheelevaegen 17
@@ -905,15 +914,6 @@ Internet-Draft                  CoAP-DTLS                   October 2016
    Sweden
 
    Email: ludwig@sics.se
-
-
-
-
-
-
-
-
-
 
 
 
