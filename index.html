@@ -294,7 +294,7 @@ li, p {
 
   <meta name="dct.creator" content="Gerdes, S., Bergmann, O., Bormann, C., Selander, G., and L. Seitz" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-gerdes-ace-dtls-authorize-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2016-9-16" />
+  <meta name="dct.issued" scheme="ISO8601" content="2016-10-31" />
   <meta name="dct.abstract" content="This specification defines a profile for delegating client authentication and authorization in a constrained environment by establishing a Datagram Transport Layer Security (DTLS) channel between resource-constrained nodes.  The protocol relies on DTLS for communication security between entities in a constrained network. A resource-constrained node can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
   <meta name="description" content="This specification defines a profile for delegating client authentication and authorization in a constrained environment by establishing a Datagram Transport Layer Security (DTLS) channel between resource-constrained nodes.  The protocol relies on DTLS for communication security between entities in a constrained network. A resource-constrained node can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
 
@@ -318,7 +318,7 @@ li, p {
   <td class="right">C. Bormann</td>
 </tr>
 <tr>
-  <td class="left">Expires: March 20, 2017</td>
+  <td class="left">Expires: May 4, 2017</td>
   <td class="right">Universit&#228;t Bremen TZI</td>
 </tr>
 <tr>
@@ -339,7 +339,7 @@ li, p {
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">September 16, 2016</td>
+  <td class="right">October 31, 2016</td>
 </tr>
 
     	
@@ -359,7 +359,7 @@ li, p {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on March 20, 2017.</p>
+<p>This Internet-Draft will expire on May 4, 2017.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -639,8 +639,8 @@ a2                                   # map(2)
 </dl>
 <p id="rfc.section.4.1.p.5">This specification assumes that the Access Token is a PoP token as described in <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a> unless specifically stated otherwise. Therefore, the Access Token is bound to a symmetric PoP key that is used as session key between C and RS.</p>
 <p id="rfc.section.4.1.p.6">While C can retrieve the session key from the contents of the <samp>cnf</samp> parameter in the AS-to-Client response, RS uses the information contained in the <samp>cnf</samp> claim of the Access Token to determine the actual session key. Usually, this is done by including a <samp>COSE_Key</samp> object carrying either a key that has been encrypted with a shared secret between AS and RS, or a key identifier that can be used by RS to lookup the session key.</p>
-<p id="rfc.section.4.1.p.7">Instead of the <samp>COSE_Key</samp> object, AS MAY include a <samp>COSE_KDF_Context</samp> object to enable RS to calculate the session key from the Access Token. The <samp>COSE_KDF_Context</samp> MUST contain a <samp>PartyUInfo</samp> field carrying a nonce that has been used by AS to construct the session key.</p>
-<p id="rfc.section.4.1.p.8">This specification mandates that at least the key derivation algorithm <samp>HKDF SHA-256</samp> as defined in <a href="#I-D.ietf-cose-msg">[I-D.ietf-cose-msg]</a> MUST be supported.  This key derivation function is the default when no <samp>AlgorithmID</samp> field is included in the <samp>COSE_KDF_Context</samp> object.</p>
+<p id="rfc.section.4.1.p.7">Instead of the <samp>COSE_Key</samp> object, AS MAY include a <samp>COSE_Encrypt</samp> structure to enable RS to calculate the session key from the Access Token. The <samp>COSE_Encrypt</samp> structure MUST use the <em>Direct Key with KDF</em> method as described in <a href="https://tools.ietf.org/html/draft-ietf-cose-msg-23#section-12.1.2">Section 12.1.2 of draft-ietf-cose-msg</a>.  The AS MUST include a Context information structure carrying a PartyU <samp>nonce</samp> parameter carrying the nonce that has been used by AS to construct the session key.</p>
+<p id="rfc.section.4.1.p.8">This specification mandates that at least the key derivation algorithm <samp>HKDF SHA-256</samp> as defined in <a href="#I-D.ietf-cose-msg">[I-D.ietf-cose-msg]</a> MUST be supported.  This key derivation function is the default when no <samp>alg</samp> field is included in the <samp>COSE_Encrypt</samp> structure for RS.</p>
 <h1 id="rfc.section.4.2"><a href="#rfc.section.4.2">4.2.</a> <a href="#updating-authorization-information" id="updating-authorization-information">Updating Authorization Information</a></h1>
 <p id="rfc.section.4.2.p.1">Usually, the authorization information that RS keeps for C is updated by uploading a new Access Token as described in <a href="#update">Section 2.4</a>.</p>
 <p id="rfc.section.4.2.p.2">If the security association with RS still exists and RS has indicated support for session renegotiation according to <a href="#RFC5746">[RFC5746]</a>, the new Access Token MAY be used to renegotiate the existing DTLS session. In this case, the Access Token is used as <samp>psk_identity</samp> as defined in <a href="#psk-dtls-channel">Section 4.1</a>. The Client MAY also perform a new DTLS handshake according to <a href="#psk-dtls-channel">Section 4.1</a> that replaces the existing DTLS session.</p>
@@ -661,7 +661,7 @@ a2                                   # map(2)
       <td class="reference">
         <b id="I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</b>
       </td>
-      <td class="top"><a>Seitz, L.</a>, <a>Selander, G.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="http://tools.ietf.org/html/draft-ietf-ace-oauth-authz-03">Authentication and Authorization for Constrained Environments (ACE)</a>", Internet-Draft draft-ietf-ace-oauth-authz-03, October 2016.</td>
+      <td class="top"><a>Seitz, L.</a>, <a>Selander, G.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="http://tools.ietf.org/html/draft-ietf-ace-oauth-authz-04">Authentication and Authorization for Constrained Environments (ACE)</a>", Internet-Draft draft-ietf-ace-oauth-authz-04, October 2016.</td>
     </tr>
     <tr>
       <td class="reference">
@@ -744,7 +744,7 @@ a2                                   # map(2)
       <td class="reference">
         <b id="I-D.ietf-core-resource-directory">[I-D.ietf-core-resource-directory]</b>
       </td>
-      <td class="top"><a>Shelby, Z.</a>, <a>Koster, M.</a>, <a>Bormann, C.</a> and <a>P. Stok</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-resource-directory-08">CoRE Resource Directory</a>", Internet-Draft draft-ietf-core-resource-directory-08, July 2016.</td>
+      <td class="top"><a>Shelby, Z.</a>, <a>Koster, M.</a>, <a>Bormann, C.</a> and <a>P. Stok</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-resource-directory-09">CoRE Resource Directory</a>", Internet-Draft draft-ietf-core-resource-directory-09, October 2016.</td>
     </tr>
     <tr>
       <td class="reference">

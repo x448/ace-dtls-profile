@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: March 20, 2017                          Universitaet Bremen TZI
+Expires: May 4, 2017                             Universitaet Bremen TZI
                                                              G. Selander
                                                                 Ericsson
                                                                 L. Seitz
                                                      SICS Swedish ICT AB
-                                                      September 16, 2016
+                                                        October 31, 2016
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 20, 2017.
+   This Internet-Draft will expire on May 4, 2017.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Gerdes, et al.           Expires March 20, 2017                 [Page 1]
+Gerdes, et al.             Expires May 4, 2017                  [Page 1]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -89,7 +89,7 @@ Table of Contents
      6.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
      6.2.  Informative References  . . . . . . . . . . . . . . . . .  15
      6.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  16
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  16
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
 
 1.  Introduction
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Gerdes, et al.           Expires March 20, 2017                 [Page 2]
+Gerdes, et al.             Expires May 4, 2017                  [Page 2]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
    parameter in the DTLS PSK handshake is used to transfer the access
@@ -165,9 +165,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-Gerdes, et al.           Expires March 20, 2017                 [Page 3]
+Gerdes, et al.             Expires May 4, 2017                  [Page 3]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
       C                            RS                   AS
@@ -221,9 +221,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-Gerdes, et al.           Expires March 20, 2017                 [Page 4]
+Gerdes, et al.             Expires May 4, 2017                  [Page 4]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
       C                            RS                   AS
@@ -277,9 +277,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-Gerdes, et al.           Expires March 20, 2017                 [Page 5]
+Gerdes, et al.             Expires May 4, 2017                  [Page 5]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
    Unauthorized Resource Request messages MUST be denied with a client
@@ -333,9 +333,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-Gerdes, et al.           Expires March 20, 2017                 [Page 6]
+Gerdes, et al.             Expires May 4, 2017                  [Page 6]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
    In this example, the attribute AS points the receiver of this message
@@ -389,9 +389,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-Gerdes, et al.           Expires March 20, 2017                 [Page 7]
+Gerdes, et al.             Expires May 4, 2017                  [Page 7]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
       during the DTLS handshake.  In the asymmetric case, the public key
@@ -445,9 +445,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-Gerdes, et al.           Expires March 20, 2017                 [Page 8]
+Gerdes, et al.             Expires May 4, 2017                  [Page 8]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
       C                            RS                   AS
@@ -501,9 +501,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-Gerdes, et al.           Expires March 20, 2017                 [Page 9]
+Gerdes, et al.             Expires May 4, 2017                  [Page 9]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
    When AS authorizes a request, it will return an Access Token and a
@@ -557,9 +557,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-Gerdes, et al.           Expires March 20, 2017                [Page 10]
+Gerdes, et al.             Expires May 4, 2017                 [Page 10]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
    "COSE_Key" object that contains the symmetric session key to be used
@@ -613,9 +613,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-Gerdes, et al.           Expires March 20, 2017                [Page 11]
+Gerdes, et al.             Expires May 4, 2017                 [Page 11]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
    conveyed in the "cnf" parameter of the AS response as PSK when
@@ -661,23 +661,26 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    secret between AS and RS, or a key identifier that can be used by RS
    to lookup the session key.
 
-   Instead of the "COSE_Key" object, AS MAY include a "COSE_KDF_Context"
-   object to enable RS to calculate the session key from the Access
-   Token.  The "COSE_KDF_Context" MUST contain a "PartyUInfo" field
-   carrying a nonce that has been used by AS to construct the session
-   key.
+   Instead of the "COSE_Key" object, AS MAY include a "COSE_Encrypt"
+   structure to enable RS to calculate the session key from the Access
+   Token.  The "COSE_Encrypt" structure MUST use the _Direct Key with
+   KDF_ method as described in Section 12.1.2 of draft-ietf-cose-msg
+   [5].  The AS MUST include a Context information structure carrying a
 
 
 
-Gerdes, et al.           Expires March 20, 2017                [Page 12]
+Gerdes, et al.             Expires May 4, 2017                 [Page 12]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
+
+   PartyU "nonce" parameter carrying the nonce that has been used by AS
+   to construct the session key.
 
    This specification mandates that at least the key derivation
    algorithm "HKDF SHA-256" as defined in [I-D.ietf-cose-msg] MUST be
-   supported.  This key derivation function is the default when no
-   "AlgorithmID" field is included in the "COSE_KDF_Context" object.
+   supported.  This key derivation function is the default when no "alg"
+   field is included in the "COSE_Encrypt" structure for RS.
 
 4.2.  Updating Authorization Information
 
@@ -722,12 +725,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 13]
+Gerdes, et al.             Expires May 4, 2017                 [Page 13]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
 5.3.  Privacy
@@ -748,7 +748,7 @@ Internet-Draft                  CoAP-DTLS                 September 2016
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
               H. Tschofenig, "Authentication and Authorization for
               Constrained Environments (ACE)", draft-ietf-ace-oauth-
-              authz-03 (work in progress), October 2016.
+              authz-04 (work in progress), October 2016.
 
    [I-D.ietf-oauth-pop-architecture]
               Hunt, P., Richer, J., Mills, W., Mishra, P., and H.
@@ -781,9 +781,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-Gerdes, et al.           Expires March 20, 2017                [Page 14]
+Gerdes, et al.             Expires May 4, 2017                 [Page 14]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
    [RFC5746]  Rescorla, E., Ray, M., Dispensa, S., and N. Oskov,
@@ -823,8 +823,8 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
    [I-D.ietf-core-resource-directory]
               Shelby, Z., Koster, M., Bormann, C., and P. Stok, "CoRE
-              Resource Directory", draft-ietf-core-resource-directory-08
-              (work in progress), July 2016.
+              Resource Directory", draft-ietf-core-resource-directory-09
+              (work in progress), October 2016.
 
    [I-D.ietf-cose-msg]
               Schaad, J., "CBOR Object Signing and Encryption (COSE)",
@@ -837,9 +837,9 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-Gerdes, et al.           Expires March 20, 2017                [Page 15]
+Gerdes, et al.             Expires May 4, 2017                 [Page 15]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
 
    [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
@@ -884,7 +884,7 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
    [4] https://tools.ietf.org/html/rfc6749#section-5.2
 
-Authors' Addresses
+   [5] https://tools.ietf.org/html/draft-ietf-cose-msg-23#section-12.1.2
 
 
 
@@ -893,10 +893,12 @@ Authors' Addresses
 
 
 
-Gerdes, et al.           Expires March 20, 2017                [Page 16]
+Gerdes, et al.             Expires May 4, 2017                 [Page 16]
 
-Internet-Draft                  CoAP-DTLS                 September 2016
+Internet-Draft                  CoAP-DTLS                   October 2016
 
+
+Authors' Addresses
 
    Stefanie Gerdes
    Universitaet Bremen TZI
@@ -947,6 +949,4 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 
 
 
-
-
-Gerdes, et al.           Expires March 20, 2017                [Page 17]
+Gerdes, et al.             Expires May 4, 2017                 [Page 17]
