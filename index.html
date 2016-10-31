@@ -283,9 +283,10 @@ li, p {
 <link href="#rfc.section.5.1" rel="Chapter" title="5.1 Unprotected AS Information"/>
 <link href="#rfc.section.5.2" rel="Chapter" title="5.2 Use of Nonces for Replay Protection"/>
 <link href="#rfc.section.5.3" rel="Chapter" title="5.3 Privacy"/>
-<link href="#rfc.references" rel="Chapter" title="6 References"/>
-<link href="#rfc.references.1" rel="Chapter" title="6.1 Normative References"/>
-<link href="#rfc.references.2" rel="Chapter" title="6.2 Informative References"/>
+<link href="#rfc.section.6" rel="Chapter" title="6 IANA Considerations"/>
+<link href="#rfc.references" rel="Chapter" title="7 References"/>
+<link href="#rfc.references.1" rel="Chapter" title="7.1 Normative References"/>
+<link href="#rfc.references.2" rel="Chapter" title="7.2 Informative References"/>
 <link href="#rfc.authors" rel="Chapter"/>
 
 
@@ -386,9 +387,10 @@ li, p {
 <ul><li>5.1.   <a href="#rfc.section.5.1">Unprotected AS Information</a></li>
 <li>5.2.   <a href="#rfc.section.5.2">Use of Nonces for Replay Protection</a></li>
 <li>5.3.   <a href="#rfc.section.5.3">Privacy</a></li>
-</ul><li>6.   <a href="#rfc.references">References</a></li>
-<ul><li>6.1.   <a href="#rfc.references.1">Normative References</a></li>
-<li>6.2.   <a href="#rfc.references.2">Informative References</a></li>
+</ul><li>6.   <a href="#rfc.section.6">IANA Considerations</a></li>
+<li>7.   <a href="#rfc.references">References</a></li>
+<ul><li>7.1.   <a href="#rfc.references.1">Normative References</a></li>
+<li>7.2.   <a href="#rfc.references.2">Informative References</a></li>
 </ul><li><a href="#rfc.authors">Authors' Addresses</a></li>
 
 
@@ -653,8 +655,10 @@ a2                                   # map(2)
 <p id="rfc.section.5.2.p.1">RS may add a nonce to the AS Information message sent as a response to an unauthorized request to ensure freshness of an Access Token subsequently presented to RS. While a timestamp of some granularity would be sufficient to protect against replay attacks, using randomized nonce is preferred to prevent disclosure of information about RS&#8217;s internal clock characteristics.</p>
 <h1 id="rfc.section.5.3"><a href="#rfc.section.5.3">5.3.</a> <a href="#privacy" id="privacy">Privacy</a></h1>
 <p id="rfc.section.5.3.p.1">An unprotected response to an unauthorized request (c.f. {#as-info}) may disclose information about RS and/or its existing relationship with C. It is advisable to include as little information as possible in an unencrypted response. When a DTLS session between C and RS already exists, more detailed information may be included with an error response to provide C with sufficient information to react on that particular error.</p>
-<h1 id="rfc.references"><a href="#rfc.references">6.</a> References</h1>
-<h1 id="rfc.references.1"><a href="#rfc.references.1">6.1.</a> Normative References</h1>
+<h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a></h1>
+<p id="rfc.section.6.p.1">This document has no actions for IANA.</p>
+<h1 id="rfc.references"><a href="#rfc.references">7.</a> References</h1>
+<h1 id="rfc.references.1"><a href="#rfc.references.1">7.1.</a> Normative References</h1>
 <table>
   <tbody>
     <tr>
@@ -662,12 +666,6 @@ a2                                   # map(2)
         <b id="I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</b>
       </td>
       <td class="top"><a>Seitz, L.</a>, <a>Selander, G.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="http://tools.ietf.org/html/draft-ietf-ace-oauth-authz-04">Authentication and Authorization for Constrained Environments (ACE)</a>", Internet-Draft draft-ietf-ace-oauth-authz-04, October 2016.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="I-D.ietf-oauth-pop-architecture">[I-D.ietf-oauth-pop-architecture]</b>
-      </td>
-      <td class="top"><a>Hunt, P.</a>, <a>Richer, J.</a>, <a>Mills, W.</a>, <a>Mishra, P.</a> and <a>H. Tschofenig</a>, "<a href="http://tools.ietf.org/html/draft-ietf-oauth-pop-architecture-08">OAuth 2.0 Proof-of-Possession (PoP) Security Architecture</a>", Internet-Draft draft-ietf-oauth-pop-architecture-08, July 2016.</td>
     </tr>
     <tr>
       <td class="reference">
@@ -689,12 +687,6 @@ a2                                   # map(2)
     </tr>
     <tr>
       <td class="reference">
-        <b id="RFC5226">[RFC5226]</b>
-      </td>
-      <td class="top"><a>Narten, T.</a> and <a>H. Alvestrand</a>, "<a href="http://tools.ietf.org/html/rfc5226">Guidelines for Writing an IANA Considerations Section in RFCs</a>", BCP 26, RFC 5226, DOI 10.17487/RFC5226, May 2008.</td>
-    </tr>
-    <tr>
-      <td class="reference">
         <b id="RFC5746">[RFC5746]</b>
       </td>
       <td class="top"><a>Rescorla, E.</a>, <a>Ray, M.</a>, <a>Dispensa, S.</a> and <a>N. Oskov</a>, "<a href="http://tools.ietf.org/html/rfc5746">Transport Layer Security (TLS) Renegotiation Indication Extension</a>", RFC 5746, DOI 10.17487/RFC5746, February 2010.</td>
@@ -707,25 +699,13 @@ a2                                   # map(2)
     </tr>
     <tr>
       <td class="reference">
-        <b id="RFC6838">[RFC6838]</b>
-      </td>
-      <td class="top"><a>Freed, N.</a>, <a>Klensin, J.</a> and <a>T. Hansen</a>, "<a href="http://tools.ietf.org/html/rfc6838">Media Type Specifications and Registration Procedures</a>", BCP 13, RFC 6838, DOI 10.17487/RFC6838, January 2013.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="RFC7049">[RFC7049]</b>
-      </td>
-      <td class="top"><a>Bormann, C.</a> and <a>P. Hoffman</a>, "<a href="http://tools.ietf.org/html/rfc7049">Concise Binary Object Representation (CBOR)</a>", RFC 7049, DOI 10.17487/RFC7049, October 2013.</td>
-    </tr>
-    <tr>
-      <td class="reference">
         <b id="RFC7252">[RFC7252]</b>
       </td>
       <td class="top"><a>Shelby, Z.</a>, <a>Hartke, K.</a> and <a>C. Bormann</a>, "<a href="http://tools.ietf.org/html/rfc7252">The Constrained Application Protocol (CoAP)</a>", RFC 7252, DOI 10.17487/RFC7252, June 2014.</td>
     </tr>
   </tbody>
 </table>
-<h1 id="rfc.references.2"><a href="#rfc.references.2">6.2.</a> Informative References</h1>
+<h1 id="rfc.references.2"><a href="#rfc.references.2">7.2.</a> Informative References</h1>
 <table>
   <tbody>
     <tr>
@@ -754,21 +734,9 @@ a2                                   # map(2)
     </tr>
     <tr>
       <td class="reference">
-        <b id="RFC5988">[RFC5988]</b>
-      </td>
-      <td class="top"><a>Nottingham, M.</a>, "<a href="http://tools.ietf.org/html/rfc5988">Web Linking</a>", RFC 5988, DOI 10.17487/RFC5988, October 2010.</td>
-    </tr>
-    <tr>
-      <td class="reference">
         <b id="RFC6655">[RFC6655]</b>
       </td>
       <td class="top"><a>McGrew, D.</a> and <a>D. Bailey</a>, "<a href="http://tools.ietf.org/html/rfc6655">AES-CCM Cipher Suites for Transport Layer Security (TLS)</a>", RFC 6655, DOI 10.17487/RFC6655, July 2012.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="RFC6690">[RFC6690]</b>
-      </td>
-      <td class="top"><a>Shelby, Z.</a>, "<a href="http://tools.ietf.org/html/rfc6690">Constrained RESTful Environments (CoRE) Link Format</a>", RFC 6690, DOI 10.17487/RFC6690, August 2012.</td>
     </tr>
     <tr>
       <td class="reference">
@@ -781,18 +749,6 @@ a2                                   # map(2)
         <b id="RFC7251">[RFC7251]</b>
       </td>
       <td class="top"><a>McGrew, D.</a>, <a>Bailey, D.</a>, <a>Campagna, M.</a> and <a>R. Dugal</a>, "<a href="http://tools.ietf.org/html/rfc7251">AES-CCM Elliptic Curve Cryptography (ECC) Cipher Suites for TLS</a>", RFC 7251, DOI 10.17487/RFC7251, June 2014.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="RFC7641">[RFC7641]</b>
-      </td>
-      <td class="top"><a>Hartke, K.</a>, "<a href="http://tools.ietf.org/html/rfc7641">Observing Resources in the Constrained Application Protocol (CoAP)</a>", RFC 7641, DOI 10.17487/RFC7641, September 2015.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="RFC7959">[RFC7959]</b>
-      </td>
-      <td class="top"><a>Bormann, C.</a> and <a>Z. Shelby</a>, "<a href="http://tools.ietf.org/html/rfc7959">Block-Wise Transfers in the Constrained Application Protocol (CoAP)</a>", RFC 7959, DOI 10.17487/RFC7959, August 2016.</td>
     </tr>
   </tbody>
 </table>

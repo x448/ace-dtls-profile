@@ -85,11 +85,12 @@ Table of Contents
      5.1.  Unprotected AS Information  . . . . . . . . . . . . . . .  13
      5.2.  Use of Nonces for Replay Protection . . . . . . . . . . .  13
      5.3.  Privacy . . . . . . . . . . . . . . . . . . . . . . . . .  14
-   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
-     6.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
-     6.2.  Informative References  . . . . . . . . . . . . . . . . .  15
-     6.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  16
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .  15
+     7.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  15
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  16
 
 1.  Introduction
 
@@ -104,8 +105,7 @@ Table of Contents
    This specification supports the DTLS PSK handshake [RFC4279] and the
    DTLS handshake with Raw Public Keys (RPK) [RFC7250].
 
-   The DTLS PSK handshake [RFC4279] provides the proof-of-possession for
-   the key tied to the access token.  Furthermore the psk_identity
+
 
 
 
@@ -114,6 +114,8 @@ Gerdes, et al.             Expires May 4, 2017                  [Page 2]
 Internet-Draft                  CoAP-DTLS                   October 2016
 
 
+   The DTLS PSK handshake [RFC4279] provides the proof-of-possession for
+   the key tied to the access token.  Furthermore the psk_identity
    parameter in the DTLS PSK handshake is used to transfer the access
    token from the client to the resource server.
 
@@ -151,8 +153,6 @@ Internet-Draft                  CoAP-DTLS                   October 2016
    specified in [I-D.ietf-ace-oauth-authz].  Figure 1 shows the typical
    message flow in this scenario (messages in square brackets are
    optional):
-
-
 
 
 
@@ -740,21 +740,19 @@ Internet-Draft                  CoAP-DTLS                   October 2016
    error response to provide C with sufficient information to react on
    that particular error.
 
-6.  References
+6.  IANA Considerations
 
-6.1.  Normative References
+   This document has no actions for IANA.
+
+7.  References
+
+7.1.  Normative References
 
    [I-D.ietf-ace-oauth-authz]
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
               H. Tschofenig, "Authentication and Authorization for
               Constrained Environments (ACE)", draft-ietf-ace-oauth-
               authz-04 (work in progress), October 2016.
-
-   [I-D.ietf-oauth-pop-architecture]
-              Hunt, P., Richer, J., Mills, W., Mishra, P., and H.
-              Tschofenig, "OAuth 2.0 Proof-of-Possession (PoP) Security
-              Architecture", draft-ietf-oauth-pop-architecture-08 (work
-              in progress), July 2016.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -771,21 +769,6 @@ Internet-Draft                  CoAP-DTLS                   October 2016
               RFC 4279, DOI 10.17487/RFC4279, December 2005,
               <http://www.rfc-editor.org/info/rfc4279>.
 
-   [RFC5226]  Narten, T. and H. Alvestrand, "Guidelines for Writing an
-              IANA Considerations Section in RFCs", BCP 26, RFC 5226,
-              DOI 10.17487/RFC5226, May 2008,
-              <http://www.rfc-editor.org/info/rfc5226>.
-
-
-
-
-
-
-Gerdes, et al.             Expires May 4, 2017                 [Page 14]
-
-Internet-Draft                  CoAP-DTLS                   October 2016
-
-
    [RFC5746]  Rescorla, E., Ray, M., Dispensa, S., and N. Oskov,
               "Transport Layer Security (TLS) Renegotiation Indication
               Extension", RFC 5746, DOI 10.17487/RFC5746, February 2010,
@@ -795,21 +778,20 @@ Internet-Draft                  CoAP-DTLS                   October 2016
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
               January 2012, <http://www.rfc-editor.org/info/rfc6347>.
 
-   [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
-              Specifications and Registration Procedures", BCP 13,
-              RFC 6838, DOI 10.17487/RFC6838, January 2013,
-              <http://www.rfc-editor.org/info/rfc6838>.
 
-   [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
-              Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
-              October 2013, <http://www.rfc-editor.org/info/rfc7049>.
+
+
+Gerdes, et al.             Expires May 4, 2017                 [Page 14]
+
+Internet-Draft                  CoAP-DTLS                   October 2016
+
 
    [RFC7252]  Shelby, Z., Hartke, K., and C. Bormann, "The Constrained
               Application Protocol (CoAP)", RFC 7252,
               DOI 10.17487/RFC7252, June 2014,
               <http://www.rfc-editor.org/info/rfc7252>.
 
-6.2.  Informative References
+7.2.  Informative References
 
    [I-D.ietf-ace-cbor-web-token]
               Wahlstroem, E., Jones, M., Tschofenig, H., and S. Erdtman,
@@ -830,26 +812,10 @@ Internet-Draft                  CoAP-DTLS                   October 2016
               Schaad, J., "CBOR Object Signing and Encryption (COSE)",
               draft-ietf-cose-msg-23 (work in progress), October 2016.
 
-   [RFC5988]  Nottingham, M., "Web Linking", RFC 5988,
-              DOI 10.17487/RFC5988, October 2010,
-              <http://www.rfc-editor.org/info/rfc5988>.
-
-
-
-
-Gerdes, et al.             Expires May 4, 2017                 [Page 15]
-
-Internet-Draft                  CoAP-DTLS                   October 2016
-
-
    [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
               Transport Layer Security (TLS)", RFC 6655,
               DOI 10.17487/RFC6655, July 2012,
               <http://www.rfc-editor.org/info/rfc6655>.
-
-   [RFC6690]  Shelby, Z., "Constrained RESTful Environments (CoRE) Link
-              Format", RFC 6690, DOI 10.17487/RFC6690, August 2012,
-              <http://www.rfc-editor.org/info/rfc6690>.
 
    [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
               Weiler, S., and T. Kivinen, "Using Raw Public Keys in
@@ -862,22 +828,19 @@ Internet-Draft                  CoAP-DTLS                   October 2016
               TLS", RFC 7251, DOI 10.17487/RFC7251, June 2014,
               <http://www.rfc-editor.org/info/rfc7251>.
 
-   [RFC7641]  Hartke, K., "Observing Resources in the Constrained
-              Application Protocol (CoAP)", RFC 7641,
-              DOI 10.17487/RFC7641, September 2015,
-              <http://www.rfc-editor.org/info/rfc7641>.
-
-   [RFC7959]  Bormann, C. and Z. Shelby, Ed., "Block-Wise Transfers in
-              the Constrained Application Protocol (CoAP)", RFC 7959,
-              DOI 10.17487/RFC7959, August 2016,
-              <http://www.rfc-editor.org/info/rfc7959>.
-
-6.3.  URIs
+7.3.  URIs
 
    [1] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        03#section-8.1
 
    [2] https://tools.ietf.org/html/rfc7252#section-9
+
+
+
+Gerdes, et al.             Expires May 4, 2017                 [Page 15]
+
+Internet-Draft                  CoAP-DTLS                   October 2016
+
 
    [3] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        03#section-8.1
@@ -885,18 +848,6 @@ Internet-Draft                  CoAP-DTLS                   October 2016
    [4] https://tools.ietf.org/html/rfc6749#section-5.2
 
    [5] https://tools.ietf.org/html/draft-ietf-cose-msg-23#section-12.1.2
-
-
-
-
-
-
-
-
-Gerdes, et al.             Expires May 4, 2017                 [Page 16]
-
-Internet-Draft                  CoAP-DTLS                   October 2016
-
 
 Authors' Addresses
 
@@ -939,6 +890,14 @@ Authors' Addresses
    Email: goran.selander@ericsson.com
 
 
+
+
+
+Gerdes, et al.             Expires May 4, 2017                 [Page 16]
+
+Internet-Draft                  CoAP-DTLS                   October 2016
+
+
    Ludwig Seitz
    SICS Swedish ICT AB
    Scheelevaegen 17
@@ -946,6 +905,47 @@ Authors' Addresses
    Sweden
 
    Email: ludwig@sics.se
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
