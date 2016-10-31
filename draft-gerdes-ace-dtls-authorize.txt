@@ -707,8 +707,8 @@ Internet-Draft                  CoAP-DTLS                   October 2016
    Initially, no secure channel exists to protect the communication
    between C and RS.  Thus, C cannot determine if the AS information
    contained in an unprotected response from RS to an unauthorized
-   request (c.f. {#as-info}) is authentic.  It is therefore advisable to
-   provide C with a (possibly hard-coded) list of trustworthy
+   request (c.f.  Section 2.2) is authentic.  It is therefore advisable
+   to provide C with a (possibly hard-coded) list of trustworthy
    authorization servers.  AS information responses referring to a URI
    not listed there would be ignored.
 
@@ -732,13 +732,13 @@ Internet-Draft                  CoAP-DTLS                   October 2016
 
 5.3.  Privacy
 
-   An unprotected response to an unauthorized request (c.f. {#as-info})
-   may disclose information about RS and/or its existing relationship
-   with C.  It is advisable to include as little information as possible
-   in an unencrypted response.  When a DTLS session between C and RS
-   already exists, more detailed information may be included with an
-   error response to provide C with sufficient information to react on
-   that particular error.
+   An unprotected response to an unauthorized request (c.f.
+   Section 2.2) may disclose information about RS and/or its existing
+   relationship with C.  It is advisable to include as little
+   information as possible in an unencrypted response.  When a DTLS
+   session between C and RS already exists, more detailed information
+   may be included with an error response to provide C with sufficient
+   information to react on that particular error.
 
 6.  IANA Considerations
 
