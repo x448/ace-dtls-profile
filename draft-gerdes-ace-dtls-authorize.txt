@@ -9,7 +9,7 @@ Expires: May 4, 2017                             Universitaet Bremen TZI
                                                              G. Selander
                                                                 Ericsson
                                                                 L. Seitz
-                                                     SICS Swedish ICT AB
+                                                               RISE SICS
                                                         October 31, 2016
 
 
@@ -752,7 +752,7 @@ Internet-Draft                  CoAP-DTLS                   October 2016
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
               H. Tschofenig, "Authentication and Authorization for
               Constrained Environments (ACE)", draft-ietf-ace-oauth-
-              authz-04 (work in progress), October 2016.
+              authz-05 (work in progress), February 2017.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -794,14 +794,14 @@ Internet-Draft                  CoAP-DTLS                   October 2016
 7.2.  Informative References
 
    [I-D.ietf-ace-cbor-web-token]
-              Wahlstroem, E., Jones, M., Tschofenig, H., and S. Erdtman,
-              "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-01
-              (work in progress), July 2016.
+              Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
+              "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-03
+              (work in progress), March 2017.
 
    [I-D.ietf-core-object-security]
               Selander, G., Mattsson, J., Palombini, F., and L. Seitz,
               "Object Security of CoAP (OSCOAP)", draft-ietf-core-
-              object-security-00 (work in progress), October 2016.
+              object-security-01 (work in progress), December 2016.
 
    [I-D.ietf-core-resource-directory]
               Shelby, Z., Koster, M., Bormann, C., and P. Stok, "CoRE
@@ -810,7 +810,7 @@ Internet-Draft                  CoAP-DTLS                   October 2016
 
    [I-D.ietf-cose-msg]
               Schaad, J., "CBOR Object Signing and Encryption (COSE)",
-              draft-ietf-cose-msg-23 (work in progress), October 2016.
+              draft-ietf-cose-msg-24 (work in progress), November 2016.
 
    [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
               Transport Layer Security (TLS)", RFC 6655,
@@ -908,12 +908,12 @@ Internet-Draft                  CoAP-DTLS                   October 2016
 
 
    Ludwig Seitz
-   SICS Swedish ICT AB
+   RISE SICS
    Scheelevaegen 17
    Lund  223 70
    Sweden
 
-   Email: ludwig@sics.se
+   Email: ludwig.seitz@ri.se
 
 
 
