@@ -81,9 +81,9 @@ Table of Contents
    4.  PreSharedKey Mode . . . . . . . . . . . . . . . . . . . . . .  10
      4.1.  DTLS Channel Setup Between C and RS . . . . . . . . . . .  11
      4.2.  Updating Authorization Information  . . . . . . . . . . .  13
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  13
-     5.1.  Unprotected AS Information  . . . . . . . . . . . . . . .  13
-     5.2.  Use of Nonces for Replay Protection . . . . . . . . . . .  13
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
+     5.1.  Unprotected AS Information  . . . . . . . . . . . . . . .  14
+     5.2.  Use of Nonces for Replay Protection . . . . . . . . . . .  14
      5.3.  Privacy . . . . . . . . . . . . . . . . . . . . . . . . .  14
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
    7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
@@ -632,17 +632,47 @@ Internet-Draft                  CoAP-DTLS                   October 2016
 
    If RS receives a ClientKeyExchange message that contains a
    "psk_identity" with a length greater zero, it MUST base64-decode its
-   contents and process it in the same way as an Access Token that has
-   been uploaded to its "/authz-info" resource.  If the contents of the
-   "psk_identity" contained a syntactically valid Access Token, RS
-   continues processing the ClientKeyExchange message.  Otherwise, the
-   DTLS session setup is terminated with an "illegal_parameter" DTLS
-   alert message.
+   contents and check if the "psk_identity" field contains a key
+   identifier or Access Token according to the following CDDL
+   specification:
+
+   psk_identity = {
+     kid => bstr / access_token => bstr
+   }
+
+   The identifiers for the map keys "kid" and "access_token" are used
+   with the same meaning as in COSE [I-D.ietf-cose-msg] and the ACE
+   framework [I-D.ietf-ace-oauth-authz] respectively.  The identifier
+   "kid" thus has the value 4 (see [I-D.ietf-cose-msg]), and the
+   identifier "access_token" has the value 19, respectively (see
+   [I-D.ietf-ace-oauth-authz]).
+
+   If the "psk_identity" field contains a key identifier, the receiver
+   MUST check if it has one or more Access Tokens that are associated
+   with the specified key.  If no valid Access Token is available for
+   this key, the DTLS session setup is terminated with an
+   "illegal_parameter" DTLS alert message.
+
+   If instead the "psk_identity" field contains an Access Token, it must
+   processed in the same way as an Access Token that has been uploaded
+   to its "/authz-info" resource.  In this case, RS continues processing
+   the ClientKeyExchange message if the contents of the "psk_identity"
+   contained a valid Access Token.  Otherwise, the DTLS session setup is
+   terminated with an "illegal_parameter" DTLS alert message.
 
    Note1: As RS cannot provide C with a meaningful PSK identity hint in
 
       response to C's ClientHello message, RS SHOULD NOT send a
       ServerKeyExchange message.
+
+
+
+
+
+Gerdes, et al.             Expires May 4, 2017                 [Page 12]
+
+Internet-Draft                  CoAP-DTLS                   October 2016
+
 
    Note2:  According to [RFC7252], CoAP implementations MUST support the
       ciphersuite TLS_PSK_WITH_AES_128_CCM_8 [RFC6655].  C is therefore
@@ -656,24 +686,17 @@ Internet-Draft                  CoAP-DTLS                   October 2016
    While C can retrieve the session key from the contents of the "cnf"
    parameter in the AS-to-Client response, RS uses the information
    contained in the "cnf" claim of the Access Token to determine the
-   actual session key.  Usually, this is done by including a "COSE_Key"
-   object carrying either a key that has been encrypted with a shared
-   secret between AS and RS, or a key identifier that can be used by RS
-   to lookup the session key.
+   actual session key when no explicit "kid" was provided in the
+   "psk_identity" field.  Usually, this is done by including a
+   "COSE_Key" object carrying either a key that has been encrypted with
+   a shared secret between AS and RS, or a key identifier that can be
+   used by RS to lookup the session key.
 
    Instead of the "COSE_Key" object, AS MAY include a "COSE_Encrypt"
    structure to enable RS to calculate the session key from the Access
    Token.  The "COSE_Encrypt" structure MUST use the _Direct Key with
    KDF_ method as described in Section 12.1.2 of draft-ietf-cose-msg
    [5].  The AS MUST include a Context information structure carrying a
-
-
-
-Gerdes, et al.             Expires May 4, 2017                 [Page 12]
-
-Internet-Draft                  CoAP-DTLS                   October 2016
-
-
    PartyU "nonce" parameter carrying the nonce that has been used by AS
    to construct the session key.
 
@@ -698,6 +721,15 @@ Internet-Draft                  CoAP-DTLS                   October 2016
    existing authorization information for C according to the new Access
    Token.
 
+
+
+
+
+Gerdes, et al.             Expires May 4, 2017                 [Page 13]
+
+Internet-Draft                  CoAP-DTLS                   October 2016
+
+
 5.  Security Considerations
 
    TODO
@@ -720,15 +752,6 @@ Internet-Draft                  CoAP-DTLS                   October 2016
    would be sufficient to protect against replay attacks, using
    randomized nonce is preferred to prevent disclosure of information
    about RS's internal clock characteristics.
-
-
-
-
-
-Gerdes, et al.             Expires May 4, 2017                 [Page 13]
-
-Internet-Draft                  CoAP-DTLS                   October 2016
-
 
 5.3.  Privacy
 
@@ -754,6 +777,15 @@ Internet-Draft                  CoAP-DTLS                   October 2016
               Constrained Environments (ACE)", draft-ietf-ace-oauth-
               authz-05 (work in progress), February 2017.
 
+
+
+
+
+Gerdes, et al.             Expires May 4, 2017                 [Page 14]
+
+Internet-Draft                  CoAP-DTLS                   October 2016
+
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -778,14 +810,6 @@ Internet-Draft                  CoAP-DTLS                   October 2016
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
               January 2012, <http://www.rfc-editor.org/info/rfc6347>.
 
-
-
-
-Gerdes, et al.             Expires May 4, 2017                 [Page 14]
-
-Internet-Draft                  CoAP-DTLS                   October 2016
-
-
    [RFC7252]  Shelby, Z., Hartke, K., and C. Bormann, "The Constrained
               Application Protocol (CoAP)", RFC 7252,
               DOI 10.17487/RFC7252, June 2014,
@@ -807,6 +831,16 @@ Internet-Draft                  CoAP-DTLS                   October 2016
               Shelby, Z., Koster, M., Bormann, C., and P. Stok, "CoRE
               Resource Directory", draft-ietf-core-resource-directory-09
               (work in progress), October 2016.
+
+
+
+
+
+
+Gerdes, et al.             Expires May 4, 2017                 [Page 15]
+
+Internet-Draft                  CoAP-DTLS                   October 2016
+
 
    [I-D.ietf-cose-msg]
               Schaad, J., "CBOR Object Signing and Encryption (COSE)",
@@ -831,16 +865,6 @@ Internet-Draft                  CoAP-DTLS                   October 2016
               CCM Elliptic Curve Cryptography (ECC) Cipher Suites for
               TLS", RFC 7251, DOI 10.17487/RFC7251, June 2014,
               <http://www.rfc-editor.org/info/rfc7251>.
-
-
-
-
-
-
-Gerdes, et al.             Expires May 4, 2017                 [Page 15]
-
-Internet-Draft                  CoAP-DTLS                   October 2016
-
 
 7.3.  URIs
 
@@ -868,6 +892,12 @@ Authors' Addresses
    Email: gerdes@tzi.org
 
 
+
+Gerdes, et al.             Expires May 4, 2017                 [Page 16]
+
+Internet-Draft                  CoAP-DTLS                   October 2016
+
+
    Olaf Bergmann
    Universitaet Bremen TZI
    Postfach 330440
@@ -888,16 +918,6 @@ Authors' Addresses
    Email: cabo@tzi.org
 
 
-
-
-
-
-
-Gerdes, et al.             Expires May 4, 2017                 [Page 16]
-
-Internet-Draft                  CoAP-DTLS                   October 2016
-
-
    Goeran Selander
    Ericsson
    Faroegatan 6
@@ -914,26 +934,6 @@ Internet-Draft                  CoAP-DTLS                   October 2016
    Sweden
 
    Email: ludwig.seitz@ri.se
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
