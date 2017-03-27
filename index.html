@@ -295,7 +295,7 @@ li, p {
 
   <meta name="dct.creator" content="Gerdes, S., Bergmann, O., Bormann, C., Selander, G., and L. Seitz" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-gerdes-ace-dtls-authorize-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-3-13" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-3-27" />
   <meta name="dct.abstract" content="This specification defines a profile for delegating client authentication and authorization in a constrained environment by establishing a Datagram Transport Layer Security (DTLS) channel between resource-constrained nodes.  The protocol relies on DTLS for communication security between entities in a constrained network. A resource-constrained node can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
   <meta name="description" content="This specification defines a profile for delegating client authentication and authorization in a constrained environment by establishing a Datagram Transport Layer Security (DTLS) channel between resource-constrained nodes.  The protocol relies on DTLS for communication security between entities in a constrained network. A resource-constrained node can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
 
@@ -319,7 +319,7 @@ li, p {
   <td class="right">C. Bormann</td>
 </tr>
 <tr>
-  <td class="left">Expires: September 14, 2017</td>
+  <td class="left">Expires: September 28, 2017</td>
   <td class="right">Universit&#228;t Bremen TZI</td>
 </tr>
 <tr>
@@ -340,7 +340,7 @@ li, p {
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">March 13, 2017</td>
+  <td class="right">March 27, 2017</td>
 </tr>
 
     	
@@ -360,7 +360,7 @@ li, p {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on September 14, 2017.</p>
+<p>This Internet-Draft will expire on September 28, 2017.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -633,7 +633,7 @@ a2                                   # map(2)
 <p id="rfc.section.4.1.p.3">If RS receives a ClientKeyExchange message that contains a <samp>psk_identity</samp> with a length greater zero, it MUST base64-decode its contents and check if the <samp>psk_identity</samp> field contains a key identifier or Access Token according to the following CDDL specification:</p>
 <pre>
 psk_identity = {
-  kid =&gt; bstr / access_token =&gt; bstr
+  kid =&gt; bstr // access_token =&gt; bstr
 }
 </pre>
 <p id="rfc.section.4.1.p.4">The identifiers for the map keys <samp>kid</samp> and <samp>access_token</samp> are used with the same meaning as in COSE <a href="#I-D.ietf-cose-msg">[I-D.ietf-cose-msg]</a> and the ACE framework <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a> respectively. The identifier <samp>kid</samp> thus has the value 4 (see <a href="#I-D.ietf-cose-msg">[I-D.ietf-cose-msg]</a>), and the identifier <samp>access_token</samp> has the value 19, respectively (see <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>).</p>
@@ -673,7 +673,7 @@ psk_identity = {
       <td class="reference">
         <b id="I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</b>
       </td>
-      <td class="top"><a>Seitz, L.</a>, <a>Selander, G.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="http://tools.ietf.org/html/draft-ietf-ace-oauth-authz-05">Authentication and Authorization for Constrained Environments (ACE)</a>", Internet-Draft draft-ietf-ace-oauth-authz-05, February 2017.</td>
+      <td class="top"><a>Seitz, L.</a>, <a>Selander, G.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="http://tools.ietf.org/html/draft-ietf-ace-oauth-authz-06">Authentication and Authorization for Constrained Environments (ACE)</a>", Internet-Draft draft-ietf-ace-oauth-authz-06, March 2017.</td>
     </tr>
     <tr>
       <td class="reference">
@@ -726,13 +726,13 @@ psk_identity = {
       <td class="reference">
         <b id="I-D.ietf-core-object-security">[I-D.ietf-core-object-security]</b>
       </td>
-      <td class="top"><a>Selander, G.</a>, <a>Mattsson, J.</a>, <a>Palombini, F.</a> and <a>L. Seitz</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-object-security-01">Object Security of CoAP (OSCOAP)</a>", Internet-Draft draft-ietf-core-object-security-01, December 2016.</td>
+      <td class="top"><a>Selander, G.</a>, <a>Mattsson, J.</a>, <a>Palombini, F.</a> and <a>L. Seitz</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-object-security-02">Object Security of CoAP (OSCOAP)</a>", Internet-Draft draft-ietf-core-object-security-02, March 2017.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="I-D.ietf-core-resource-directory">[I-D.ietf-core-resource-directory]</b>
       </td>
-      <td class="top"><a>Shelby, Z.</a>, <a>Koster, M.</a>, <a>Bormann, C.</a> and <a>P. Stok</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-resource-directory-09">CoRE Resource Directory</a>", Internet-Draft draft-ietf-core-resource-directory-09, October 2016.</td>
+      <td class="top"><a>Shelby, Z.</a>, <a>Koster, M.</a>, <a>Bormann, C.</a> and <a>P. Stok</a>, "<a href="http://tools.ietf.org/html/draft-ietf-core-resource-directory-10">CoRE Resource Directory</a>", Internet-Draft draft-ietf-core-resource-directory-10, March 2017.</td>
     </tr>
     <tr>
       <td class="reference">
