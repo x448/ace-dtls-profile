@@ -593,7 +593,7 @@ Internet-Draft                  CoAP-DTLS                     March 2017
 
    A response that declines any operation on the requested resource is
    constructed according to Section 5.2 of RFC 6749 [4], (cf.
-   Section 6.3 of [I-D.ietf-ace-oauth-authz]).
+   Section 5.5.3 of [I-D.ietf-ace-oauth-authz]).
 
        4.00 Bad Request
        Content-Format: application/cbor
