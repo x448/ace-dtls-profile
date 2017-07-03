@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: December 10, 2017                       Universitaet Bremen TZI
+Expires: January 4, 2018                         Universitaet Bremen TZI
                                                              G. Selander
                                                                 Ericsson
                                                                 L. Seitz
                                                                RISE SICS
-                                                           June 08, 2017
+                                                           July 03, 2017
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 10, 2017.
+   This Internet-Draft will expire on January 4, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Gerdes, et al.          Expires December 10, 2017               [Page 1]
+Gerdes, et al.           Expires January 4, 2018                [Page 1]
 
-Internet-Draft                  CoAP-DTLS                      June 2017
+Internet-Draft                  CoAP-DTLS                      July 2017
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -81,7 +81,7 @@ Table of Contents
    4.  PreSharedKey Mode . . . . . . . . . . . . . . . . . . . . . .  10
      4.1.  DTLS Channel Setup Between C and RS . . . . . . . . . . .  11
      4.2.  Updating Authorization Information  . . . . . . . . . . .  13
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  13
      5.1.  Unprotected AS Information  . . . . . . . . . . . . . . .  14
      5.2.  Use of Nonces for Replay Protection . . . . . . . . . . .  14
      5.3.  Privacy . . . . . . . . . . . . . . . . . . . . . . . . .  14
@@ -102,28 +102,28 @@ Table of Contents
    communication security, proof of possession, and server
    authentication.  Optionally the client and the resource server may
    also use CoAP over DTLS to communicate with the authorization server.
-   This specification supports the DTLS PSK handshake [RFC4279] and the
-   DTLS handshake with Raw Public Keys (RPK) [RFC7250].
+   This specification supports the DTLS handshake with Raw Public Keys
+   (RPK) [RFC7250] and the DTLS PSK handshake [RFC4279].
 
 
 
 
 
-Gerdes, et al.          Expires December 10, 2017               [Page 2]
+Gerdes, et al.           Expires January 4, 2018                [Page 2]
 
-Internet-Draft                  CoAP-DTLS                      June 2017
+Internet-Draft                  CoAP-DTLS                      July 2017
 
-
-   The DTLS PSK handshake [RFC4279] provides the proof-of-possession for
-   the key tied to the access token.  Furthermore the psk_identity
-   parameter in the DTLS PSK handshake is used to transfer the access
-   token from the client to the resource server.
 
    The DTLS RPK handshake [RFC7250] requires client authentication to
    provide proof-of-possession for the key tied to the access token.
    Here the access token needs to be transferred to the resource server
    before the handshake is initiated, as described in section 8.1 of
    draft-ietf-ace-oauth-authz. [1]
+
+   The DTLS PSK handshake [RFC4279] provides the proof-of-possession for
+   the key tied to the access token.  Furthermore the psk_identity
+   parameter in the DTLS PSK handshake is used to transfer the access
+   token from the client to the resource server.
 
    Note: While the scope of this draft is on client and resource server
 
@@ -165,9 +165,9 @@ Internet-Draft                  CoAP-DTLS                      June 2017
 
 
 
-Gerdes, et al.          Expires December 10, 2017               [Page 3]
+Gerdes, et al.           Expires January 4, 2018                [Page 3]
 
-Internet-Draft                  CoAP-DTLS                      June 2017
+Internet-Draft                  CoAP-DTLS                      July 2017
 
 
       C                            RS                   AS
@@ -221,9 +221,9 @@ Internet-Draft                  CoAP-DTLS                      June 2017
 
 
 
-Gerdes, et al.          Expires December 10, 2017               [Page 4]
+Gerdes, et al.           Expires January 4, 2018                [Page 4]
 
-Internet-Draft                  CoAP-DTLS                      June 2017
+Internet-Draft                  CoAP-DTLS                      July 2017
 
 
       C                            RS                   AS
@@ -277,9 +277,9 @@ Internet-Draft                  CoAP-DTLS                      June 2017
 
 
 
-Gerdes, et al.          Expires December 10, 2017               [Page 5]
+Gerdes, et al.           Expires January 4, 2018                [Page 5]
 
-Internet-Draft                  CoAP-DTLS                      June 2017
+Internet-Draft                  CoAP-DTLS                      July 2017
 
 
    Unauthorized Resource Request messages MUST be denied with a client
@@ -333,9 +333,9 @@ Internet-Draft                  CoAP-DTLS                      June 2017
 
 
 
-Gerdes, et al.          Expires December 10, 2017               [Page 6]
+Gerdes, et al.           Expires January 4, 2018                [Page 6]
 
-Internet-Draft                  CoAP-DTLS                      June 2017
+Internet-Draft                  CoAP-DTLS                      July 2017
 
 
    In this example, the attribute AS points the receiver of this message
@@ -389,9 +389,9 @@ Internet-Draft                  CoAP-DTLS                      June 2017
 
 
 
-Gerdes, et al.          Expires December 10, 2017               [Page 7]
+Gerdes, et al.           Expires January 4, 2018                [Page 7]
 
-Internet-Draft                  CoAP-DTLS                      June 2017
+Internet-Draft                  CoAP-DTLS                      July 2017
 
 
       during the DTLS handshake.  In the asymmetric case, the public key
@@ -445,9 +445,9 @@ Internet-Draft                  CoAP-DTLS                      June 2017
 
 
 
-Gerdes, et al.          Expires December 10, 2017               [Page 8]
+Gerdes, et al.           Expires January 4, 2018                [Page 8]
 
-Internet-Draft                  CoAP-DTLS                      June 2017
+Internet-Draft                  CoAP-DTLS                      July 2017
 
 
       C                            RS                   AS
@@ -501,9 +501,9 @@ Internet-Draft                  CoAP-DTLS                      June 2017
 
 
 
-Gerdes, et al.          Expires December 10, 2017               [Page 9]
+Gerdes, et al.           Expires January 4, 2018                [Page 9]
 
-Internet-Draft                  CoAP-DTLS                      June 2017
+Internet-Draft                  CoAP-DTLS                      July 2017
 
 
    When AS authorizes a request, it will return an Access Token and a
@@ -547,23 +547,20 @@ Internet-Draft                  CoAP-DTLS                      June 2017
    symmetric proof-of-possession keys (c.f.
    [I-D.ietf-ace-oauth-authz]), C must ensure that the Access Token
    request is sent over a secure channel that guarantees authentication,
-   message integrity and confidentiality.  This could be, e.g., a DTLS
-   channel (for "coaps") or an OSCOAP [I-D.ietf-core-object-security]
-   exchange (for "coap").
+   message integrity and confidentiality.
 
    When AS authorizes C it returns an AS-to-Client response with the
    profile parameter set to "coap_dtls" and a "cnf" parameter carrying a
-
-
-
-
-Gerdes, et al.          Expires December 10, 2017              [Page 10]
-
-Internet-Draft                  CoAP-DTLS                      June 2017
-
-
    "COSE_Key" object that contains the symmetric session key to be used
    between C and RS as illustrated in Figure 7.
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 10]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
+
 
       2.01 Created
       Content-Format: application/cbor
@@ -610,16 +607,16 @@ Internet-Draft                  CoAP-DTLS                      June 2017
    this information C can initiate establishment of a new DTLS channel
    with RS.  To use DTLS with pre-shared keys, C follows the PSK key
    exchange algorithm specified in Section 2 of [RFC4279] using the key
-
-
-
-Gerdes, et al.          Expires December 10, 2017              [Page 11]
-
-Internet-Draft                  CoAP-DTLS                      June 2017
-
-
    conveyed in the "cnf" parameter of the AS response as PSK when
    constructing the premaster secret.
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 11]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
+
 
    In PreSharedKey mode, the knowledge of the session key by C and RS is
    used for mutual authentication between both peers.  Therefore, RS
@@ -665,18 +662,17 @@ Internet-Draft                  CoAP-DTLS                      June 2017
       response to C's ClientHello message, RS SHOULD NOT send a
       ServerKeyExchange message.
 
-
-
-
-
-Gerdes, et al.          Expires December 10, 2017              [Page 12]
-
-Internet-Draft                  CoAP-DTLS                      June 2017
-
-
    Note2:  According to [RFC7252], CoAP implementations MUST support the
       ciphersuite TLS_PSK_WITH_AES_128_CCM_8 [RFC6655].  C is therefore
       expected to offer at least this ciphersuite to RS.
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 12]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
+
 
    This specification assumes that the Access Token is a PoP token as
    described in [I-D.ietf-ace-oauth-authz] unless specifically stated
@@ -721,18 +717,18 @@ Internet-Draft                  CoAP-DTLS                      June 2017
    existing authorization information for C according to the new Access
    Token.
 
-
-
-
-
-Gerdes, et al.          Expires December 10, 2017              [Page 13]
-
-Internet-Draft                  CoAP-DTLS                      June 2017
-
-
 5.  Security Considerations
 
    TODO
+
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 13]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
+
 
 5.1.  Unprotected AS Information
 
@@ -777,19 +773,18 @@ Internet-Draft                  CoAP-DTLS                      June 2017
               Constrained Environments (ACE)", draft-ietf-ace-oauth-
               authz-06 (work in progress), March 2017.
 
-
-
-
-
-Gerdes, et al.          Expires December 10, 2017              [Page 14]
-
-Internet-Draft                  CoAP-DTLS                      June 2017
-
-
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <http://www.rfc-editor.org/info/rfc2119>.
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 14]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
+
 
    [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
               Resource Identifier (URI): Generic Syntax", STD 66,
@@ -819,32 +814,33 @@ Internet-Draft                  CoAP-DTLS                      June 2017
 
    [I-D.ietf-ace-cbor-web-token]
               Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
-              "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-05
-              (work in progress), June 2017.
+              "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-07
+              (work in progress), July 2017.
 
    [I-D.ietf-core-object-security]
               Selander, G., Mattsson, J., Palombini, F., and L. Seitz,
               "Object Security of CoAP (OSCOAP)", draft-ietf-core-
-              object-security-03 (work in progress), May 2017.
+              object-security-04 (work in progress), July 2017.
 
    [I-D.ietf-core-resource-directory]
               Shelby, Z., Koster, M., Bormann, C., and P. Stok, "CoRE
               Resource Directory", draft-ietf-core-resource-directory-10
               (work in progress), March 2017.
 
-
-
-
-
-
-Gerdes, et al.          Expires December 10, 2017              [Page 15]
-
-Internet-Draft                  CoAP-DTLS                      June 2017
-
-
    [I-D.ietf-cose-msg]
               Schaad, J., "CBOR Object Signing and Encryption (COSE)",
               draft-ietf-cose-msg-24 (work in progress), November 2016.
+
+
+
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 15]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
+
 
    [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
               Transport Layer Security (TLS)", RFC 6655,
@@ -869,7 +865,7 @@ Internet-Draft                  CoAP-DTLS                      June 2017
 7.3.  URIs
 
    [1] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       03#section-8.1
+       06#section-5.7.1
 
    [2] https://tools.ietf.org/html/rfc7252#section-9
 
@@ -893,9 +889,13 @@ Authors' Addresses
 
 
 
-Gerdes, et al.          Expires December 10, 2017              [Page 16]
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 16]
 
-Internet-Draft                  CoAP-DTLS                      June 2017
+Internet-Draft                  CoAP-DTLS                      July 2017
 
 
    Olaf Bergmann
@@ -949,4 +949,4 @@ Internet-Draft                  CoAP-DTLS                      June 2017
 
 
 
-Gerdes, et al.          Expires December 10, 2017              [Page 17]
+Gerdes, et al.           Expires January 4, 2018               [Page 17]
