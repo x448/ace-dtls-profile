@@ -638,11 +638,10 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    }
 
    The identifiers for the map keys "kid" and "access_token" are used
-   with the same meaning as in COSE [I-D.ietf-cose-msg] and the ACE
-   framework [I-D.ietf-ace-oauth-authz] respectively.  The identifier
-   "kid" thus has the value 4 (see [I-D.ietf-cose-msg]), and the
-   identifier "access_token" has the value 19, respectively (see
-   [I-D.ietf-ace-oauth-authz]).
+   with the same meaning as in COSE [RFC8152] and the ACE framework
+   [I-D.ietf-ace-oauth-authz] respectively.  The identifier "kid" thus
+   has the value 4 (see [RFC8152]), and the identifier "access_token"
+   has the value 19, respectively (see [I-D.ietf-ace-oauth-authz]).
 
    If the "psk_identity" field contains a key identifier, the receiver
    MUST check if it has one or more Access Tokens that are associated
@@ -669,6 +668,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
 
 
+
 Gerdes, et al.           Expires January 4, 2018               [Page 12]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
@@ -691,15 +691,15 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    Instead of the "COSE_Key" object, AS MAY include a "COSE_Encrypt"
    structure to enable RS to calculate the session key from the Access
    Token.  The "COSE_Encrypt" structure MUST use the _Direct Key with
-   KDF_ method as described in Section 12.1.2 of draft-ietf-cose-msg
-   [5].  The AS MUST include a Context information structure carrying a
-   PartyU "nonce" parameter carrying the nonce that has been used by AS
-   to construct the session key.
+   KDF_ method as described in Section 12.1.2 of RFC 8152 [5].  The AS
+   MUST include a Context information structure carrying a PartyU
+   "nonce" parameter carrying the nonce that has been used by AS to
+   construct the session key.
 
    This specification mandates that at least the key derivation
-   algorithm "HKDF SHA-256" as defined in [I-D.ietf-cose-msg] MUST be
-   supported.  This key derivation function is the default when no "alg"
-   field is included in the "COSE_Encrypt" structure for RS.
+   algorithm "HKDF SHA-256" as defined in [RFC8152] MUST be supported.
+   This key derivation function is the default when no "alg" field is
+   included in the "COSE_Encrypt" structure for RS.
 
 4.2.  Updating Authorization Information
 
@@ -810,6 +810,10 @@ Internet-Draft                  CoAP-DTLS                      July 2017
               DOI 10.17487/RFC7252, June 2014,
               <http://www.rfc-editor.org/info/rfc7252>.
 
+   [RFC8152]  Schaad, J., "CBOR Object Signing and Encryption (COSE)",
+              RFC 8152, DOI 10.17487/RFC8152, July 2017,
+              <http://www.rfc-editor.org/info/rfc8152>.
+
 7.2.  Informative References
 
    [I-D.ietf-ace-cbor-web-token]
@@ -817,30 +821,10 @@ Internet-Draft                  CoAP-DTLS                      July 2017
               "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-07
               (work in progress), July 2017.
 
-   [I-D.ietf-core-object-security]
-              Selander, G., Mattsson, J., Palombini, F., and L. Seitz,
-              "Object Security of CoAP (OSCOAP)", draft-ietf-core-
-              object-security-04 (work in progress), July 2017.
-
    [I-D.ietf-core-resource-directory]
-              Shelby, Z., Koster, M., Bormann, C., and P. Stok, "CoRE
-              Resource Directory", draft-ietf-core-resource-directory-10
-              (work in progress), March 2017.
-
-   [I-D.ietf-cose-msg]
-              Schaad, J., "CBOR Object Signing and Encryption (COSE)",
-              draft-ietf-cose-msg-24 (work in progress), November 2016.
-
-
-
-
-
-
-
-Gerdes, et al.           Expires January 4, 2018               [Page 15]
-
-Internet-Draft                  CoAP-DTLS                      July 2017
-
+              Shelby, Z., Koster, M., Bormann, C., Stok, P., and C.
+              Amsuess, "CoRE Resource Directory", draft-ietf-core-
+              resource-directory-11 (work in progress), July 2017.
 
    [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
               Transport Layer Security (TLS)", RFC 6655,
@@ -850,6 +834,13 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013, <http://www.rfc-editor.org/info/rfc7049>.
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 15]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
+
 
    [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
               Weiler, S., and T. Kivinen, "Using Raw Public Keys in
@@ -874,7 +865,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
    [4] https://tools.ietf.org/html/rfc6749#section-5.2
 
-   [5] https://tools.ietf.org/html/draft-ietf-cose-msg-23#section-12.1.2
+   [5] https://tools.ietf.org/html/rfc8152#section-12.1.2
 
 Authors' Addresses
 
@@ -888,16 +879,6 @@ Authors' Addresses
    Email: gerdes@tzi.org
 
 
-
-
-
-
-
-Gerdes, et al.           Expires January 4, 2018               [Page 16]
-
-Internet-Draft                  CoAP-DTLS                      July 2017
-
-
    Olaf Bergmann
    Universitaet Bremen TZI
    Postfach 330440
@@ -906,6 +887,15 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
    Phone: +49-421-218-63904
    Email: bergmann@tzi.org
+
+
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 16]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
 
 
    Carsten Bormann
@@ -934,6 +924,16 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    Sweden
 
    Email: ludwig.seitz@ri.se
+
+
+
+
+
+
+
+
+
+
 
 
 
