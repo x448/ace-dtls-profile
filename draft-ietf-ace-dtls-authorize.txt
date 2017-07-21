@@ -134,8 +134,10 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 1.1.  Terminology
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-   document are to be interpreted as described in RFC 2119 [RFC2119].
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
 
    Readers are expected to be familiar with the terms and concepts
    described in [I-D.ietf-ace-oauth-authz].
@@ -153,8 +155,6 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    specified in [I-D.ietf-ace-oauth-authz].  Figure 1 shows the typical
    message flow in this scenario (messages in square brackets are
    optional):
-
-
 
 
 
@@ -814,6 +814,10 @@ Internet-Draft                  CoAP-DTLS                      July 2017
               RFC 8152, DOI 10.17487/RFC8152, July 2017,
               <http://www.rfc-editor.org/info/rfc8152>.
 
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <http://www.rfc-editor.org/info/rfc8174>.
+
 7.2.  Informative References
 
    [I-D.ietf-ace-cbor-web-token]
@@ -831,16 +835,16 @@ Internet-Draft                  CoAP-DTLS                      July 2017
               DOI 10.17487/RFC6655, July 2012,
               <http://www.rfc-editor.org/info/rfc6655>.
 
-   [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
-              Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
-              October 2013, <http://www.rfc-editor.org/info/rfc7049>.
-
 
 
 Gerdes, et al.           Expires January 4, 2018               [Page 15]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
 
+
+   [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
+              Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
+              October 2013, <http://www.rfc-editor.org/info/rfc7049>.
 
    [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
               Weiler, S., and T. Kivinen, "Using Raw Public Keys in
@@ -879,14 +883,10 @@ Authors' Addresses
    Email: gerdes@tzi.org
 
 
-   Olaf Bergmann
-   Universitaet Bremen TZI
-   Postfach 330440
-   Bremen  D-28359
-   Germany
 
-   Phone: +49-421-218-63904
-   Email: bergmann@tzi.org
+
+
+
 
 
 
@@ -896,6 +896,16 @@ Authors' Addresses
 Gerdes, et al.           Expires January 4, 2018               [Page 16]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
+
+
+   Olaf Bergmann
+   Universitaet Bremen TZI
+   Postfach 330440
+   Bremen  D-28359
+   Germany
+
+   Phone: +49-421-218-63904
+   Email: bergmann@tzi.org
 
 
    Carsten Bormann
@@ -924,16 +934,6 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    Sweden
 
    Email: ludwig.seitz@ri.se
-
-
-
-
-
-
-
-
-
-
 
 
 
