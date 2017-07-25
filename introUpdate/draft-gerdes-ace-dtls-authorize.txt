@@ -101,11 +101,11 @@ Table of Contents
    communication security, proof of possession, and server
    authentication.  Optionally the client and the resource server may
    also use CoAP over DTLS to communicate with the authorization server.
-   This specification supports the DTLS PSK handshake [RFC4279] and the
-   DTLS handshake with Raw Public Keys (RPK) [RFC7250].
+   This specification supports the DTLS handshake with Pre-Shared Keys
+   (PSK) [RFC4279] and the DTLS handshake with Raw Public Keys (RPK)
+   [RFC7250].
 
-   The DTLS PSK handshake [RFC4279] provides the proof-of-possession for
-   the key tied to the access token.  Furthermore the psk_identity
+
 
 
 
@@ -114,6 +114,8 @@ Gerdes, et al.           Expires March 20, 2017                 [Page 2]
 Internet-Draft                  CoAP-DTLS                 September 2016
 
 
+   The DTLS PSK handshake [RFC4279] provides the proof-of-possession for
+   the key tied to the access token.  Furthermore the psk_identity
    parameter in the DTLS PSK handshake is used to transfer the access
    token from the client to the resource server.
 
@@ -151,8 +153,6 @@ Internet-Draft                  CoAP-DTLS                 September 2016
    specified in [I-D.ietf-ace-oauth-authz].  Figure 1 shows the typical
    message flow in this scenario (messages in square brackets are
    optional):
-
-
 
 
 
@@ -748,7 +748,7 @@ Internet-Draft                  CoAP-DTLS                 September 2016
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
               H. Tschofenig, "Authentication and Authorization for
               Constrained Environments (ACE)", draft-ietf-ace-oauth-
-              authz-03 (work in progress), October 2016.
+              authz-06 (work in progress), March 2017.
 
    [I-D.ietf-oauth-pop-architecture]
               Hunt, P., Richer, J., Mills, W., Mishra, P., and H.
@@ -772,7 +772,7 @@ Internet-Draft                  CoAP-DTLS                 September 2016
               <http://www.rfc-editor.org/info/rfc4279>.
 
    [RFC5226]  Narten, T. and H. Alvestrand, "Guidelines for Writing an
-              IANA Considerations Section in RFCs", BCP 26, RFC 5226,
+              IANA Considerations Section in RFCs", RFC 5226,
               DOI 10.17487/RFC5226, May 2008,
               <http://www.rfc-editor.org/info/rfc5226>.
 
@@ -812,23 +812,23 @@ Internet-Draft                  CoAP-DTLS                 September 2016
 6.2.  Informative References
 
    [I-D.ietf-ace-cbor-web-token]
-              Wahlstroem, E., Jones, M., Tschofenig, H., and S. Erdtman,
-              "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-01
-              (work in progress), July 2016.
+              Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
+              "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-07
+              (work in progress), July 2017.
 
    [I-D.ietf-core-object-security]
               Selander, G., Mattsson, J., Palombini, F., and L. Seitz,
               "Object Security of CoAP (OSCOAP)", draft-ietf-core-
-              object-security-00 (work in progress), October 2016.
+              object-security-04 (work in progress), July 2017.
 
    [I-D.ietf-core-resource-directory]
-              Shelby, Z., Koster, M., Bormann, C., and P. Stok, "CoRE
-              Resource Directory", draft-ietf-core-resource-directory-08
-              (work in progress), July 2016.
+              Shelby, Z., Koster, M., Bormann, C., Stok, P., and C.
+              Amsuess, "CoRE Resource Directory", draft-ietf-core-
+              resource-directory-11 (work in progress), July 2017.
 
    [I-D.ietf-cose-msg]
               Schaad, J., "CBOR Object Signing and Encryption (COSE)",
-              draft-ietf-cose-msg-23 (work in progress), October 2016.
+              draft-ietf-cose-msg-24 (work in progress), November 2016.
 
    [RFC5988]  Nottingham, M., "Web Linking", RFC 5988,
               DOI 10.17487/RFC5988, October 2010,
