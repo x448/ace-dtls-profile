@@ -759,6 +759,10 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    may be included with an error response to provide C with sufficient
    information to react on that particular error.
 
+   Note that some information might still leak after DTLS session is
+   established, due to observable message sizes, the source, and the
+   destination addresses.
+
 6.  IANA Considerations
 
    This document has no actions for IANA.
@@ -773,10 +777,6 @@ Internet-Draft                  CoAP-DTLS                      July 2017
               Constrained Environments (ACE)", draft-ietf-ace-oauth-
               authz-06 (work in progress), March 2017.
 
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <http://www.rfc-editor.org/info/rfc2119>.
 
 
 
@@ -785,6 +785,11 @@ Gerdes, et al.           Expires January 4, 2018               [Page 14]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
 
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <http://www.rfc-editor.org/info/rfc2119>.
 
    [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
               Resource Identifier (URI): Generic Syntax", STD 66,
@@ -830,17 +835,17 @@ Internet-Draft                  CoAP-DTLS                      July 2017
               Amsuess, "CoRE Resource Directory", draft-ietf-core-
               resource-directory-11 (work in progress), July 2017.
 
-   [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
-              Transport Layer Security (TLS)", RFC 6655,
-              DOI 10.17487/RFC6655, July 2012,
-              <http://www.rfc-editor.org/info/rfc6655>.
-
 
 
 Gerdes, et al.           Expires January 4, 2018               [Page 15]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
 
+
+   [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
+              Transport Layer Security (TLS)", RFC 6655,
+              DOI 10.17487/RFC6655, July 2012,
+              <http://www.rfc-editor.org/info/rfc6655>.
 
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
@@ -881,11 +886,6 @@ Authors' Addresses
 
    Phone: +49-421-218-63906
    Email: gerdes@tzi.org
-
-
-
-
-
 
 
 

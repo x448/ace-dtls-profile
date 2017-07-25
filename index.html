@@ -707,6 +707,7 @@ psk_identity = {
 <a href="#rfc.section.5.3">5.3.</a> <a href="#privacy" id="privacy">Privacy</a>
 </h1>
 <p id="rfc.section.5.3.p.1">An unprotected response to an unauthorized request (c.f. <a href="#as-info" class="xref">Section 2.2</a>) may disclose information about RS and/or its existing relationship with C. It is advisable to include as little information as possible in an unencrypted response. When a DTLS session between C and RS already exists, more detailed information may be included with an error response to provide C with sufficient information to react on that particular error.</p>
+<p id="rfc.section.5.3.p.2">Note that some information might still leak after DTLS session is established, due to observable message sizes, the source, and the destination addresses.</p>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a>
 </h1>
