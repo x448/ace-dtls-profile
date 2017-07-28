@@ -73,24 +73,20 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Protocol Overview . . . . . . . . . . . . . . . . . . . . . .   3
-     2.1.  Unauthorized Resource Request Message . . . . . . . . . .   5
-     2.2.  AS Information  . . . . . . . . . . . . . . . . . . . . .   6
-     2.3.  Resource Access . . . . . . . . . . . . . . . . . . . . .   7
-     2.4.  Dynamic Update of Authorization Information . . . . . . .   8
-   3.  RawPublicKey Mode . . . . . . . . . . . . . . . . . . . . . .   9
-   4.  PreSharedKey Mode . . . . . . . . . . . . . . . . . . . . . .  10
-     4.1.  DTLS Channel Setup Between C and RS . . . . . . . . . . .  11
-     4.2.  Updating Authorization Information  . . . . . . . . . . .  13
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  13
-     5.1.  Unprotected AS Information  . . . . . . . . . . . . . . .  14
-     5.2.  Use of Nonces for Replay Protection . . . . . . . . . . .  14
-     5.3.  Privacy . . . . . . . . . . . . . . . . . . . . . . . . .  14
-   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
-     7.2.  Informative References  . . . . . . . . . . . . . . . . .  15
-     7.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  16
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  16
+     2.1.  Resource Access . . . . . . . . . . . . . . . . . . . . .   5
+     2.2.  Dynamic Update of Authorization Information . . . . . . .   6
+   3.  RawPublicKey Mode . . . . . . . . . . . . . . . . . . . . . .   7
+   4.  PreSharedKey Mode . . . . . . . . . . . . . . . . . . . . . .   8
+     4.1.  DTLS Channel Setup Between C and RS . . . . . . . . . . .   9
+     4.2.  Updating Authorization Information  . . . . . . . . . . .  11
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
+   6.  Privacy Considerations  . . . . . . . . . . . . . . . . . . .  12
+   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  12
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  12
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  12
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .  13
+     8.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  14
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  14
 
 1.  Introduction
 
@@ -106,6 +102,10 @@ Table of Contents
    with Raw Public Keys (RPK) [RFC7250] and the DTLS handshake with Pre-
    Shared Keys (PSK) [RFC4279].
 
+   The DTLS RPK handshake [RFC7250] requires client authentication to
+   provide proof-of-possession for the key tied to the access token.
+   Here the access token needs to be transferred to the resource server
+
 
 
 
@@ -114,11 +114,8 @@ Gerdes, et al.           Expires January 4, 2018                [Page 2]
 Internet-Draft                  CoAP-DTLS                      July 2017
 
 
-   The DTLS RPK handshake [RFC7250] requires client authentication to
-   provide proof-of-possession for the key tied to the access token.
-   Here the access token needs to be transferred to the resource server
-   before the handshake is initiated, as described in section 8.1 of
-   draft-ietf-ace-oauth-authz. [1]
+   before the handshake is initiated, as described in section 5.7.1 of
+   draft-ietf-ace-oauth-authz [1].
 
    The DTLS PSK handshake [RFC4279] provides the proof-of-possession for
    the key tied to the access token.  Furthermore the psk_identity
@@ -165,6 +162,9 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
 
 
+
+
+
 Gerdes, et al.           Expires January 4, 2018                [Page 3]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
@@ -186,10 +186,6 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    To determine the AS in charge of a resource hosted at the RS, C MAY
    send an initial Unauthorized Resource Request message to RS.  RS then
    denies the request and sends the address of its AS back to C.
-
-   Instead of the initial Unauthorized Resource Request message, C MAY
-   look up the desired resource in a resource directory (cf.
-   [I-D.ietf-core-resource-directory]).
 
    Once C knows AS's address, it can send an Access Token request to the
    /token endpoint at the AS as specified in [I-D.ietf-ace-oauth-authz].
@@ -215,6 +211,10 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
    Figure 2 depicts the common protocol flow for the DTLS profile after
    C has retrieved the Access Token from AS.
+
+
+
+
 
 
 
@@ -250,124 +250,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    public keys while Section 4 defines how pre-shared keys are used in
    this profile.
 
-2.1.  Unauthorized Resource Request Message
-
-   The optional Unauthorized Resource Request message is a request for a
-   resource hosted by RS for which no proper authorization is granted.
-   RS MUST treat any CoAP request for a protected resource as
-   Unauthorized Resource Request message when any of the following
-   holds:
-
-   o  The request has been received on an unprotected channel.
-
-   o  RS has no valid access token for the sender of the request
-      regarding the requested action on that resource.
-
-   o  RS has a valid access token for the sender of the request, but
-      this does not allow the requested action on the requested
-      resource.
-
-   Note: These conditions ensure that RS can handle requests
-   autonomously once access was granted and a secure channel has been
-   established between C and RS.  The "/authz-info" resource MUST NOT be
-   protected as specified above, in order to allow clients to upload
-   access tokens to RS (cf.  [I-D.ietf-ace-oauth-authz]).
-
-
-
-
-
-Gerdes, et al.           Expires January 4, 2018                [Page 5]
-
-Internet-Draft                  CoAP-DTLS                      July 2017
-
-
-   Unauthorized Resource Request messages MUST be denied with a client
-   error response.  In this response, the Resource Server SHOULD provide
-   proper AS Information to enable the Client to request an access token
-   from RS's Authorization Server as described in Section 2.2.
-
-   The response code MUST be 4.01 (Unauthorized) in case the sender of
-   the Unauthorized Resource Request message is not authenticated, or if
-   RS has no valid access token for C.  If RS has an access token for C
-   but not for the resource that C has requested, RS MUST reject the
-   request with a 4.03 (Forbidden).  If RS has an access token for C but
-   it does not cover the action C requested on the resource, RS MUST
-   reject the request with a 4.05 (Method Not Allowed).
-
-   Note:  The use of the response codes 4.03 and 4.05 is intended to
-      prevent infinite loops where a dumb Client optimistically tries to
-      access a requested resource with any access token received from
-      AS.  As malicious clients could pretend to be C to determine C's
-      privileges, these detailed response codes must be used only when a
-      certain level of security is already available which can be
-      achieved only when the Client is authenticated.
-
-2.2.  AS Information
-
-   The AS Information is sent by RS as a response to an Unauthorized
-   Resource Request message (see Section 2.1) to point the sender of the
-   Unauthorized Resource Request message to RS's AS.  The AS information
-   is a set of attributes containing an absolute URI (see Section 4.3 of
-   [RFC3986]) that specifies the AS in charge of RS.
-
-   TBD: We might not want to add more parameters in the AS information
-   because
-      this would not only reveal too much information about RS's
-      capabilities to unauthorized peers but also be of little value as
-      C cannot really trust that information anyway.
-
-   The message MAY also contain a nonce generated by RS to ensure
-   freshness in case that the RS and AS do not have synchronized clocks.
-
-   Figure 3 shows an example for an AS Information message payload using
-   CBOR [RFC7049] diagnostic notation.
-
-       4.01 Unauthorized
-       Content-Format: application/ace+cbor
-       {AS: "coaps://as.example.com/token",
-        nonce: h'e0a156bb3f'}
-
-                 Figure 3: AS Information payload example
-
-
-
-
-Gerdes, et al.           Expires January 4, 2018                [Page 6]
-
-Internet-Draft                  CoAP-DTLS                      July 2017
-
-
-   In this example, the attribute AS points the receiver of this message
-   to the URI "coaps://as.example.com/token" to request access
-   permissions.  The originator of the AS Information payload (i.e., RS)
-   uses a local clock that is loosely synchronized with a time scale
-   common between RS and AS (e.g., wall clock time).  Therefore, it has
-   included a parameter "nonce" for replay attack prevention (c.f.
-   Section 5.2).
-
-   Note: There is an ongoing discussion how freshness of access tokens
-      can be achieved in constrained environments.  This specification
-      for now assumes that RS and AS do not have a common understanding
-      of time that allows RS to achieve its security objectives without
-      explicitly adding a nonce.
-
-   The examples in this document are written in CBOR diagnostic notation
-   to improve readability.  Figure 4 illustrates the binary encoding of
-   the message payload shown in Figure 3.
-
-   a2                                   # map(2)
-       00                               # unsigned(0) (=AS)
-       78 1c                            # text(28)
-          636f6170733a2f2f61732e657861
-          6d706c652e636f6d2f746f6b656e  # "coaps://as.example.com/token"
-       05                               # unsigned(5) (=nonce)
-       45                               # bytes(5)
-          e0a156bb3f
-
-             Figure 4: AS Information example encoded in CBOR
-
-2.3.  Resource Access
+2.1.  Resource Access
 
    Once a DTLS channel has been established as described in Section 3
    and Section 4, respectively, C is authorized to access resources
@@ -381,25 +264,23 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    associated with the identity of C.  Incoming CoAP requests that are
    not authorized with respect to any Access Token that is associated
    with C MUST be rejected by RS with 4.01 response as described in
-   Section 2.1.
+   Section 5.8.1 of draft-ietf-ace-oauth-authz [4].
 
    Note: The identity of C is determined by the authentication process
-
-
-
-
-
-Gerdes, et al.           Expires January 4, 2018                [Page 7]
-
-Internet-Draft                  CoAP-DTLS                      July 2017
-
-
       during the DTLS handshake.  In the asymmetric case, the public key
       will define C's identity, while in the PSK case, C's identity is
       defined by the session key generated by AS for this communication.
 
    RS SHOULD treat an incoming CoAP request as authorized if the
    following holds:
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018                [Page 5]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
+
 
    1.  The message was received on a secure channel that has been
        established using the procedure defined in this document.
@@ -425,19 +306,20 @@ Internet-Draft                  CoAP-DTLS                      July 2017
        URI specified in the request covered by the authorization
        information but not the requested action.
 
-   C cannot always know a priori if a Authorized Resource Request will
-   succeed.  If C repeatedly gets AS Information messages (cf.
-   Section 2.2) as response to its requests, it SHOULD request a new
-   Access Token from AS in order to continue communication with RS.
+   C cannot always know a priori if an Authorized Resource Request will
+   succeed.  If C repeatedly gets error responses containing AS
+   Information (cf.  Section 5.8.2 of draft-ietf-ace-oauth-authz [5] as
+   response to its requests, it SHOULD request a new Access Token from
+   AS in order to continue communication with RS.
 
-2.4.  Dynamic Update of Authorization Information
+2.2.  Dynamic Update of Authorization Information
 
    The Client can update the authorization information stored at RS at
    any time.  To do so, the Client requests from AS a new Access Token
    for the intended action on the respective resource and uploads this
    Access Token to the "/authz-info" resource on RS.
 
-   Figure 5 depicts the message flow where C requests a new Access Token
+   Figure 3 depicts the message flow where C requests a new Access Token
    after a security association between C and RS has been established
    using this protocol.
 
@@ -445,7 +327,13 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
 
 
-Gerdes, et al.           Expires January 4, 2018                [Page 8]
+
+
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018                [Page 6]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
 
@@ -467,7 +355,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
       | <=== Protected Resource == |                     |
 
 
-              Figure 5: Overview of Dynamic Update Operation
+              Figure 3: Overview of Dynamic Update Operation
 
 3.  RawPublicKey Mode
 
@@ -476,7 +364,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    carrying either its raw public key or a unique identifier for a
    public key that it has previously made known to AS.
 
-   An example Access Token request from C to RS is depicted in Figure 6.
+   An example Access Token request from C to RS is depicted in Figure 4.
 
       POST coaps://as.example.com/token
       Content-Format: application/cbor
@@ -493,7 +381,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
         }
       }
 
-            Figure 6: Access Token Request Example for RPK Mode
+            Figure 4: Access Token Request Example for RPK Mode
 
    The example shows an Access Token request for the resource identified
    by the audience string "tempSensor4711" on the AS using a raw public
@@ -501,7 +389,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
 
 
-Gerdes, et al.           Expires January 4, 2018                [Page 9]
+Gerdes, et al.           Expires January 4, 2018                [Page 7]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
 
@@ -552,12 +440,12 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    When AS authorizes C it returns an AS-to-Client response with the
    profile parameter set to "coap_dtls" and a "cnf" parameter carrying a
    "COSE_Key" object that contains the symmetric session key to be used
-   between C and RS as illustrated in Figure 7.
+   between C and RS as illustrated in Figure 5.
 
 
 
 
-Gerdes, et al.           Expires January 4, 2018               [Page 10]
+Gerdes, et al.           Expires January 4, 2018                [Page 8]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
 
@@ -581,7 +469,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
          }
       }
 
-                  Figure 7: Example Access Token response
+                  Figure 5: Example Access Token response
 
    In this example, AS returns a 2.01 response containing a new Access
    Token.  The information is transferred as a CBOR data structure as
@@ -589,7 +477,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    the receiving Client how long this token will be valid.
 
    A response that declines any operation on the requested resource is
-   constructed according to Section 5.2 of RFC 6749 [4], (cf.
+   constructed according to Section 5.2 of RFC 6749 [6], (cf.
    Section 5.5.3 of [I-D.ietf-ace-oauth-authz]).
 
        4.00 Bad Request
@@ -598,7 +486,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
          error: invalid_request
        }
 
-            Figure 8: Example Access Token response with reject
+            Figure 6: Example Access Token response with reject
 
 4.1.  DTLS Channel Setup Between C and RS
 
@@ -613,7 +501,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
 
 
-Gerdes, et al.           Expires January 4, 2018               [Page 11]
+Gerdes, et al.           Expires January 4, 2018                [Page 9]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
 
@@ -669,7 +557,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
 
 
-Gerdes, et al.           Expires January 4, 2018               [Page 12]
+Gerdes, et al.           Expires January 4, 2018               [Page 10]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
 
@@ -691,7 +579,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    Instead of the "COSE_Key" object, AS MAY include a "COSE_Encrypt"
    structure to enable RS to calculate the session key from the Access
    Token.  The "COSE_Encrypt" structure MUST use the _Direct Key with
-   KDF_ method as described in Section 12.1.2 of RFC 8152 [5].  The AS
+   KDF_ method as described in Section 12.1.2 of RFC 8152 [7].  The AS
    MUST include a Context information structure carrying a PartyU
    "nonce" parameter carrying the nonce that has been used by AS to
    construct the session key.
@@ -704,7 +592,7 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 4.2.  Updating Authorization Information
 
    Usually, the authorization information that RS keeps for C is updated
-   by uploading a new Access Token as described in Section 2.4.
+   by uploading a new Access Token as described in Section 2.2.
 
    If the security association with RS still exists and RS has indicated
    support for session renegotiation according to [RFC5746], the new
@@ -725,66 +613,38 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
 
 
-Gerdes, et al.           Expires January 4, 2018               [Page 13]
+Gerdes, et al.           Expires January 4, 2018               [Page 11]
 
 Internet-Draft                  CoAP-DTLS                      July 2017
 
 
-5.1.  Unprotected AS Information
+6.  Privacy Considerations
 
-   Initially, no secure channel exists to protect the communication
-   between C and RS.  Thus, C cannot determine if the AS information
-   contained in an unprotected response from RS to an unauthorized
-   request (c.f.  Section 2.2) is authentic.  It is therefore advisable
-   to provide C with a (possibly hard-coded) list of trustworthy
-   authorization servers.  AS information responses referring to a URI
-   not listed there would be ignored.
-
-5.2.  Use of Nonces for Replay Protection
-
-   RS may add a nonce to the AS Information message sent as a response
-   to an unauthorized request to ensure freshness of an Access Token
-   subsequently presented to RS.  While a timestamp of some granularity
-   would be sufficient to protect against replay attacks, using
-   randomized nonce is preferred to prevent disclosure of information
-   about RS's internal clock characteristics.
-
-5.3.  Privacy
-
-   An unprotected response to an unauthorized request (c.f.
-   Section 2.2) may disclose information about RS and/or its existing
-   relationship with C.  It is advisable to include as little
-   information as possible in an unencrypted response.  When a DTLS
-   session between C and RS already exists, more detailed information
-   may be included with an error response to provide C with sufficient
-   information to react on that particular error.
+   An unprotected response to an unauthorized request may disclose
+   information about RS and/or its existing relationship with C.  It is
+   advisable to include as little information as possible in an
+   unencrypted response.  When a DTLS session between C and RS already
+   exists, more detailed information may be included with an error
+   response to provide C with sufficient information to react on that
+   particular error.
 
    Note that some information might still leak after DTLS session is
    established, due to observable message sizes, the source, and the
    destination addresses.
 
-6.  IANA Considerations
+7.  IANA Considerations
 
    This document has no actions for IANA.
 
-7.  References
+8.  References
 
-7.1.  Normative References
+8.1.  Normative References
 
    [I-D.ietf-ace-oauth-authz]
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
               H. Tschofenig, "Authentication and Authorization for
               Constrained Environments (ACE)", draft-ietf-ace-oauth-
               authz-06 (work in progress), March 2017.
-
-
-
-
-
-Gerdes, et al.           Expires January 4, 2018               [Page 14]
-
-Internet-Draft                  CoAP-DTLS                      July 2017
-
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -806,6 +666,14 @@ Internet-Draft                  CoAP-DTLS                      July 2017
               Extension", RFC 5746, DOI 10.17487/RFC5746, February 2010,
               <http://www.rfc-editor.org/info/rfc5746>.
 
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 12]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
+
+
    [RFC6347]  Rescorla, E. and N. Modadugu, "Datagram Transport Layer
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
               January 2012, <http://www.rfc-editor.org/info/rfc6347>.
@@ -823,24 +691,12 @@ Internet-Draft                  CoAP-DTLS                      July 2017
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <http://www.rfc-editor.org/info/rfc8174>.
 
-7.2.  Informative References
+8.2.  Informative References
 
    [I-D.ietf-ace-cbor-web-token]
               Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
               "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-07
               (work in progress), July 2017.
-
-   [I-D.ietf-core-resource-directory]
-              Shelby, Z., Koster, M., Bormann, C., Stok, P., and C.
-              Amsuess, "CoRE Resource Directory", draft-ietf-core-
-              resource-directory-11 (work in progress), July 2017.
-
-
-
-Gerdes, et al.           Expires January 4, 2018               [Page 15]
-
-Internet-Draft                  CoAP-DTLS                      July 2017
-
 
    [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
               Transport Layer Security (TLS)", RFC 6655,
@@ -862,7 +718,19 @@ Internet-Draft                  CoAP-DTLS                      July 2017
               TLS", RFC 7251, DOI 10.17487/RFC7251, June 2014,
               <http://www.rfc-editor.org/info/rfc7251>.
 
-7.3.  URIs
+
+
+
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 13]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
+
+
+8.3.  URIs
 
    [1] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        06#section-5.7.1
@@ -872,9 +740,15 @@ Internet-Draft                  CoAP-DTLS                      July 2017
    [3] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        03#section-8.1
 
-   [4] https://tools.ietf.org/html/rfc6749#section-5.2
+   [4] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz#section-
+       5.8.1
 
-   [5] https://tools.ietf.org/html/rfc8152#section-12.1.2
+   [5] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz#section-
+       5.8.2
+
+   [6] https://tools.ietf.org/html/rfc6749#section-5.2
+
+   [7] https://tools.ietf.org/html/rfc8152#section-12.1.2
 
 Authors' Addresses
 
@@ -888,16 +762,6 @@ Authors' Addresses
    Email: gerdes@tzi.org
 
 
-
-
-
-
-
-Gerdes, et al.           Expires January 4, 2018               [Page 16]
-
-Internet-Draft                  CoAP-DTLS                      July 2017
-
-
    Olaf Bergmann
    Universitaet Bremen TZI
    Postfach 330440
@@ -906,6 +770,20 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
    Phone: +49-421-218-63904
    Email: bergmann@tzi.org
+
+
+
+
+
+
+
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 14]
+
+Internet-Draft                  CoAP-DTLS                      July 2017
 
 
    Carsten Bormann
@@ -949,4 +827,14 @@ Internet-Draft                  CoAP-DTLS                      July 2017
 
 
 
-Gerdes, et al.           Expires January 4, 2018               [Page 17]
+
+
+
+
+
+
+
+
+
+
+Gerdes, et al.           Expires January 4, 2018               [Page 15]
