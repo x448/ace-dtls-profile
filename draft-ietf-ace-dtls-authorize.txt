@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: April 29, 2018                          Universitaet Bremen TZI
+Expires: May 3, 2018                             Universitaet Bremen TZI
                                                              G. Selander
                                                                 Ericsson
                                                                 L. Seitz
                                                                RISE SICS
-                                                        October 26, 2017
+                                                        October 30, 2017
 
 
 Datagram Transport Layer Security (DTLS) Profiles for Authentication and
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 29, 2018.
+   This Internet-Draft will expire on May 3, 2018.
 
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Gerdes, et al.           Expires April 29, 2018                 [Page 1]
+Gerdes, et al.             Expires May 3, 2018                  [Page 1]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Gerdes, et al.           Expires April 29, 2018                 [Page 2]
+Gerdes, et al.             Expires May 3, 2018                  [Page 2]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -165,7 +165,7 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                 [Page 3]
+Gerdes, et al.             Expires May 3, 2018                  [Page 3]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -221,7 +221,7 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                 [Page 4]
+Gerdes, et al.             Expires May 3, 2018                  [Page 4]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -277,7 +277,7 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                 [Page 5]
+Gerdes, et al.             Expires May 3, 2018                  [Page 5]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -333,7 +333,7 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                 [Page 6]
+Gerdes, et al.             Expires May 3, 2018                  [Page 6]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -389,7 +389,7 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                 [Page 7]
+Gerdes, et al.             Expires May 3, 2018                  [Page 7]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -445,7 +445,7 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                 [Page 8]
+Gerdes, et al.             Expires May 3, 2018                  [Page 8]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -501,7 +501,7 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                 [Page 9]
+Gerdes, et al.             Expires May 3, 2018                  [Page 9]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -557,7 +557,7 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                [Page 10]
+Gerdes, et al.             Expires May 3, 2018                 [Page 10]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -613,7 +613,7 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                [Page 11]
+Gerdes, et al.             Expires May 3, 2018                 [Page 11]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -669,7 +669,7 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                [Page 12]
+Gerdes, et al.             Expires May 3, 2018                 [Page 12]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -725,7 +725,7 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                [Page 13]
+Gerdes, et al.             Expires May 3, 2018                 [Page 13]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
@@ -781,15 +781,10 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                [Page 14]
+Gerdes, et al.             Expires May 3, 2018                 [Page 14]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
-
-   [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
-              Resource Identifier (URI): Generic Syntax", STD 66,
-              RFC 3986, DOI 10.17487/RFC3986, January 2005,
-              <https://www.rfc-editor.org/info/rfc3986>.
 
    [RFC4279]  Eronen, P., Ed. and H. Tschofenig, Ed., "Pre-Shared Key
               Ciphersuites for Transport Layer Security (TLS)",
@@ -830,23 +825,22 @@ Internet-Draft                  CoAP-DTLS                   October 2017
               DOI 10.17487/RFC6655, July 2012, <https://www.rfc-
               editor.org/info/rfc6655>.
 
-   [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
-              Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
-              October 2013, <https://www.rfc-editor.org/info/rfc7049>.
-
-
-
-
-Gerdes, et al.           Expires April 29, 2018                [Page 15]
-
-Internet-Draft                  CoAP-DTLS                   October 2017
-
-
    [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
               Weiler, S., and T. Kivinen, "Using Raw Public Keys in
               Transport Layer Security (TLS) and Datagram Transport
               Layer Security (DTLS)", RFC 7250, DOI 10.17487/RFC7250,
               June 2014, <https://www.rfc-editor.org/info/rfc7250>.
+
+
+
+
+
+
+
+Gerdes, et al.             Expires May 3, 2018                 [Page 15]
+
+Internet-Draft                  CoAP-DTLS                   October 2017
+
 
    [RFC7251]  McGrew, D., Bailey, D., Campagna, M., and R. Dugal, "AES-
               CCM Elliptic Curve Cryptography (ECC) Cipher Suites for
@@ -887,17 +881,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 Authors' Addresses
 
-
-
-
-
-
-
-Gerdes, et al.           Expires April 29, 2018                [Page 16]
-
-Internet-Draft                  CoAP-DTLS                   October 2017
-
-
    Stefanie Gerdes
    Universitaet Bremen TZI
    Postfach 330440
@@ -906,6 +889,13 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
    Phone: +49-421-218-63906
    Email: gerdes@tzi.org
+
+
+
+
+Gerdes, et al.             Expires May 3, 2018                 [Page 16]
+
+Internet-Draft                  CoAP-DTLS                   October 2017
 
 
    Olaf Bergmann
@@ -949,4 +939,14 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 
 
-Gerdes, et al.           Expires April 29, 2018                [Page 17]
+
+
+
+
+
+
+
+
+
+
+Gerdes, et al.             Expires May 3, 2018                 [Page 17]
