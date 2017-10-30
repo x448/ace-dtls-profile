@@ -621,7 +621,13 @@ li, p {
 <p id="rfc.section.6.p.1">An unprotected response to an unauthorized request may disclose information about the resource server and/or its existing relationship with the client. It is advisable to include as little information as possible in an unencrypted response. When a DTLS session between the client and the resource server already exists, more detailed information may be included with an error response to provide the client with sufficient information to react on that particular error.</p>
 <p id="rfc.section.6.p.2">Note that some information might still leak after DTLS session is established, due to observable message sizes, the source, and the destination addresses.</p>
 <h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a></h1>
-<p id="rfc.section.7.p.1">This document has no actions for IANA.</p>
+<p id="rfc.section.7.p.1">The following registrations are done for the ACE OAuth Profile Registry following the procedure specified in <a href="#I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</a>.</p>
+<p id="rfc.section.7.p.2">Note to RFC Editor: Please replace all occurrences of &#8220;[RFC-XXXX]&#8221; with the RFC number of this specification and delete this paragraph.</p>
+<p id="rfc.section.7.p.3">Profile name: coap_dtls</p>
+<p id="rfc.section.7.p.4">Profile Description: Profile for delegating client authentication and authorization in a constrained environment by establishing a Datagram Transport Layer Security (DTLS) channel between resource-constrained nodes.</p>
+<p id="rfc.section.7.p.5">Profile ID:  1</p>
+<p id="rfc.section.7.p.6">Change Controller:  IESG</p>
+<p id="rfc.section.7.p.7">Specification Document(s):  [RFC-XXXX]</p>
 <h1 id="rfc.references"><a href="#rfc.references">8.</a> References</h1>
 <h1 id="rfc.references.1"><a href="#rfc.references.1">8.1.</a> Normative References</h1>
 <table>
@@ -636,7 +642,7 @@ li, p {
       <td class="reference">
         <b id="I-D.tiloca-tls-dos-handshake">[I-D.tiloca-tls-dos-handshake]</b>
       </td>
-      <td class="top"><a>Tiloca, M.</a>, <a>Seitz, L.</a> and <a>M. Hoeve</a>, "<a href="http://tools.ietf.org/html/draft-tiloca-tls-dos-handshake-00">Extension for protecting (D)TLS handshakes against Denial of Service</a>", Internet-Draft draft-tiloca-tls-dos-handshake-00, June 2017.</td>
+      <td class="top"><a>Tiloca, M.</a>, <a>Seitz, L.</a>, <a>Hoeve, M.</a> and <a>O. Bergmann</a>, "<a href="http://tools.ietf.org/html/draft-tiloca-tls-dos-handshake-01">Extension for protecting (D)TLS handshakes against Denial of Service</a>", Internet-Draft draft-tiloca-tls-dos-handshake-01, October 2017.</td>
     </tr>
     <tr>
       <td class="reference">

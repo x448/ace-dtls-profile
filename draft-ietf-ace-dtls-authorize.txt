@@ -91,7 +91,7 @@ Table of Contents
    8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
      8.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
      8.2.  Informative References  . . . . . . . . . . . . . . . . .  15
-     8.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  15
+     8.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  16
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  16
 
 1.  Introduction
@@ -732,7 +732,25 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 7.  IANA Considerations
 
-   This document has no actions for IANA.
+   The following registrations are done for the ACE OAuth Profile
+   Registry following the procedure specified in
+   [I-D.ietf-ace-oauth-authz].
+
+   Note to RFC Editor: Please replace all occurrences of "[RFC-XXXX]"
+   with the RFC number of this specification and delete this paragraph.
+
+   Profile name: coap_dtls
+
+   Profile Description: Profile for delegating client authentication and
+   authorization in a constrained environment by establishing a Datagram
+   Transport Layer Security (DTLS) channel between resource-constrained
+   nodes.
+
+   Profile ID: 1
+
+   Change Controller: IESG
+
+   Specification Document(s): [RFC-XXXX]
 
 8.  References
 
@@ -745,10 +763,10 @@ Internet-Draft                  CoAP-DTLS                   October 2017
               authz-08 (work in progress), October 2017.
 
    [I-D.tiloca-tls-dos-handshake]
-              Tiloca, M., Seitz, L., and M. Hoeve, "Extension for
-              protecting (D)TLS handshakes against Denial of Service",
-              draft-tiloca-tls-dos-handshake-00 (work in progress), June
-              2017.
+              Tiloca, M., Seitz, L., Hoeve, M., and O. Bergmann,
+              "Extension for protecting (D)TLS handshakes against Denial
+              of Service", draft-tiloca-tls-dos-handshake-01 (work in
+              progress), October 2017.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -759,6 +777,14 @@ Internet-Draft                  CoAP-DTLS                   October 2017
               Resource Identifier (URI): Generic Syntax", STD 66,
               RFC 3986, DOI 10.17487/RFC3986, January 2005,
               <https://www.rfc-editor.org/info/rfc3986>.
+
+
+
+
+Gerdes, et al.           Expires April 29, 2018                [Page 14]
+
+Internet-Draft                  CoAP-DTLS                   October 2017
+
 
    [RFC4279]  Eronen, P., Ed. and H. Tschofenig, Ed., "Pre-Shared Key
               Ciphersuites for Transport Layer Security (TLS)",
@@ -778,13 +804,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
               Application Protocol (CoAP)", RFC 7252,
               DOI 10.17487/RFC7252, June 2014, <https://www.rfc-
               editor.org/info/rfc7252>.
-
-
-
-Gerdes, et al.           Expires April 29, 2018                [Page 14]
-
-Internet-Draft                  CoAP-DTLS                   October 2017
-
 
    [RFC8152]  Schaad, J., "CBOR Object Signing and Encryption (COSE)",
               RFC 8152, DOI 10.17487/RFC8152, July 2017,
@@ -816,6 +835,13 @@ Internet-Draft                  CoAP-DTLS                   October 2017
               Layer Security (DTLS)", RFC 7250, DOI 10.17487/RFC7250,
               June 2014, <https://www.rfc-editor.org/info/rfc7250>.
 
+
+
+Gerdes, et al.           Expires April 29, 2018                [Page 15]
+
+Internet-Draft                  CoAP-DTLS                   October 2017
+
+
    [RFC7251]  McGrew, D., Bailey, D., Campagna, M., and R. Dugal, "AES-
               CCM Elliptic Curve Cryptography (ECC) Cipher Suites for
               TLS", RFC 7251, DOI 10.17487/RFC7251, June 2014,
@@ -833,14 +859,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
    [4] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        08#section-5.5.1
-
-
-
-
-Gerdes, et al.           Expires April 29, 2018                [Page 15]
-
-Internet-Draft                  CoAP-DTLS                   October 2017
-
 
    [5] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        08#section-5.1.1
@@ -873,6 +891,13 @@ Authors' Addresses
    Email: gerdes@tzi.org
 
 
+
+
+Gerdes, et al.           Expires April 29, 2018                [Page 16]
+
+Internet-Draft                  CoAP-DTLS                   October 2017
+
+
    Olaf Bergmann
    Universitaet Bremen TZI
    Postfach 330440
@@ -881,21 +906,6 @@ Authors' Addresses
 
    Phone: +49-421-218-63904
    Email: bergmann@tzi.org
-
-
-
-
-
-
-
-
-
-
-
-
-Gerdes, et al.           Expires April 29, 2018                [Page 16]
-
-Internet-Draft                  CoAP-DTLS                   October 2017
 
 
    Carsten Bormann
@@ -924,16 +934,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
    Sweden
 
    Email: ludwig.seitz@ri.se
-
-
-
-
-
-
-
-
-
-
 
 
 
