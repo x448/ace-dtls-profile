@@ -694,6 +694,12 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 5.  Security Considerations
 
+   This document specifies a profile for the Authentication and
+   Authorization for Constrained Environments (ACE) framework
+   [I-D.ietf-ace-oauth-authz].  As it follows this framework's general
+   approach, the general security and privacy considerations from
+   section 6 and section 7 also apply to this profile.
+
    Constrained devices that use DTLS [RFC6347] are inherently vulnerable
    to Denial of Service (DoS) attacks as the handshake protocol requires
    creation of internal state within the device.  This is specifically
@@ -716,12 +722,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
    provide the client with sufficient information to react on that
    particular error.
 
-   Note that some information might still leak after DTLS session is
-   established, due to observable message sizes, the source, and the
-   destination addresses.
-
-
-
 
 
 
@@ -729,6 +729,10 @@ Gerdes, et al.           Expires April 29, 2018                [Page 13]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
+
+   Note that some information might still leak after DTLS session is
+   established, due to observable message sizes, the source, and the
+   destination addresses.
 
 7.  IANA Considerations
 
@@ -773,10 +777,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
               DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
               editor.org/info/rfc2119>.
 
-   [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
-              Resource Identifier (URI): Generic Syntax", STD 66,
-              RFC 3986, DOI 10.17487/RFC3986, January 2005,
-              <https://www.rfc-editor.org/info/rfc3986>.
 
 
 
@@ -785,6 +785,11 @@ Gerdes, et al.           Expires April 29, 2018                [Page 14]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
+
+   [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
+              Resource Identifier (URI): Generic Syntax", STD 66,
+              RFC 3986, DOI 10.17487/RFC3986, January 2005,
+              <https://www.rfc-editor.org/info/rfc3986>.
 
    [RFC4279]  Eronen, P., Ed. and H. Tschofenig, Ed., "Pre-Shared Key
               Ciphersuites for Transport Layer Security (TLS)",
@@ -829,11 +834,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013, <https://www.rfc-editor.org/info/rfc7049>.
 
-   [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
-              Weiler, S., and T. Kivinen, "Using Raw Public Keys in
-              Transport Layer Security (TLS) and Datagram Transport
-              Layer Security (DTLS)", RFC 7250, DOI 10.17487/RFC7250,
-              June 2014, <https://www.rfc-editor.org/info/rfc7250>.
 
 
 
@@ -841,6 +841,12 @@ Gerdes, et al.           Expires April 29, 2018                [Page 15]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
+
+   [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
+              Weiler, S., and T. Kivinen, "Using Raw Public Keys in
+              Transport Layer Security (TLS) and Datagram Transport
+              Layer Security (DTLS)", RFC 7250, DOI 10.17487/RFC7250,
+              June 2014, <https://www.rfc-editor.org/info/rfc7250>.
 
    [RFC7251]  McGrew, D., Bailey, D., Campagna, M., and R. Dugal, "AES-
               CCM Elliptic Curve Cryptography (ECC) Cipher Suites for
@@ -881,6 +887,17 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
 Authors' Addresses
 
+
+
+
+
+
+
+Gerdes, et al.           Expires April 29, 2018                [Page 16]
+
+Internet-Draft                  CoAP-DTLS                   October 2017
+
+
    Stefanie Gerdes
    Universitaet Bremen TZI
    Postfach 330440
@@ -889,13 +906,6 @@ Authors' Addresses
 
    Phone: +49-421-218-63906
    Email: gerdes@tzi.org
-
-
-
-
-Gerdes, et al.           Expires April 29, 2018                [Page 16]
-
-Internet-Draft                  CoAP-DTLS                   October 2017
 
 
    Olaf Bergmann
@@ -934,16 +944,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
    Sweden
 
    Email: ludwig.seitz@ri.se
-
-
-
-
-
-
-
-
-
-
 
 
 
