@@ -92,7 +92,7 @@ Table of Contents
      8.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
      8.2.  Informative References  . . . . . . . . . . . . . . . . .  15
      8.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  16
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  16
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
 
 1.  Introduction
 
@@ -598,18 +598,18 @@ Internet-Draft                  CoAP-DTLS                   October 2017
    authorization framework, the client can upload the Access Token to
    the resource server's authz-info resource before starting the DTLS
    handshake.  Alternatively, the client MAY provide the most recent
-   base64-encoded Access Token in the "psk_identity" field of the
-   ClientKeyExchange message.
+   Access Token in the "psk_identity" field of the ClientKeyExchange
+   message.  To do so, the client MUST treat the contents of the
+   "access_token" field from the AS-to-Client response as opaque data
+   and not perform any re-coding.
+
+   Note: As stated in section 4.2 of [RFC7925], the PSK identity should
+   be treated as binary data in the Internet of Things space and not
+   assumed to have a human-readable form of any sort.
 
    If a resource server receives a ClientKeyExchange message that
-   contains a "psk_identity" with a length greater zero, it MUST
-   base64-decode its contents and use the resulting byte sequence as
-   index for its key store (i.e., treat the contents as key identifier).
-   The resource server MUST check if it has one or more Access Tokens
-   that are associated with the specified key.  If no valid Access Token
-   is available for this key, the DTLS session setup is terminated with
-   an "illegal_parameter" DTLS alert message.
-
+   contains a "psk_identity" with a length greater zero, it uses the
+   contents as index for its key store (i.e., treat the contents as key
 
 
 
@@ -617,6 +617,11 @@ Gerdes, et al.             Expires May 3, 2018                 [Page 11]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
+
+   identifier).  The resource server MUST check if it has one or more
+   Access Tokens that are associated with the specified key.  If no
+   valid Access Token is available for this key, the DTLS session setup
+   is terminated with an "illegal_parameter" DTLS alert message.
 
    If no key with a matching identifier is found the resource server the
    resource server MAY process the decoded contents of the
@@ -662,17 +667,17 @@ Internet-Draft                  CoAP-DTLS                   October 2017
    parameter carrying the nonce that has been used by the authorization
    server to construct the session key.
 
-   This specification mandates that at least the key derivation
-   algorithm "HKDF SHA-256" as defined in [RFC8152] MUST be supported.
-   This key derivation function is the default when no "alg" field is
-   included in the "COSE_Encrypt" structure for the resource server.
-
 
 
 Gerdes, et al.             Expires May 3, 2018                 [Page 12]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
+
+   This specification mandates that at least the key derivation
+   algorithm "HKDF SHA-256" as defined in [RFC8152] MUST be supported.
+   This key derivation function is the default when no "alg" field is
+   included in the "COSE_Encrypt" structure for the resource server.
 
 4.2.  Updating Authorization Information
 
@@ -717,11 +722,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
    information about the resource server and/or its existing
    relationship with the client.  It is advisable to include as little
    information as possible in an unencrypted response.  When a DTLS
-   session between the client and the resource server already exists,
-   more detailed information may be included with an error response to
-   provide the client with sufficient information to react on that
-   particular error.
-
 
 
 
@@ -729,6 +729,11 @@ Gerdes, et al.             Expires May 3, 2018                 [Page 13]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
+
+   session between the client and the resource server already exists,
+   more detailed information may be included with an error response to
+   provide the client with sufficient information to react on that
+   particular error.
 
    Note that some information might still leak after DTLS session is
    established, due to observable message sizes, the source, and the
@@ -772,11 +777,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
               of Service", draft-tiloca-tls-dos-handshake-01 (work in
               progress), October 2017.
 
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
-              editor.org/info/rfc2119>.
-
 
 
 
@@ -785,6 +785,11 @@ Gerdes, et al.             Expires May 3, 2018                 [Page 14]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
+              editor.org/info/rfc2119>.
 
    [RFC4279]  Eronen, P., Ed. and H. Tschofenig, Ed., "Pre-Shared Key
               Ciphersuites for Transport Layer Security (TLS)",
@@ -805,6 +810,12 @@ Internet-Draft                  CoAP-DTLS                   October 2017
               DOI 10.17487/RFC7252, June 2014, <https://www.rfc-
               editor.org/info/rfc7252>.
 
+   [RFC7925]  Tschofenig, H., Ed. and T. Fossati, "Transport Layer
+              Security (TLS) / Datagram Transport Layer Security (DTLS)
+              Profiles for the Internet of Things", RFC 7925,
+              DOI 10.17487/RFC7925, July 2016, <https://www.rfc-
+              editor.org/info/rfc7925>.
+
    [RFC8152]  Schaad, J., "CBOR Object Signing and Encryption (COSE)",
               RFC 8152, DOI 10.17487/RFC8152, July 2017,
               <https://www.rfc-editor.org/info/rfc8152>.
@@ -820,17 +831,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
               "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-09
               (work in progress), October 2017.
 
-   [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
-              Transport Layer Security (TLS)", RFC 6655,
-              DOI 10.17487/RFC6655, July 2012, <https://www.rfc-
-              editor.org/info/rfc6655>.
-
-   [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
-              Weiler, S., and T. Kivinen, "Using Raw Public Keys in
-              Transport Layer Security (TLS) and Datagram Transport
-              Layer Security (DTLS)", RFC 7250, DOI 10.17487/RFC7250,
-              June 2014, <https://www.rfc-editor.org/info/rfc7250>.
-
 
 
 
@@ -841,6 +841,17 @@ Gerdes, et al.             Expires May 3, 2018                 [Page 15]
 
 Internet-Draft                  CoAP-DTLS                   October 2017
 
+
+   [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
+              Transport Layer Security (TLS)", RFC 6655,
+              DOI 10.17487/RFC6655, July 2012, <https://www.rfc-
+              editor.org/info/rfc6655>.
+
+   [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
+              Weiler, S., and T. Kivinen, "Using Raw Public Keys in
+              Transport Layer Security (TLS) and Datagram Transport
+              Layer Security (DTLS)", RFC 7250, DOI 10.17487/RFC7250,
+              June 2014, <https://www.rfc-editor.org/info/rfc7250>.
 
    [RFC7251]  McGrew, D., Bailey, D., Campagna, M., and R. Dugal, "AES-
               CCM Elliptic Curve Cryptography (ECC) Cipher Suites for
@@ -879,6 +890,14 @@ Internet-Draft                  CoAP-DTLS                   October 2017
 
    [11] https://tools.ietf.org/html/rfc8152#section-12.1.2
 
+
+
+
+Gerdes, et al.             Expires May 3, 2018                 [Page 16]
+
+Internet-Draft                  CoAP-DTLS                   October 2017
+
+
 Authors' Addresses
 
    Stefanie Gerdes
@@ -889,13 +908,6 @@ Authors' Addresses
 
    Phone: +49-421-218-63906
    Email: gerdes@tzi.org
-
-
-
-
-Gerdes, et al.             Expires May 3, 2018                 [Page 16]
-
-Internet-Draft                  CoAP-DTLS                   October 2017
 
 
    Olaf Bergmann
@@ -934,18 +946,6 @@ Internet-Draft                  CoAP-DTLS                   October 2017
    Sweden
 
    Email: ludwig.seitz@ri.se
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
