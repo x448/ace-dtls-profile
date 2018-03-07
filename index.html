@@ -407,12 +407,7 @@ li, p {
 <p id="rfc.section.1.p.1">This specification defines a profile of the ACE framework <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>.  In this profile, a client and a resource server use CoAP <a href="#RFC7252" class="xref">[RFC7252]</a> over DTLS <a href="#RFC6347" class="xref">[RFC6347]</a> to communicate.  The client uses an access token, bound to a key (the proof-of-possession key) to authorize its access to protected resources hosted by the resource server.  DTLS provides communication security, proof of possession, and server authentication.  Optionally the client and the resource server may also use CoAP over DTLS to communicate with the authorization server.  This specification supports the DTLS handshake with Raw Public Keys (RPK) <a href="#RFC7250" class="xref">[RFC7250]</a> and the DTLS handshake with Pre-Shared Keys (PSK) <a href="#RFC4279" class="xref">[RFC4279]</a>.</p>
 <p id="rfc.section.1.p.2">The DTLS RPK handshake <a href="#RFC7250" class="xref">[RFC7250]</a> requires client authentication to provide proof-of-possession for the key tied to the access token.  Here the access token needs to be transferred to the resource server before the handshake is initiated, as described in <a href="https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-10#section-5.8.1">section 5.8.1 of draft-ietf-ace-oauth-authz</a>.</p>
 <p id="rfc.section.1.p.3">The DTLS PSK handshake <a href="#RFC4279" class="xref">[RFC4279]</a> provides the proof-of-possession for the key tied to the access token.  Furthermore the psk_identity parameter in the DTLS PSK handshake is used to transfer the access token from the client to the resource server.</p>
-<p></p>
-
-<dl>
-<dt>Note: While the scope of this draft is on client and resource server</dt>
-<dd style="margin-left: 8">communicating using CoAP over DTLS, it is expected that it applies also to CoAP over TLS, possibly with minor modifications. However, that is out of scope for this version of the draft.</dd>
-</dl>
+<p id="rfc.section.1.p.4">Note: While the scope of this draft is on client and resource server communicating using CoAP over DTLS, it is expected that it applies also to CoAP over TLS, possibly with minor modifications. However, that is out of scope for this version of the draft.</p>
 <h1 id="rfc.section.1.1">
 <a href="#rfc.section.1.1">1.1.</a> <a href="#terminology" id="terminology">Terminology</a>
 </h1>
@@ -678,7 +673,7 @@ li, p {
 <tr>
 <td class="reference"><b id="I-D.tiloca-tls-dos-handshake">[I-D.tiloca-tls-dos-handshake]</b></td>
 <td class="top">
-<a>Tiloca, M.</a>, <a>Seitz, L.</a>, <a>Hoeve, M.</a> and <a>O. Bergmann</a>, "<a href="https://tools.ietf.org/html/draft-tiloca-tls-dos-handshake-01">Extension for protecting (D)TLS handshakes against Denial of Service</a>", Internet-Draft draft-tiloca-tls-dos-handshake-01, October 2017.</td>
+<a>Tiloca, M.</a>, <a>Seitz, L.</a>, <a>Hoeve, M.</a> and <a>O. Bergmann</a>, "<a href="https://tools.ietf.org/html/draft-tiloca-tls-dos-handshake-02">Extension for protecting (D)TLS handshakes against Denial of Service</a>", Internet-Draft draft-tiloca-tls-dos-handshake-02, March 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC2119">[RFC2119]</b></td>
@@ -727,7 +722,7 @@ li, p {
 <tr>
 <td class="reference"><b id="I-D.ietf-ace-cbor-web-token">[I-D.ietf-ace-cbor-web-token]</b></td>
 <td class="top">
-<a>Jones, M.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="https://tools.ietf.org/html/draft-ietf-ace-cbor-web-token-12">CBOR Web Token (CWT)</a>", Internet-Draft draft-ietf-ace-cbor-web-token-12, February 2018.</td>
+<a>Jones, M.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="https://tools.ietf.org/html/draft-ietf-ace-cbor-web-token-13">CBOR Web Token (CWT)</a>", Internet-Draft draft-ietf-ace-cbor-web-token-13, March 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-tls-rfc4492bis">[I-D.ietf-tls-rfc4492bis]</b></td>

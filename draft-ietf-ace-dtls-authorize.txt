@@ -129,10 +129,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
    token from the client to the resource server.
 
    Note: While the scope of this draft is on client and resource server
-
-      communicating using CoAP over DTLS, it is expected that it applies
-      also to CoAP over TLS, possibly with minor modifications.
-      However, that is out of scope for this version of the draft.
+   communicating using CoAP over DTLS, it is expected that it applies
+   also to CoAP over TLS, possibly with minor modifications.  However,
+   that is out of scope for this version of the draft.
 
 1.1.  Terminology
 
@@ -159,6 +158,7 @@ Internet-Draft                  CoAP-DTLS                     March 2018
    specified in [I-D.ietf-ace-oauth-authz].  Figure 1 shows the typical
    message flow in this scenario (messages in square brackets are
    optional):
+
 
 
 
@@ -825,8 +825,8 @@ Internet-Draft                  CoAP-DTLS                     March 2018
    [I-D.tiloca-tls-dos-handshake]
               Tiloca, M., Seitz, L., Hoeve, M., and O. Bergmann,
               "Extension for protecting (D)TLS handshakes against Denial
-              of Service", draft-tiloca-tls-dos-handshake-01 (work in
-              progress), October 2017.
+              of Service", draft-tiloca-tls-dos-handshake-02 (work in
+              progress), March 2018.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -879,8 +879,8 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
    [I-D.ietf-ace-cbor-web-token]
               Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
-              "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-12
-              (work in progress), February 2018.
+              "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-13
+              (work in progress), March 2018.
 
    [I-D.ietf-tls-rfc4492bis]
               Nir, Y., Josefsson, S., and M. Pegourie-Gonnard, "Elliptic
