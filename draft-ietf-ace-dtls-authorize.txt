@@ -129,9 +129,10 @@ Internet-Draft                  CoAP-DTLS                     March 2018
    token from the client to the resource server.
 
    Note: While the scope of this draft is on client and resource server
-   communicating using CoAP over DTLS, it is expected that it applies
-   also to CoAP over TLS, possibly with minor modifications.  However,
-   that is out of scope for this version of the draft.
+
+      communicating using CoAP over DTLS, it is expected that it applies
+      also to CoAP over TLS, possibly with minor modifications.
+      However, that is out of scope for this version of the draft.
 
 1.1.  Terminology
 
@@ -158,7 +159,6 @@ Internet-Draft                  CoAP-DTLS                     March 2018
    specified in [I-D.ietf-ace-oauth-authz].  Figure 1 shows the typical
    message flow in this scenario (messages in square brackets are
    optional):
-
 
 
 
