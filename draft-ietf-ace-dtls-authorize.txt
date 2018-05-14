@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: September 2, 2018                       Universitaet Bremen TZI
+Expires: November 15, 2018                       Universitaet Bremen TZI
                                                              G. Selander
                                                                 Ericsson
                                                                 L. Seitz
                                                                RISE SICS
-                                                          March 01, 2018
+                                                            May 14, 2018
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 2, 2018.
+   This Internet-Draft will expire on November 15, 2018.
 
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Gerdes, et al.          Expires September 2, 2018               [Page 1]
+Gerdes, et al.          Expires November 15, 2018               [Page 1]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Gerdes, et al.          Expires September 2, 2018               [Page 2]
+Gerdes, et al.          Expires November 15, 2018               [Page 2]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
    with Raw Public Keys (RPK) [RFC7250] and the DTLS handshake with Pre-
@@ -165,9 +165,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018               [Page 3]
+Gerdes, et al.          Expires November 15, 2018               [Page 3]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
       C                            RS                   AS
@@ -221,9 +221,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018               [Page 4]
+Gerdes, et al.          Expires November 15, 2018               [Page 4]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
    the Access Token to the authz-info resource on the resource server
@@ -277,9 +277,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018               [Page 5]
+Gerdes, et al.          Expires November 15, 2018               [Page 5]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
    CoAP requests that are not authorized with respect to any Access
@@ -333,9 +333,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018               [Page 6]
+Gerdes, et al.          Expires November 15, 2018               [Page 6]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 2.2.  Dynamic Update of Authorization Information
@@ -389,9 +389,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018               [Page 7]
+Gerdes, et al.          Expires November 15, 2018               [Page 7]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
       C                            RS                   AS
@@ -445,9 +445,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018               [Page 8]
+Gerdes, et al.          Expires November 15, 2018               [Page 8]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
    Table 1 updates Figure 2 in section 5.1.2 of draft-ietf-ace-oauth-
@@ -501,9 +501,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018               [Page 9]
+Gerdes, et al.          Expires November 15, 2018               [Page 9]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
    the client initiates the DTLS handshake with the resource server, it
@@ -531,15 +531,15 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
    The Access Token is constructed by the authorization server such that
    the resource server can associate the Access Token with the Client's
-   public key.  If CBOR web tokens [I-D.ietf-ace-cbor-web-token] are
-   used as recommended in [I-D.ietf-ace-oauth-authz], the authorization
-   server MUST include a "COSE_Key" object in the "cnf" claim of the
-   Access Token.  This "COSE_Key" object MAY contain a reference to a
-   key for the client that is already known by the resource server
-   (e.g., from previous communication).  If the authorization server has
-   no certain knowledge that the Client's key is already known to the
-   resource server, the Client's public key MUST be included in the
-   Access Token's "cnf" parameter.
+   public key.  If CBOR web tokens [RFC8392] are used as recommended in
+   [I-D.ietf-ace-oauth-authz], the authorization server MUST include a
+   "COSE_Key" object in the "cnf" claim of the Access Token.  This
+   "COSE_Key" object MAY contain a reference to a key for the client
+   that is already known by the resource server (e.g., from previous
+   communication).  If the authorization server has no certain knowledge
+   that the Client's key is already known to the resource server, the
+   Client's public key MUST be included in the Access Token's "cnf"
+   parameter.
 
 4.  PreSharedKey Mode
 
@@ -557,9 +557,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018              [Page 10]
+Gerdes, et al.          Expires November 15, 2018              [Page 10]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
    response that provides the client with sufficient information to
@@ -613,9 +613,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018              [Page 11]
+Gerdes, et al.          Expires November 15, 2018              [Page 11]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
        4.00 Bad Request
@@ -669,9 +669,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018              [Page 12]
+Gerdes, et al.          Expires November 15, 2018              [Page 12]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
    yield a valid access token for the requesting client, the DTLS
@@ -725,9 +725,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018              [Page 13]
+Gerdes, et al.          Expires November 15, 2018              [Page 13]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 4.2.  Updating Authorization Information
@@ -781,9 +781,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018              [Page 14]
+Gerdes, et al.          Expires November 15, 2018              [Page 14]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
    Note that some information might still leak after DTLS session is
@@ -819,8 +819,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
    [I-D.ietf-ace-oauth-authz]
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
               H. Tschofenig, "Authentication and Authorization for
-              Constrained Environments (ACE)", draft-ietf-ace-oauth-
-              authz-10 (work in progress), February 2018.
+              Constrained Environments (ACE) using the OAuth 2.0
+              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-11
+              (work in progress), March 2018.
 
    [I-D.tiloca-tls-dos-handshake]
               Tiloca, M., Seitz, L., Hoeve, M., and O. Bergmann,
@@ -836,10 +837,9 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-
-Gerdes, et al.          Expires September 2, 2018              [Page 15]
+Gerdes, et al.          Expires November 15, 2018              [Page 15]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
    [RFC4279]  Eronen, P., Ed. and H. Tschofenig, Ed., "Pre-Shared Key
@@ -877,31 +877,26 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 8.2.  Informative References
 
-   [I-D.ietf-ace-cbor-web-token]
-              Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
-              "CBOR Web Token (CWT)", draft-ietf-ace-cbor-web-token-13
-              (work in progress), March 2018.
-
    [I-D.ietf-tls-rfc4492bis]
               Nir, Y., Josefsson, S., and M. Pegourie-Gonnard, "Elliptic
               Curve Cryptography (ECC) Cipher Suites for Transport Layer
               Security (TLS) Versions 1.2 and Earlier", draft-ietf-tls-
               rfc4492bis-17 (work in progress), May 2017.
 
-
-
-
-
-
-Gerdes, et al.          Expires September 2, 2018              [Page 16]
-
-Internet-Draft                  CoAP-DTLS                     March 2018
-
-
    [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
               Transport Layer Security (TLS)", RFC 6655,
               DOI 10.17487/RFC6655, July 2012,
               <https://www.rfc-editor.org/info/rfc6655>.
+
+
+
+
+
+
+Gerdes, et al.          Expires November 15, 2018              [Page 16]
+
+Internet-Draft                  CoAP-DTLS                       May 2018
+
 
    [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
               Weiler, S., and T. Kivinen, "Using Raw Public Keys in
@@ -922,6 +917,10 @@ Internet-Draft                  CoAP-DTLS                     March 2018
               Signature Algorithm (EdDSA)", RFC 8032,
               DOI 10.17487/RFC8032, January 2017,
               <https://www.rfc-editor.org/info/rfc8032>.
+
+   [RFC8392]  Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
+              "CBOR Web Token (CWT)", RFC 8392, DOI 10.17487/RFC8392,
+              May 2018, <https://www.rfc-editor.org/info/rfc8392>.
 
 8.3.  URIs
 
@@ -945,17 +944,15 @@ Internet-Draft                  CoAP-DTLS                     March 2018
    [7] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        10#section-5.6.3
 
-
-
-
-
-Gerdes, et al.          Expires September 2, 2018              [Page 17]
-
-Internet-Draft                  CoAP-DTLS                     March 2018
-
-
    [8] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        10#section-5.8.2
+
+
+
+Gerdes, et al.          Expires November 15, 2018              [Page 17]
+
+Internet-Draft                  CoAP-DTLS                       May 2018
+
 
    [9] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        10#section-5.1.2
@@ -1005,9 +1002,12 @@ Authors' Addresses
 
 
 
-Gerdes, et al.          Expires September 2, 2018              [Page 18]
+
+
+
+Gerdes, et al.          Expires November 15, 2018              [Page 18]
 
-Internet-Draft                  CoAP-DTLS                     March 2018
+Internet-Draft                  CoAP-DTLS                       May 2018
 
 
    Goeran Selander
@@ -1061,4 +1061,4 @@ Internet-Draft                  CoAP-DTLS                     March 2018
 
 
 
-Gerdes, et al.          Expires September 2, 2018              [Page 19]
+Gerdes, et al.          Expires November 15, 2018              [Page 19]
