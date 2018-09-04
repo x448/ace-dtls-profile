@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: November 15, 2018                       Universitaet Bremen TZI
+Expires: March 8, 2019                           Universitaet Bremen TZI
                                                              G. Selander
                                                                 Ericsson
                                                                 L. Seitz
                                                                RISE SICS
-                                                            May 14, 2018
+                                                      September 04, 2018
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 15, 2018.
+   This Internet-Draft will expire on March 8, 2019.
 
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Gerdes, et al.          Expires November 15, 2018               [Page 1]
+Gerdes, et al.            Expires March 8, 2019                 [Page 1]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Gerdes, et al.          Expires November 15, 2018               [Page 2]
+Gerdes, et al.            Expires March 8, 2019                 [Page 2]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
    with Raw Public Keys (RPK) [RFC7250] and the DTLS handshake with Pre-
@@ -127,12 +127,6 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    the key tied to the access token.  Furthermore the psk_identity
    parameter in the DTLS PSK handshake is used to transfer the access
    token from the client to the resource server.
-
-   Note: While the scope of this draft is on client and resource server
-
-      communicating using CoAP over DTLS, it is expected that it applies
-      also to CoAP over TLS, possibly with minor modifications.
-      However, that is out of scope for this version of the draft.
 
 1.1.  Terminology
 
@@ -165,9 +159,15 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-Gerdes, et al.          Expires November 15, 2018               [Page 3]
+
+
+
+
+
+
+Gerdes, et al.            Expires March 8, 2019                 [Page 3]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
       C                            RS                   AS
@@ -186,7 +186,8 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    To determine the AS in charge of a resource hosted at the RS, the
    client C MAY send an initial Unauthorized Resource Request message to
    the RS.  The RS then denies the request and sends the address of its
-   AS back to the client C.
+   AS back to the client C as specified in section 5.1.2 of draft-ietf-
+   ace-oauth-authz [2].
 
    Once the client C knows the authorization server's address, it can
    send an Access Token request to the token endpoint at the AS as
@@ -198,37 +199,40 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    achieved is out of scope for this document; the client may have been
    configured with a public key of the authorization server and have
    been registered at the AS via the OAuth client registration mechanism
-   as outlined in section 5.3 of draft-ietf-ace-oauth-authz [2].
+   as outlined in section 5.3 of draft-ietf-ace-oauth-authz [3].
 
    If C wants to use the CoAP RawPublicKey mode as described in
-   Section 9 of RFC 7252 [3] it MUST provide a key or key identifier
+   Section 9 of RFC 7252 [4] it MUST provide a key or key identifier
    within a "cnf" object in the token request.  If the authorization
    server AS decides that the request is to be authorized it generates
    an access token response for the client C containing a "profile"
    parameter with the value "coap_dtls" to indicate that this profile
    MUST be used for communication between the client C and the resource
-   server.  Is also adds a "cnf" parameter with additional data for the
-   establishment of a secure DTLS channel between the client and the
-   resource server.  The semantics of the 'cnf' parameter depend on the
-   type of key used between the client and the resource server and
-   control whether the client must use RPK mode or PSK mode to establish
-   a DTLS session with the resource server, see Section 3 and Section 4.
+   server.
+
+   For RPK mode, the authorization server also adds a "rs_cnf" parameter
+   containing information about the public that is used by the resource
+   server (see Section 3).
+
+   For PSK mode, the authorization server adds a "cnf" parameter
+   containing information about the shared secret that C can use to
+   setup a DTLS session with the resource server (see Section 4).
+
+
+
+
+Gerdes, et al.            Expires March 8, 2019                 [Page 4]
+
+Internet-Draft                  CoAP-DTLS                 September 2018
+
 
    The Access Token returned by the authorization server then can be
    used by the client to establish a new DTLS session with the resource
    server.  When the client intends to use asymmetric cryptography in
    the DTLS handshake with the resource server, the client MUST upload
-
-
-
-Gerdes, et al.          Expires November 15, 2018               [Page 4]
-
-Internet-Draft                  CoAP-DTLS                       May 2018
-
-
    the Access Token to the authz-info resource on the resource server
    before starting the DTLS handshake, as described in section 5.8.1 of
-   draft-ietf-ace-oauth-authz [4].  If only symmetric cryptography is
+   draft-ietf-ace-oauth-authz [5].  If only symmetric cryptography is
    used between the client and the resource server, the Access Token MAY
    instead be transferred in the DTLS ClientKeyExchange message (see
    Section 4.1).
@@ -269,29 +273,30 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    resources covered by the Access Token it has uploaded to the authz-
    info resource hosted by the resource server.
 
+
+
+
+
+Gerdes, et al.            Expires March 8, 2019                 [Page 5]
+
+Internet-Draft                  CoAP-DTLS                 September 2018
+
+
    On the resource server side, successful establishment of the DTLS
    channel binds the client to the access token, functioning as a proof-
    of-possession associated key.  Any request that the resource server
    receives on this channel MUST be checked against these authorization
    rules that are associated with the identity of the client.  Incoming
-
-
-
-Gerdes, et al.          Expires November 15, 2018               [Page 5]
-
-Internet-Draft                  CoAP-DTLS                       May 2018
-
-
    CoAP requests that are not authorized with respect to any Access
    Token that is associated with the client MUST be rejected by the
    resource server with 4.01 response as described in Section 5.1.1 of
-   draft-ietf-ace-oauth-authz [5].
+   draft-ietf-ace-oauth-authz [6].
 
    Note: The identity of the client is determined by the authentication
    process
       during the DTLS handshake.  In the asymmetric case, the public key
       will define the client's identity, while in the PSK case, the
-      client's identity is defined by the session key generated by the
+      client's identity is defined by the shared secret generated by the
       authorization server for this communication.
 
    The resource server SHOULD treat an incoming CoAP request as
@@ -325,18 +330,18 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
    The client cannot always know a priori if an Authorized Resource
    Request will succeed.  If the client repeatedly gets error responses
+
+
+
+Gerdes, et al.            Expires March 8, 2019                 [Page 6]
+
+Internet-Draft                  CoAP-DTLS                 September 2018
+
+
    containing AS Information (cf.  Section 5.1.1 of draft-ietf-ace-
-   oauth-authz [6] as response to its requests, it SHOULD request a new
+   oauth-authz [7] as response to its requests, it SHOULD request a new
    Access Token from the authorization server in order to continue
    communication with the resource server.
-
-
-
-
-Gerdes, et al.          Expires November 15, 2018               [Page 6]
-
-Internet-Draft                  CoAP-DTLS                       May 2018
-
 
 2.2.  Dynamic Update of Authorization Information
 
@@ -357,7 +362,7 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    of-possession ticket that has previously been issued to the
    requesting client.  Otherwise, the Client-to-AS request MUST be
    declined with a the error code "unsupported_pop_key" as defined in
-   Section 5.6.3 of draft-ietf-ace-oauth-authz [7].
+   Section 5.6.3 of draft-ietf-ace-oauth-authz [8].
 
    When the authorization server issues a new access token to update
    existing authorization information it MUST include the specified
@@ -384,14 +389,9 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-
-
-
-
-
-Gerdes, et al.          Expires November 15, 2018               [Page 7]
+Gerdes, et al.            Expires March 8, 2019                 [Page 7]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
       C                            RS                   AS
@@ -423,7 +423,7 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    server therefore may decide to terminate existing DTLS sessions after
    the last valid access token for this session has been deleted.
 
-   As specified in section 5.8.2 of draft-ietf-ace-oauth-authz [8], the
+   As specified in section 5.8.2 of draft-ietf-ace-oauth-authz [9], the
    resource server MUST notify the client with an error response with
    code 4.01 (Unauthorized) for any long running request before
    terminating the session.
@@ -433,7 +433,7 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    including AS Information to signal that the client needs to upload a
    new access token before it can continue using this DTLS session.  The
    AS Information is created as specified in section 5.1.2 of draft-
-   ietf-ace-oauth-authz [9].  The resource server SHOULD add a "kid"
+   ietf-ace-oauth-authz [10].  The resource server SHOULD add a "kid"
    parameter to the AS Information denoting the identifier of the key
    that it uses internally for this DTLS session.  The client then
    includes this "kid" parameter in a Client-to-AS request used to
@@ -445,13 +445,13 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-Gerdes, et al.          Expires November 15, 2018               [Page 8]
+Gerdes, et al.            Expires March 8, 2019                 [Page 8]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
    Table 1 updates Figure 2 in section 5.1.2 of draft-ietf-ace-oauth-
-   authz [10] with the new "kid" parameter in accordance with [RFC8152].
+   authz [11] with the new "kid" parameter in accordance with [RFC8152].
 
               +----------------+----------+-----------------+
               | Parameter name | CBOR Key | Major Type      |
@@ -501,9 +501,9 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-Gerdes, et al.          Expires November 15, 2018               [Page 9]
+Gerdes, et al.            Expires March 8, 2019                 [Page 9]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
    the client initiates the DTLS handshake with the resource server, it
@@ -547,9 +547,9 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    access, the client MAY include a "cnf" object carrying an identifier
    for a symmetric key in its Access Token request to the authorization
    server.  This identifier can be used by the authorization server to
-   determine the session key to construct the proof-of-possession token
-   and therefore MUST specify a symmetric key that was previously
-   generated by the authorization server as a session key for the
+   determine the shared secret to construct the proof-of-possession
+   token and therefore MUST specify a symmetric key that was previously
+   generated by the authorization server as a shared secret for the
    communication between the client and the resource server.
 
    Depending on the requested token type and algorithm in the Access
@@ -557,9 +557,9 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-Gerdes, et al.          Expires November 15, 2018              [Page 10]
+Gerdes, et al.            Expires March 8, 2019                [Page 10]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
    response that provides the client with sufficient information to
@@ -572,8 +572,8 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    When the authorization server authorizes the client it returns an AS-
    to-Client response with the profile parameter set to "coap_dtls" and
    a "cnf" parameter carrying a "COSE_Key" object that contains the
-   symmetric session key to be used between the client and the resource
-   server as illustrated in Figure 5.
+   symmetric key to be used between the client and the resource server
+   as illustrated in Figure 5.
 
       2.01 Created
       Content-Format: application/cbor
@@ -603,7 +603,7 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    valid.
 
    A response that declines any operation on the requested resource is
-   constructed according to Section 5.2 of RFC 6749 [11], (cf.
+   constructed according to Section 5.2 of RFC 6749 [12], (cf.
    Section 5.7.3 of [I-D.ietf-ace-oauth-authz]).
 
 
@@ -613,9 +613,9 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-Gerdes, et al.          Expires November 15, 2018              [Page 11]
+Gerdes, et al.            Expires March 8, 2019                [Page 11]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
        4.00 Bad Request
@@ -637,17 +637,17 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    in the "cnf" parameter of the AS response as PSK when constructing
    the premaster secret.
 
-   In PreSharedKey mode, the knowledge of the session key by the client
-   and the resource server is used for mutual authentication between
-   both peers.  Therefore, the resource server must be able to determine
-   the session key from the Access Token.  Following the general ACE
-   authorization framework, the client can upload the Access Token to
-   the resource server's authz-info resource before starting the DTLS
-   handshake.  Alternatively, the client MAY provide the most recent
-   Access Token in the "psk_identity" field of the ClientKeyExchange
-   message.  To do so, the client MUST treat the contents of the
-   "access_token" field from the AS-to-Client response as opaque data
-   and not perform any re-coding.
+   In PreSharedKey mode, the knowledge of the shared secret by the
+   client and the resource server is used for mutual authentication
+   between both peers.  Therefore, the resource server must be able to
+   determine the shared secret from the Access Token.  Following the
+   general ACE authorization framework, the client can upload the Access
+   Token to the resource server's authz-info resource before starting
+   the DTLS handshake.  Alternatively, the client MAY provide the most
+   recent Access Token in the "psk_identity" field of the
+   ClientKeyExchange message.  To do so, the client MUST treat the
+   contents of the "access_token" field from the AS-to-Client response
+   as opaque data and not perform any re-coding.
 
    Note: As stated in section 4.2 of [RFC7925], the PSK identity should
    be treated as binary data in the Internet of Things space and not
@@ -669,9 +669,9 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-Gerdes, et al.          Expires November 15, 2018              [Page 12]
+Gerdes, et al.            Expires March 8, 2019                [Page 12]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
    yield a valid access token for the requesting client, the DTLS
@@ -691,27 +691,27 @@ Internet-Draft                  CoAP-DTLS                       May 2018
    This specification assumes that the Access Token is a PoP token as
    described in [I-D.ietf-ace-oauth-authz] unless specifically stated
    otherwise.  Therefore, the Access Token is bound to a symmetric PoP
-   key that is used as session key between the client and the resource
+   key that is used as shared secret between the client and the resource
    server.
 
-   While the client can retrieve the session key from the contents of
+   While the client can retrieve the shared secret from the contents of
    the "cnf" parameter in the AS-to-Client response, the resource server
    uses the information contained in the "cnf" claim of the Access Token
-   to determine the actual session key when no explicit "kid" was
-   provided in the "psk_identity" field.  Usually, this is done by
-   including a "COSE_Key" object carrying either a key that has been
-   encrypted with a shared secret between the authorization server and
-   the resource server, or a key identifier that can be used by the
-   resource server to lookup the session key.
+   to determine the actual secret when no explicit "kid" was provided in
+   the "psk_identity" field.  Usually, this is done by including a
+   "COSE_Key" object carrying either a key that has been encrypted with
+   a shared secret between the authorization server and the resource
+   server, or a key identifier that can be used by the resource server
+   to lookup the shared secret.
 
    Instead of the "COSE_Key" object, the authorization server MAY
    include a "COSE_Encrypt" structure to enable the resource server to
-   calculate the session key from the Access Token.  The "COSE_Encrypt"
+   calculate the shared key from the Access Token.  The "COSE_Encrypt"
    structure MUST use the _Direct Key with KDF_ method as described in
-   Section 12.1.2 of RFC 8152 [12].  The authorization server MUST
+   Section 12.1.2 of RFC 8152 [13].  The authorization server MUST
    include a Context information structure carrying a PartyU "nonce"
    parameter carrying the nonce that has been used by the authorization
-   server to construct the session key.
+   server to construct the shared key.
 
    This specification mandates that at least the key derivation
    algorithm "HKDF SHA-256" as defined in [RFC8152] MUST be supported.
@@ -725,9 +725,9 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-Gerdes, et al.          Expires November 15, 2018              [Page 13]
+Gerdes, et al.            Expires March 8, 2019                [Page 13]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
 4.2.  Updating Authorization Information
@@ -781,9 +781,9 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-Gerdes, et al.          Expires November 15, 2018              [Page 14]
+Gerdes, et al.            Expires March 8, 2019                [Page 14]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
    Note that some information might still leak after DTLS session is
@@ -820,8 +820,8 @@ Internet-Draft                  CoAP-DTLS                       May 2018
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
               H. Tschofenig, "Authentication and Authorization for
               Constrained Environments (ACE) using the OAuth 2.0
-              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-11
-              (work in progress), March 2018.
+              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-13
+              (work in progress), July 2018.
 
    [I-D.tiloca-tls-dos-handshake]
               Tiloca, M., Seitz, L., Hoeve, M., and O. Bergmann,
@@ -837,9 +837,9 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-Gerdes, et al.          Expires November 15, 2018              [Page 15]
+Gerdes, et al.            Expires March 8, 2019                [Page 15]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
    [RFC4279]  Eronen, P., Ed. and H. Tschofenig, Ed., "Pre-Shared Key
@@ -893,9 +893,9 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-Gerdes, et al.          Expires November 15, 2018              [Page 16]
+Gerdes, et al.            Expires March 8, 2019                [Page 16]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
    [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
@@ -928,41 +928,44 @@ Internet-Draft                  CoAP-DTLS                       May 2018
        10#section-5.8.1
 
    [2] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
+       13#section-5.1.2
+
+   [3] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        10#section-5.3
 
-   [3] https://tools.ietf.org/html/rfc7252#section-9
-
-   [4] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       10#section-5.8.1
+   [4] https://tools.ietf.org/html/rfc7252#section-9
 
    [5] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       10#section-5.1.1
+       10#section-5.8.1
 
    [6] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        10#section-5.1.1
 
    [7] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       10#section-5.6.3
+       10#section-5.1.1
 
    [8] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       10#section-5.8.2
+       10#section-5.6.3
 
 
 
-Gerdes, et al.          Expires November 15, 2018              [Page 17]
+Gerdes, et al.            Expires March 8, 2019                [Page 17]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
    [9] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       10#section-5.1.2
+       10#section-5.8.2
 
    [10] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
         10#section-5.1.2
 
-   [11] https://tools.ietf.org/html/rfc6749#section-5.2
+   [11] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
+        10#section-5.1.2
 
-   [12] https://tools.ietf.org/html/rfc8152#section-12.1.2
+   [12] https://tools.ietf.org/html/rfc6749#section-5.2
+
+   [13] https://tools.ietf.org/html/rfc8152#section-12.1.2
 
 Authors' Addresses
 
@@ -1002,12 +1005,9 @@ Authors' Addresses
 
 
 
-
-
-
-Gerdes, et al.          Expires November 15, 2018              [Page 18]
+Gerdes, et al.            Expires March 8, 2019                [Page 18]
 
-Internet-Draft                  CoAP-DTLS                       May 2018
+Internet-Draft                  CoAP-DTLS                 September 2018
 
 
    Goeran Selander
@@ -1061,4 +1061,4 @@ Internet-Draft                  CoAP-DTLS                       May 2018
 
 
 
-Gerdes, et al.          Expires November 15, 2018              [Page 19]
+Gerdes, et al.            Expires March 8, 2019                [Page 19]
