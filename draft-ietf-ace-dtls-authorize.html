@@ -294,7 +294,7 @@ li, p {
 
   <meta name="dct.creator" content="Gerdes, S., Bergmann, O., Bormann, C., Selander, G., and L. Seitz" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-ace-dtls-authorize-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-10-03" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-10-04" />
   <meta name="dct.abstract" content="This specification defines a profile that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
   <meta name="description" content="This specification defines a profile that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
 
@@ -318,7 +318,7 @@ li, p {
 <td class="right">C. Bormann</td>
 </tr>
 <tr>
-<td class="left">Expires: April 6, 2019</td>
+<td class="left">Expires: April 7, 2019</td>
 <td class="right">Universit&#228;t Bremen TZI</td>
 </tr>
 <tr>
@@ -339,7 +339,7 @@ li, p {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">October 03, 2018</td>
+<td class="right">October 04, 2018</td>
 </tr>
 
     	
@@ -355,7 +355,7 @@ li, p {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on April 6, 2019.</p>
+<p>This Internet-Draft will expire on April 7, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -492,7 +492,7 @@ li, p {
 </pre>
 <p class="figure">Figure 3: Access Token Request Example for RPK Mode</p>
 <p id="rfc.section.3.2.p.3">The example shows an access token request for the resource identified by the string &#8220;tempSensor4711&#8221; on the authorization server using a raw public key.</p>
-<p id="rfc.section.3.2.p.4">AS MUST check if the client that it communicates with is associated with the RPK in the cnf object before issuing an access token to it.  If AS determines that the request is to be authorized according to the respective authorization rules, it generates an access token response for C. The response SHOULD contain a <samp>profile</samp> parameter with the value <samp>coap_dtls</samp> to indicate that this profile must be used for communication between the client C and the resource server. The response also contains an access token and an <samp>rs_cnf</samp> parameter containing information about the public key that is used by the resource server. AS MUST ascertain that the RPK specified in <samp>rs_cnf</samp> belongs to the resource server that C wants to communicate with. AS MUST protect the integrity of the token.</p>
+<p id="rfc.section.3.2.p.4">AS MUST check if the client that it communicates with is associated with the RPK in the cnf object before issuing an access token to it.  If AS determines that the request is to be authorized according to the respective authorization rules, it generates an access token response for C. The response SHOULD contain a <samp>profile</samp> parameter with the value <samp>coap_dtls</samp> to indicate that this profile must be used for communication between the client C and the resource server. The response also contains an access token and an <samp>rs_cnf</samp> parameter containing information about the public key that is used by the resource server. AS MUST ascertain that the RPK specified in <samp>rs_cnf</samp> belongs to the resource server that C wants to communicate with. AS MUST protect the integrity of the token. If the access token contains confidential data, AS MUST also protect the confidentiality of the access token.</p>
 <p id="rfc.section.3.2.p.5">C MUST ascertain that the access token response belongs to a certain previously sent access token request, as the request may specify the resource server with which C wants to communicate.</p>
 <h1 id="rfc.section.3.2.1">
 <a href="#rfc.section.3.2.1">3.2.1.</a> <a href="#rpk-dtls-channel" id="rpk-dtls-channel">DTLS Channel Setup Between C and RS</a>
@@ -510,7 +510,7 @@ li, p {
 <a href="#rfc.section.3.3">3.3.</a> <a href="#psk-mode" id="psk-mode">PreSharedKey Mode</a>
 </h1>
 <p id="rfc.section.3.3.p.1">To retrieve an access token for the resource that the client wants to access, the client MAY include a <samp>cnf</samp> object carrying an identifier for a symmetric key in its access token request to the authorization server.  This identifier can be used by the authorization server to determine the shared secret to construct the proof-of-possession token.  AS MUST check if the identifier refers to a symmetric key that was previously generated by AS as a shared secret for the communication between this client and the resource server.</p>
-<p id="rfc.section.3.3.p.2">The authorization server MUST determine the authorization rules for the C it communicates with as defined by RO and generate the access token accordingly.  If the authorization server authorizes the client, it returns an AS-to-Client response. If the profile parameter is present, it is set to <samp>coap_dtls</samp>. AS MUST ascertain that the access token is generated for the resource server that C wants to communicate with. Also, AS MUST protect the integrity of the access token. If the token contains confidential data such as the symmetric key, the confidentiality of the token must also be protected. Depending on the requested token type and algorithm in the access token request, the authorization server adds access Information to the response that provides the client with sufficient information to setup a DTLS channel with the resource server. AS adds a <samp>cnf</samp> parameter to the access information carrying a <samp>COSE_Key</samp> object that informs the client about the symmetric key that is to be used between C and the resource server.</p>
+<p id="rfc.section.3.3.p.2">The authorization server MUST determine the authorization rules for the C it communicates with as defined by RO and generate the access token accordingly.  If the authorization server authorizes the client, it returns an AS-to-Client response. If the profile parameter is present, it is set to <samp>coap_dtls</samp>. AS MUST ascertain that the access token is generated for the resource server that C wants to communicate with. Also, AS MUST protect the integrity of the access token. If the token contains confidential data such as the symmetric key, the confidentiality of the token MUST also be protected. Depending on the requested token type and algorithm in the access token request, the authorization server adds access Information to the response that provides the client with sufficient information to setup a DTLS channel with the resource server. AS adds a <samp>cnf</samp> parameter to the access information carrying a <samp>COSE_Key</samp> object that informs the client about the symmetric key that is to be used between C and the resource server.</p>
 <p id="rfc.section.3.3.p.3">An example access token response is illustrated in <a href="#at-response" class="xref">Figure 4</a>.  In this example, the authorization server returns a 2.01 response containing a new access token and information for the client, including the symmetric key in the cnf claim.  The information is transferred as a CBOR data structure as specified in <a href="https://tools.ietf.org/html/draft-ietf-ace-oauth-authz">I-D.ietf-ace-oauth-authz</a>.</p>
 <div id="rfc.figure.4"></div>
 <div id="at-response"></div>

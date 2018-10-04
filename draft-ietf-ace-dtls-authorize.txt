@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: April 6, 2019                           Universitaet Bremen TZI
+Expires: April 7, 2019                           Universitaet Bremen TZI
                                                              G. Selander
                                                              Ericsson AB
                                                                 L. Seitz
                                                                RISE SICS
-                                                        October 03, 2018
+                                                        October 04, 2018
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 6, 2019.
+   This Internet-Draft will expire on April 7, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Gerdes, et al.            Expires April 6, 2019                 [Page 1]
+Gerdes, et al.            Expires April 7, 2019                 [Page 1]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Gerdes, et al.            Expires April 6, 2019                 [Page 2]
+Gerdes, et al.            Expires April 7, 2019                 [Page 2]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -165,7 +165,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                 [Page 3]
+Gerdes, et al.            Expires April 7, 2019                 [Page 3]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -221,7 +221,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                 [Page 4]
+Gerdes, et al.            Expires April 7, 2019                 [Page 4]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -277,7 +277,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                 [Page 5]
+Gerdes, et al.            Expires April 7, 2019                 [Page 5]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -333,7 +333,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                 [Page 6]
+Gerdes, et al.            Expires April 7, 2019                 [Page 6]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -342,7 +342,9 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    containing information about the public key that is used by the
    resource server.  AS MUST ascertain that the RPK specified in
    "rs_cnf" belongs to the resource server that C wants to communicate
-   with.  AS MUST protect the integrity of the token.
+   with.  AS MUST protect the integrity of the token.  If the access
+   token contains confidential data, AS MUST also protect the
+   confidentiality of the access token.
 
    C MUST ascertain that the access token response belongs to a certain
    previously sent access token request, as the request may specify the
@@ -384,16 +386,16 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    knowledge that the Client's key is already known to the resource
    server, the Client's public key MUST be included in the access
    token's "cnf" parameter.  If CBOR web tokens [RFC8392] are used as
-   recommended in I-D.ietf-ace-oauth-authz [14], unencrypted keys MUST
-   be specified using a "COSE_Key" object, encrypted keys with a
 
 
 
-Gerdes, et al.            Expires April 6, 2019                 [Page 7]
+Gerdes, et al.            Expires April 7, 2019                 [Page 7]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
 
+   recommended in I-D.ietf-ace-oauth-authz [14], unencrypted keys MUST
+   be specified using a "COSE_Key" object, encrypted keys with a
    "COSE_Encrypt0" structure and references to the key as "key_id"
    parameters in a CBOR map.  RS MUST use the keying material in the
    handshake that AS specified in the rs_cnf parameter in the access
@@ -419,7 +421,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    that the access token is generated for the resource server that C
    wants to communicate with.  Also, AS MUST protect the integrity of
    the access token.  If the token contains confidential data such as
-   the symmetric key, the confidentiality of the token must also be
+   the symmetric key, the confidentiality of the token MUST also be
    protected.  Depending on the requested token type and algorithm in
    the access token request, the authorization server adds access
    Information to the response that provides the client with sufficient
@@ -443,9 +445,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-
-
-Gerdes, et al.            Expires April 6, 2019                 [Page 8]
+Gerdes, et al.            Expires April 7, 2019                 [Page 8]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -501,7 +501,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                 [Page 9]
+Gerdes, et al.            Expires April 7, 2019                 [Page 9]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -557,7 +557,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                [Page 10]
+Gerdes, et al.            Expires April 7, 2019                [Page 10]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -613,7 +613,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                [Page 11]
+Gerdes, et al.            Expires April 7, 2019                [Page 11]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -669,7 +669,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                [Page 12]
+Gerdes, et al.            Expires April 7, 2019                [Page 12]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -725,7 +725,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                [Page 13]
+Gerdes, et al.            Expires April 7, 2019                [Page 13]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -781,7 +781,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                [Page 14]
+Gerdes, et al.            Expires April 7, 2019                [Page 14]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -837,7 +837,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                [Page 15]
+Gerdes, et al.            Expires April 7, 2019                [Page 15]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -893,7 +893,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                [Page 16]
+Gerdes, et al.            Expires April 7, 2019                [Page 16]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -949,7 +949,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                [Page 17]
+Gerdes, et al.            Expires April 7, 2019                [Page 17]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
 
-Gerdes, et al.            Expires April 6, 2019                [Page 18]
+Gerdes, et al.            Expires April 7, 2019                [Page 18]
 
 Internet-Draft                  CoAP-DTLS                   October 2018
 
@@ -1061,4 +1061,4 @@ Authors' Addresses
 
 
 
-Gerdes, et al.            Expires April 6, 2019                [Page 19]
+Gerdes, et al.            Expires April 7, 2019                [Page 19]
