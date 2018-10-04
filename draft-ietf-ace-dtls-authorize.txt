@@ -80,11 +80,11 @@ Table of Contents
      3.3.  PreSharedKey Mode . . . . . . . . . . . . . . . . . . . .   8
        3.3.1.  DTLS Channel Setup Between C and RS . . . . . . . . .  10
      3.4.  Resource Access . . . . . . . . . . . . . . . . . . . . .  11
-   4.  Dynamic Update of Authorization Information . . . . . . . . .  13
+   4.  Dynamic Update of Authorization Information . . . . . . . . .  12
    5.  Token Expiration  . . . . . . . . . . . . . . . . . . . . . .  14
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
    7.  Privacy Considerations  . . . . . . . . . . . . . . . . . . .  15
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  16
+   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
    9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  16
      9.1.  Normative References  . . . . . . . . . . . . . . . . . .  16
      9.2.  Informative References  . . . . . . . . . . . . . . . . .  17
@@ -596,9 +596,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    Instead of providing the keying material, the AS MAY include a key
    derivation function in the access token as described above.  If key
    derivation is used, at least the key derivation algorithm "HKDF SHA-
-   256" as defined in RFC 8152 [23] MUST be supported.  This key
-   derivation function is the default when no "alg" field is included in
-   the "COSE_Encrypt" structure for the resource server.
+   256" as defined in RFC 8152 [23] MUST be supported.
 
 3.4.  Resource Access
 
@@ -610,6 +608,8 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    With the successful establishment of the DTLS channel, C and RS have
    proven that they can use their respective keying material.  An access
    token that is bound to the client's keying material is associated
+   with the channel.  Any request that the resource server receives on
+   this channel MUST be checked against these authorization rules.  RS
 
 
 
@@ -618,8 +618,6 @@ Gerdes, et al.            Expires April 7, 2019                [Page 11]
 Internet-Draft                  CoAP-DTLS                   October 2018
 
 
-   with the channel.  Any request that the resource server receives on
-   this channel MUST be checked against these authorization rules.  RS
    MUST check for every request if the access token is still valid.
    Incoming CoAP requests that are not authorized with respect to any
    access token that is associated with the client MUST be rejected by
@@ -662,10 +660,12 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    new access token from the authorization server in order to continue
    communication with the resource server.
 
+4.  Dynamic Update of Authorization Information
 
-
-
-
+   The client can update the authorization information stored at the
+   resource server at any time without changing an established DTLS
+   session.  To do so, the Client requests a new access token from the
+   authorization server for the intended action on the respective
 
 
 
@@ -674,12 +674,6 @@ Gerdes, et al.            Expires April 7, 2019                [Page 12]
 Internet-Draft                  CoAP-DTLS                   October 2018
 
 
-4.  Dynamic Update of Authorization Information
-
-   The client can update the authorization information stored at the
-   resource server at any time without changing an established DTLS
-   session.  To do so, the Client requests a new access token from the
-   authorization server for the intended action on the respective
    resource and uploads this access token to the authz-info resource on
    the resource server.
 
@@ -708,28 +702,6 @@ Internet-Draft                  CoAP-DTLS                   October 2018
       communication between the client and the resource server, i.e. an
       existing session can be used with updated permissions.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Gerdes, et al.            Expires April 7, 2019                [Page 13]
-
-Internet-Draft                  CoAP-DTLS                   October 2018
-
-
       C                            RS                   AS
       | <===== DTLS channel =====> |                     |
       |        + Access Token      |                     |
@@ -748,6 +720,15 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 
               Figure 6: Overview of Dynamic Update Operation
+
+
+
+
+
+Gerdes, et al.            Expires April 7, 2019                [Page 13]
+
+Internet-Draft                  CoAP-DTLS                   October 2018
+
 
 5.  Token Expiration
 
@@ -775,17 +756,6 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
                 Table 1: Updated AS Information parameters
 
-
-
-
-
-
-
-Gerdes, et al.            Expires April 7, 2019                [Page 14]
-
-Internet-Draft                  CoAP-DTLS                   October 2018
-
-
 6.  Security Considerations
 
    This document specifies a profile for the Authentication and
@@ -808,6 +778,14 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    The use of multiple access tokens for a single client increases the
    strain on the resource server as it must consider every access token
    and calculate the actual permissions of the client.  Also, tokens may
+
+
+
+Gerdes, et al.            Expires April 7, 2019                [Page 14]
+
+Internet-Draft                  CoAP-DTLS                   October 2018
+
+
    contradict each other which may lead the server to enforce wrong
    permissions.  If one of the access tokens expires earlier than
    others, the resulting permissions may offer insufficient protection.
@@ -834,14 +812,6 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    established, due to observable message sizes, the source, and the
    destination addresses.
 
-
-
-
-Gerdes, et al.            Expires April 7, 2019                [Page 15]
-
-Internet-Draft                  CoAP-DTLS                   October 2018
-
-
 8.  IANA Considerations
 
    The following registrations are done for the ACE OAuth Profile
@@ -863,6 +833,14 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    Change Controller: IESG
 
    Reference: [RFC-XXXX]
+
+
+
+
+Gerdes, et al.            Expires April 7, 2019                [Page 15]
+
+Internet-Draft                  CoAP-DTLS                   October 2018
+
 
 9.  References
 
@@ -891,13 +869,6 @@ Internet-Draft                  CoAP-DTLS                   October 2018
               RFC 4279, DOI 10.17487/RFC4279, December 2005,
               <https://www.rfc-editor.org/info/rfc4279>.
 
-
-
-Gerdes, et al.            Expires April 7, 2019                [Page 16]
-
-Internet-Draft                  CoAP-DTLS                   October 2018
-
-
    [RFC5746]  Rescorla, E., Ray, M., Dispensa, S., and N. Oskov,
               "Transport Layer Security (TLS) Renegotiation Indication
               Extension", RFC 5746, DOI 10.17487/RFC5746, February 2010,
@@ -917,6 +888,15 @@ Internet-Draft                  CoAP-DTLS                   October 2018
               Profiles for the Internet of Things", RFC 7925,
               DOI 10.17487/RFC7925, July 2016,
               <https://www.rfc-editor.org/info/rfc7925>.
+
+
+
+
+
+Gerdes, et al.            Expires April 7, 2019                [Page 16]
+
+Internet-Draft                  CoAP-DTLS                   October 2018
+
 
    [RFC8152]  Schaad, J., "CBOR Object Signing and Encryption (COSE)",
               RFC 8152, DOI 10.17487/RFC8152, July 2017,
@@ -944,16 +924,6 @@ Internet-Draft                  CoAP-DTLS                   October 2018
               TLS", RFC 7251, DOI 10.17487/RFC7251, June 2014,
               <https://www.rfc-editor.org/info/rfc7251>.
 
-
-
-
-
-
-Gerdes, et al.            Expires April 7, 2019                [Page 17]
-
-Internet-Draft                  CoAP-DTLS                   October 2018
-
-
    [RFC7748]  Langley, A., Hamburg, M., and S. Turner, "Elliptic Curves
               for Security", RFC 7748, DOI 10.17487/RFC7748, January
               2016, <https://www.rfc-editor.org/info/rfc7748>.
@@ -972,6 +942,17 @@ Internet-Draft                  CoAP-DTLS                   October 2018
               Security (TLS) Versions 1.2 and Earlier", RFC 8422,
               DOI 10.17487/RFC8422, August 2018,
               <https://www.rfc-editor.org/info/rfc8422>.
+
+
+
+
+
+
+
+Gerdes, et al.            Expires April 7, 2019                [Page 17]
+
+Internet-Draft                  CoAP-DTLS                   October 2018
+
 
 9.3.  URIs
 
@@ -1003,13 +984,6 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
    [12] https://tools.ietf.org/html/rfc7748
 
-
-
-Gerdes, et al.            Expires April 7, 2019                [Page 18]
-
-Internet-Draft                  CoAP-DTLS                   October 2018
-
-
    [13] https://tools.ietf.org/html/rfc7252
 
    [14] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz
@@ -1028,6 +1002,13 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    [20] https://tools.ietf.org/html/rfc7925#section-4.2
 
    [21] https://tools.ietf.org/html/rfc7252
+
+
+
+Gerdes, et al.            Expires April 7, 2019                [Page 18]
+
+Internet-Draft                  CoAP-DTLS                   October 2018
+
 
    [22] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz
 
@@ -1053,19 +1034,6 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
 Authors' Addresses
 
-
-
-
-
-
-
-
-
-Gerdes, et al.            Expires April 7, 2019                [Page 19]
-
-Internet-Draft                  CoAP-DTLS                   October 2018
-
-
    Stefanie Gerdes
    Universitaet Bremen TZI
    Postfach 330440
@@ -1084,6 +1052,18 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 
    Phone: +49-421-218-63904
    Email: bergmann@tzi.org
+
+
+
+
+
+
+
+
+
+Gerdes, et al.            Expires April 7, 2019                [Page 19]
+
+Internet-Draft                  CoAP-DTLS                   October 2018
 
 
    Carsten Bormann
@@ -1109,6 +1089,26 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    Sweden
 
    Email: ludwig.seitz@ri.se
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
