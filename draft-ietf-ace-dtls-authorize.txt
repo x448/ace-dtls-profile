@@ -981,7 +981,7 @@ Internet-Draft                  CoAP-DTLS                   October 2018
 9.3.  URIs
 
    [1] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       14#section-5.8.1
+       16#section-5.8.1
 
    [2] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz
 
@@ -990,15 +990,15 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    [4] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz
 
    [5] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       14#section-5.1.2
+       16#section-5.1.2
 
    [6] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz
 
    [7] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       14#section-5.3
+       16#section-5.3
 
    [8] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       14#section-5.8.1
+       16#section-5.8.1
 
    [9] https://tools.ietf.org/html/rfc7252#section-9
 
@@ -1040,22 +1040,22 @@ Internet-Draft                  CoAP-DTLS                   October 2018
    [23] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz
 
    [24] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-        14section-5.1.1
+        16#section-5.1.1
 
    [25] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-        14#section-5.8.2
+        16#section-5.8.2
 
    [26] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-        14#section-5.1.2
+        16#section-5.1.2
 
    [27] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-        14#section-5.6.3
+        16#section-5.6.3
 
    [28] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-        14#section-5.8.3
+        16#section-5.8.3
 
    [29] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-        14#section-5.1.2
+        16#section-5.1.2
 
 
 
