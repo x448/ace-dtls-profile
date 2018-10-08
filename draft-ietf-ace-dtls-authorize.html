@@ -294,7 +294,7 @@ li, p {
 
   <meta name="dct.creator" content="Gerdes, S., Bergmann, O., Bormann, C., Selander, G., and L. Seitz" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-ace-dtls-authorize-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-10-07" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-10-08" />
   <meta name="dct.abstract" content="This specification defines a profile that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
   <meta name="description" content="This specification defines a profile that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
 
@@ -318,7 +318,7 @@ li, p {
 <td class="right">C. Bormann</td>
 </tr>
 <tr>
-<td class="left">Expires: April 10, 2019</td>
+<td class="left">Expires: April 11, 2019</td>
 <td class="right">Universit&#228;t Bremen TZI</td>
 </tr>
 <tr>
@@ -339,7 +339,7 @@ li, p {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">October 07, 2018</td>
+<td class="right">October 08, 2018</td>
 </tr>
 
     	
@@ -355,7 +355,7 @@ li, p {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on April 10, 2019.</p>
+<p>This Internet-Draft will expire on April 11, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -535,7 +535,7 @@ li, p {
 </pre>
 <p class="figure">Figure 4: Example Access Token Response</p>
 <p id="rfc.section.3.3.p.4">The access token also comprises a <samp>cnf</samp> claim. This claim usually contains a <samp>COSE_Key</samp> object that carries either the symmetric key itself or or a key identifier that can be used by the resource server to determine the shared secret. If the access token carries a symmetric key, the access token MUST be encrypted using a <samp>COSE_Encrypt0</samp> structure. The AS MUST use the keying material shared with the RS to encrypt the token.</p>
-<p id="rfc.section.3.3.p.5">Instead of providing the keying material, the AS MAY include a key derivation function in the access token that enables the resource server to calculate the keying material for the communication with C from the access token. In this case, the token contains a <samp>cnf</samp> structure that specifies the key derivation algorithm and the salt that the AS has used to construct the shared key. AS and RS MUST use their shared keying material for the key derivation.  Instead of providing the keying material, the AS MAY include a salt in the <samp>cnf</samp> structure that enables the resource server to calculate the keying material for the communication with C from the access token. The key derivation then MUST follow <a href="https://tools.ietf.org/html/rfc8152#section-11">Section 11 of RFC 8152</a> with parameters as specified here. The KDF specified in the <samp>alg</samp> parameter SHOULD be HKDF-SHA-256. The salt picked by the AS must be uniformly random and is carried in the <samp>salt</samp> parameter.</p>
+<p id="rfc.section.3.3.p.5">Instead of providing the keying material, the AS MAY include a key derivation function and a salt in the access token that enables the resource server to calculate the keying material for the communication with C from the access token. In this case, the token contains a <samp>cnf</samp> structure that specifies the key derivation algorithm and the salt that the AS has used to construct the shared key. AS and RS MUST use their shared keying material for the key derivation, and the key derivation MUST follow <a href="https://tools.ietf.org/html/rfc8152#section-11">Section 11 of RFC 8152</a> with parameters as specified here. The KDF specified in the <samp>alg</samp> parameter SHOULD be HKDF-SHA-256. The salt picked by the AS must be uniformly random and is carried in the <samp>salt</samp> parameter.</p>
 <p id="rfc.section.3.3.p.6">The fields in the context information <samp>COSE_KDF_Context</samp> (<a href="https://tools.ietf.org/html/rfc8152#section-11.2">Section 11.2 of RFC 8152</a>) MUST have the following values:</p>
 <p></p>
 
