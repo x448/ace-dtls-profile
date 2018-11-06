@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: May 9, 2019                             Universitaet Bremen TZI
+Expires: May 10, 2019                            Universitaet Bremen TZI
                                                              G. Selander
                                                              Ericsson AB
                                                                 L. Seitz
                                                                RISE SICS
-                                                       November 05, 2018
+                                                       November 06, 2018
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 9, 2019.
+   This Internet-Draft will expire on May 10, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Gerdes, et al.             Expires May 9, 2019                  [Page 1]
+Gerdes, et al.            Expires May 10, 2019                  [Page 1]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Gerdes, et al.             Expires May 9, 2019                  [Page 2]
+Gerdes, et al.            Expires May 10, 2019                  [Page 2]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -165,7 +165,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                  [Page 3]
+Gerdes, et al.            Expires May 10, 2019                  [Page 3]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -221,7 +221,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                  [Page 4]
+Gerdes, et al.            Expires May 10, 2019                  [Page 4]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -277,7 +277,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                  [Page 5]
+Gerdes, et al.            Expires May 10, 2019                  [Page 5]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -333,7 +333,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                  [Page 6]
+Gerdes, et al.            Expires May 10, 2019                  [Page 6]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -389,7 +389,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                  [Page 7]
+Gerdes, et al.            Expires May 10, 2019                  [Page 7]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -445,7 +445,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                  [Page 8]
+Gerdes, et al.            Expires May 10, 2019                  [Page 8]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -457,12 +457,12 @@ Internet-Draft                  CoAP-DTLS                  November 2018
          access_token: h'd08343a10...
          (remainder of CWT omitted for brevity)
          token_type:   pop,
-         alg:          HS256,
          expires_in:   86400,
          profile:      coap_dtls,
          cnf: {
            COSE_Key: {
              kty: symmetric,
+             kid: h'3d027833fc6267ce',
              k: h'73657373696f6e6b6579'
            }
          }
@@ -501,7 +501,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                  [Page 9]
+Gerdes, et al.            Expires May 10, 2019                  [Page 9]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -557,7 +557,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                 [Page 10]
+Gerdes, et al.            Expires May 10, 2019                 [Page 10]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -613,7 +613,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                 [Page 11]
+Gerdes, et al.            Expires May 10, 2019                 [Page 11]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -669,7 +669,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                 [Page 12]
+Gerdes, et al.            Expires May 10, 2019                 [Page 12]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -725,7 +725,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                 [Page 13]
+Gerdes, et al.            Expires May 10, 2019                 [Page 13]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -781,7 +781,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                 [Page 14]
+Gerdes, et al.            Expires May 10, 2019                 [Page 14]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -837,7 +837,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                 [Page 15]
+Gerdes, et al.            Expires May 10, 2019                 [Page 15]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -893,7 +893,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                 [Page 16]
+Gerdes, et al.            Expires May 10, 2019                 [Page 16]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -949,7 +949,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                 [Page 17]
+Gerdes, et al.            Expires May 10, 2019                 [Page 17]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                 [Page 18]
+Gerdes, et al.            Expires May 10, 2019                 [Page 18]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -1061,7 +1061,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.             Expires May 9, 2019                 [Page 19]
+Gerdes, et al.            Expires May 10, 2019                 [Page 19]
 
 Internet-Draft                  CoAP-DTLS                  November 2018
 
@@ -1117,4 +1117,4 @@ Authors' Addresses
 
 
 
-Gerdes, et al.             Expires May 9, 2019                 [Page 20]
+Gerdes, et al.            Expires May 10, 2019                 [Page 20]
