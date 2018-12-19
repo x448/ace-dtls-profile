@@ -548,14 +548,16 @@ li, p {
 <li>other is a zero length bstr</li>
 <li>SuppPrivInfo is omitted</li>
 </ul>
-<p id="rfc.section.3.3.p.8">An example <samp>cnf</samp> structure specifying HMAC-based key derivation of a symmetric key with SHA-256 as pseudo-random function and a random salt value is provided in <a href="#kdf-cnf" class="xref">Figure 5</a>.</p>
+<p id="rfc.section.3.3.p.8">The ACE_Salt <samp>cnf</samp> structure specifying HMAC-based key derivation of a symmetric key with SHA-256 as hash function and a random salt value is provided in <a href="#kdf-cnf" class="xref">Figure 5</a>.</p>
 <div id="rfc.figure.5"></div>
 <div id="kdf-cnf"></div>
 <pre>
 cnf : {
-   kty  : symmetric,
-   alg  : HKDF-SHA-256,
-   salt : h'eIiOFCa9lObw'
+  ACE_Salt : {
+    kty  : symmetric,
+    alg  : HKDF-SHA-256,
+    salt : h'eIiOFCa9lObw'
+  }
 }
 </pre>
 <p class="figure">Figure 5: Key Derivation Specification in an Access Token</p>
