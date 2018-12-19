@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: May 10, 2019                            Universitaet Bremen TZI
+Expires: June 22, 2019                           Universitaet Bremen TZI
                                                              G. Selander
                                                              Ericsson AB
                                                                 L. Seitz
                                                                RISE SICS
-                                                       November 06, 2018
+                                                       December 19, 2018
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 10, 2019.
+   This Internet-Draft will expire on June 22, 2019.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Gerdes, et al.            Expires May 10, 2019                  [Page 1]
+Gerdes, et al.            Expires June 22, 2019                 [Page 1]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Gerdes, et al.            Expires May 10, 2019                  [Page 2]
+Gerdes, et al.            Expires June 22, 2019                 [Page 2]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    The DTLS handshake [RFC7250] requires the client and server to prove
@@ -165,9 +165,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                  [Page 3]
+Gerdes, et al.            Expires June 22, 2019                 [Page 3]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
       C                            RS                   AS
@@ -221,9 +221,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                  [Page 4]
+Gerdes, et al.            Expires June 22, 2019                 [Page 4]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
       C                            RS                   AS
@@ -277,9 +277,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                  [Page 5]
+Gerdes, et al.            Expires June 22, 2019                 [Page 5]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    confidentiality, integrity and authenticity, and enable the client to
@@ -333,9 +333,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                  [Page 6]
+Gerdes, et al.            Expires June 22, 2019                 [Page 6]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    response also contains an access token and an "rs_cnf" parameter
@@ -389,9 +389,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                  [Page 7]
+Gerdes, et al.            Expires June 22, 2019                 [Page 7]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    recommended in I-D.ietf-ace-oauth-authz [14], unencrypted keys MUST
@@ -445,9 +445,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                  [Page 8]
+Gerdes, et al.            Expires June 22, 2019                 [Page 8]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
       2.01 Created
@@ -462,6 +462,7 @@ Internet-Draft                  CoAP-DTLS                  November 2018
          cnf: {
            COSE_Key: {
              kty: symmetric,
+             alg: TLS_PSK_WITH_AES_128_CCM_8
              kid: h'3d027833fc6267ce',
              k: h'73657373696f6e6b6579'
            }
@@ -500,10 +501,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-
-Gerdes, et al.            Expires May 10, 2019                  [Page 9]
+Gerdes, et al.            Expires June 22, 2019                 [Page 9]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    o  keyDataLength is a uint equal the length of the key shared between
@@ -557,9 +557,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                 [Page 10]
+Gerdes, et al.            Expires June 22, 2019                [Page 10]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    In PreSharedKey mode, the knowledge of the shared secret by the
@@ -613,9 +613,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                 [Page 11]
+Gerdes, et al.            Expires June 22, 2019                [Page 11]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    While the client can retrieve the shared secret from the contents of
@@ -669,9 +669,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                 [Page 12]
+Gerdes, et al.            Expires June 22, 2019                [Page 12]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    1.  with response code 4.03 (Forbidden) when the resource URI
@@ -725,9 +725,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                 [Page 13]
+Gerdes, et al.            Expires June 22, 2019                [Page 13]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
       C                            RS                   AS
@@ -781,9 +781,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                 [Page 14]
+Gerdes, et al.            Expires June 22, 2019                [Page 14]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 6.  Security Considerations
@@ -837,9 +837,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                 [Page 15]
+Gerdes, et al.            Expires June 22, 2019                [Page 15]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 8.  IANA Considerations
@@ -886,16 +886,16 @@ Internet-Draft                  CoAP-DTLS                  November 2018
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
               H. Tschofenig, "Authentication and Authorization for
               Constrained Environments (ACE) using the OAuth 2.0
-              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-16
-              (work in progress), October 2018.
+              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-17
+              (work in progress), November 2018.
 
 
 
 
 
-Gerdes, et al.            Expires May 10, 2019                 [Page 16]
+Gerdes, et al.            Expires June 22, 2019                [Page 16]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -949,9 +949,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                 [Page 17]
+Gerdes, et al.            Expires June 22, 2019                [Page 17]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    [RFC7251]  McGrew, D., Bailey, D., Campagna, M., and R. Dugal, "AES-
@@ -1005,9 +1005,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                 [Page 18]
+Gerdes, et al.            Expires June 22, 2019                [Page 18]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
    [10] https://tools.ietf.org/html/rfc7250
@@ -1061,9 +1061,9 @@ Internet-Draft                  CoAP-DTLS                  November 2018
 
 
 
-Gerdes, et al.            Expires May 10, 2019                 [Page 19]
+Gerdes, et al.            Expires June 22, 2019                [Page 19]
 
-Internet-Draft                  CoAP-DTLS                  November 2018
+Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 Authors' Addresses
@@ -1117,4 +1117,4 @@ Authors' Addresses
 
 
 
-Gerdes, et al.            Expires May 10, 2019                 [Page 20]
+Gerdes, et al.            Expires June 22, 2019                [Page 20]
