@@ -689,6 +689,10 @@ Internet-Draft                  CoAP-DTLS                  December 2018
    new access token from the authorization server in order to continue
    communication with the resource server.
 
+   Unauthorized requests that have been received over a DTLS session
+   SHOULD be treated as non-fatal by the RS, i.e., the DTLS session
+   SHOULD be kept alive until the associated access token has expired.
+
 4.  Dynamic Update of Authorization Information
 
    The client can update the authorization information stored at the
@@ -717,11 +721,7 @@ Internet-Draft                  CoAP-DTLS                  December 2018
    associate the updated authorization information with any existing
    DTLS session that is identified by this key identifier.
 
-   Note:  By associating the access tokens with the identifier of an
-      existing DTLS session, the authorization information can be
-      updated without changing the cryptographic keys for the DTLS
-      communication between the client and the resource server, i.e. an
-      existing session can be used with updated permissions.
+
 
 
 
@@ -729,6 +729,12 @@ Gerdes, et al.            Expires June 22, 2019                [Page 13]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
+
+   Note:  By associating the access tokens with the identifier of an
+      existing DTLS session, the authorization information can be
+      updated without changing the cryptographic keys for the DTLS
+      communication between the client and the resource server, i.e. an
+      existing session can be used with updated permissions.
 
       C                            RS                   AS
       | <===== DTLS channel =====> |                     |
@@ -772,12 +778,6 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
    As specified in Section 5.8.3 of draft-ietf-ace-oauth-authz [29], the
    resource server MUST notify the client with an error response with
-   code 4.01 (Unauthorized) for any long running request before
-   terminating the session.
-
-
-
-
 
 
 
@@ -785,6 +785,9 @@ Gerdes, et al.            Expires June 22, 2019                [Page 14]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
+
+   code 4.01 (Unauthorized) for any long running request before
+   terminating the session.
 
 6.  Security Considerations
 
@@ -830,9 +833,6 @@ Internet-Draft                  CoAP-DTLS                  December 2018
    the resource server.  The client should not send confidential data in
    an unprotected request.
 
-   Note that some information might still leak after DTLS session is
-   established, due to observable message sizes, the source, and the
-   destination addresses.
 
 
 
@@ -841,6 +841,10 @@ Gerdes, et al.            Expires June 22, 2019                [Page 15]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
+
+   Note that some information might still leak after DTLS session is
+   established, due to observable message sizes, the source, and the
+   destination addresses.
 
 8.  IANA Considerations
 
@@ -882,12 +886,8 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 9.1.  Normative References
 
-   [I-D.ietf-ace-oauth-authz]
-              Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
-              H. Tschofenig, "Authentication and Authorization for
-              Constrained Environments (ACE) using the OAuth 2.0
-              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-17
-              (work in progress), November 2018.
+
+
 
 
 
@@ -897,6 +897,13 @@ Gerdes, et al.            Expires June 22, 2019                [Page 16]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
+
+   [I-D.ietf-ace-oauth-authz]
+              Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
+              H. Tschofenig, "Authentication and Authorization for
+              Constrained Environments (ACE) using the OAuth 2.0
+              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-17
+              (work in progress), November 2018.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -938,13 +945,6 @@ Internet-Draft                  CoAP-DTLS                  December 2018
               DOI 10.17487/RFC6655, July 2012,
               <https://www.rfc-editor.org/info/rfc6655>.
 
-   [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
-              Weiler, S., and T. Kivinen, "Using Raw Public Keys in
-              Transport Layer Security (TLS) and Datagram Transport
-              Layer Security (DTLS)", RFC 7250, DOI 10.17487/RFC7250,
-              June 2014, <https://www.rfc-editor.org/info/rfc7250>.
-
-
 
 
 
@@ -953,6 +953,12 @@ Gerdes, et al.            Expires June 22, 2019                [Page 17]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
+
+   [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
+              Weiler, S., and T. Kivinen, "Using Raw Public Keys in
+              Transport Layer Security (TLS) and Datagram Transport
+              Layer Security (DTLS)", RFC 7250, DOI 10.17487/RFC7250,
+              June 2014, <https://www.rfc-editor.org/info/rfc7250>.
 
    [RFC7251]  McGrew, D., Bailey, D., Campagna, M., and R. Dugal, "AES-
               CCM Elliptic Curve Cryptography (ECC) Cipher Suites for
@@ -997,18 +1003,17 @@ Internet-Draft                  CoAP-DTLS                  December 2018
    [7] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        16#section-5.3
 
-   [8] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-       16#section-5.8.1
-
-   [9] https://tools.ietf.org/html/rfc7252#section-9
-
-
 
 
 Gerdes, et al.            Expires June 22, 2019                [Page 18]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
+
+   [8] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
+       16#section-5.8.1
+
+   [9] https://tools.ietf.org/html/rfc7252#section-9
 
    [10] https://tools.ietf.org/html/rfc7250
 
@@ -1054,17 +1059,15 @@ Internet-Draft                  CoAP-DTLS                  December 2018
    [28] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
         16#section-5.1.2
 
-   [29] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
-        16#section-5.8.3
-
-
-
 
 
 Gerdes, et al.            Expires June 22, 2019                [Page 19]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
+
+   [29] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
+        16#section-5.8.3
 
 Authors' Addresses
 
@@ -1111,9 +1114,6 @@ Authors' Addresses
    Sweden
 
    Email: ludwig.seitz@ri.se
-
-
-
 
 
 
