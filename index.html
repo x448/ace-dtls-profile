@@ -294,7 +294,7 @@ li, p {
 
   <meta name="dct.creator" content="Gerdes, S., Bergmann, O., Bormann, C., Selander, G., and L. Seitz" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-ace-dtls-authorize-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-12-19" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-12-20" />
   <meta name="dct.abstract" content="This specification defines a profile that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
   <meta name="description" content="This specification defines a profile that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
 
@@ -318,7 +318,7 @@ li, p {
 <td class="right">C. Bormann</td>
 </tr>
 <tr>
-<td class="left">Expires: June 22, 2019</td>
+<td class="left">Expires: June 23, 2019</td>
 <td class="right">Universit&#228;t Bremen TZI</td>
 </tr>
 <tr>
@@ -339,7 +339,7 @@ li, p {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">December 19, 2018</td>
+<td class="right">December 20, 2018</td>
 </tr>
 
     	
@@ -355,7 +355,7 @@ li, p {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on June 22, 2019.</p>
+<p>This Internet-Draft will expire on June 23, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -625,7 +625,7 @@ cnf : {
 </h1>
 <p id="rfc.section.4.p.1">The client can update the authorization information stored at the resource server at any time without changing an established DTLS session. To do so, the Client requests a new access token from the authorization server for the intended action on the respective resource and uploads this access token to the authz-info resource on the resource server.</p>
 <p><a href="#update-overview" class="xref">Figure 7</a> depicts the message flow where the C requests a new access token after a security association between the client and the resource server has been established using this protocol. If the client wants to update the authorization information, the token request MUST specify the key identifier of the existing DTLS channel between the client and the resource server in the <samp>kid</samp> parameter of the Client-to-AS request. The authorization server MUST verify that the specified <samp>kid</samp> denotes a valid verifier for a proof-of-possession token that has previously been issued to the requesting client. Otherwise, the Client-to-AS request MUST be declined with the error code <samp>unsupported_pop_key</samp> as defined in <a href="https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-16#section-5.6.3">Section 5.6.3 of draft-ietf-ace-oauth-authz</a>.</p>
-<p id="rfc.section.4.p.3">When the authorization server issues a new access token to update existing authorization information, it MUST include the specified <samp>kid</samp> parameter in this access token. A resource server MUST associate the updated authorization information with any existing DTLS session that is identified by this key identifier.</p>
+<p id="rfc.section.4.p.3">When the authorization server issues a new access token to update existing authorization information, it MUST include the specified <samp>kid</samp> parameter in this access token. A resource server MUST replace the authorization information of any existing DTLS session that is identified by this key identifier with the updated authorization information.</p>
 <p></p>
 
 <dl>

@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: June 22, 2019                           Universitaet Bremen TZI
+Expires: June 23, 2019                           Universitaet Bremen TZI
                                                              G. Selander
                                                              Ericsson AB
                                                                 L. Seitz
                                                                RISE SICS
-                                                       December 19, 2018
+                                                       December 20, 2018
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on June 22, 2019.
+   This Internet-Draft will expire on June 23, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Gerdes, et al.            Expires June 22, 2019                 [Page 1]
+Gerdes, et al.            Expires June 23, 2019                 [Page 1]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -85,9 +85,9 @@ Table of Contents
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
    7.  Privacy Considerations  . . . . . . . . . . . . . . . . . . .  15
    8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  16
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  16
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  16
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  17
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  17
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  17
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  18
      9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  18
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  20
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Gerdes, et al.            Expires June 22, 2019                 [Page 2]
+Gerdes, et al.            Expires June 23, 2019                 [Page 2]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -165,7 +165,7 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 
-Gerdes, et al.            Expires June 22, 2019                 [Page 3]
+Gerdes, et al.            Expires June 23, 2019                 [Page 3]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -221,7 +221,7 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 
-Gerdes, et al.            Expires June 22, 2019                 [Page 4]
+Gerdes, et al.            Expires June 23, 2019                 [Page 4]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -277,7 +277,7 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 
-Gerdes, et al.            Expires June 22, 2019                 [Page 5]
+Gerdes, et al.            Expires June 23, 2019                 [Page 5]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -333,7 +333,7 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 
-Gerdes, et al.            Expires June 22, 2019                 [Page 6]
+Gerdes, et al.            Expires June 23, 2019                 [Page 6]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -389,7 +389,7 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 
-Gerdes, et al.            Expires June 22, 2019                 [Page 7]
+Gerdes, et al.            Expires June 23, 2019                 [Page 7]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -445,7 +445,7 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 
-Gerdes, et al.            Expires June 22, 2019                 [Page 8]
+Gerdes, et al.            Expires June 23, 2019                 [Page 8]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -501,7 +501,7 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 
-Gerdes, et al.            Expires June 22, 2019                 [Page 9]
+Gerdes, et al.            Expires June 23, 2019                 [Page 9]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -557,7 +557,7 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 
-Gerdes, et al.            Expires June 22, 2019                [Page 10]
+Gerdes, et al.            Expires June 23, 2019                [Page 10]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -613,7 +613,7 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 
-Gerdes, et al.            Expires June 22, 2019                [Page 11]
+Gerdes, et al.            Expires June 23, 2019                [Page 11]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -669,7 +669,7 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 
-Gerdes, et al.            Expires June 22, 2019                [Page 12]
+Gerdes, et al.            Expires June 23, 2019                [Page 12]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
@@ -721,17 +721,18 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
    When the authorization server issues a new access token to update
    existing authorization information, it MUST include the specified
-   "kid" parameter in this access token.  A resource server MUST
+   "kid" parameter in this access token.  A resource server MUST replace
 
 
 
-Gerdes, et al.            Expires June 22, 2019                [Page 13]
+Gerdes, et al.            Expires June 23, 2019                [Page 13]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
 
-   associate the updated authorization information with any existing
-   DTLS session that is identified by this key identifier.
+   the authorization information of any existing DTLS session that is
+   identified by this key identifier with the updated authorization
+   information.
 
    Note:  By associating the access tokens with the identifier of an
       existing DTLS session, the authorization information can be
@@ -776,15 +777,17 @@ Internet-Draft                  CoAP-DTLS                  December 2018
    tokens may become invalid at any time (either because the token has
    expired or the responsible authorization server has revoked the
    token), the session may become useless at some point.  A resource
-   server therefore MUST terminate existing DTLS sessions after the last
-   valid access token for this session has been deleted.
 
 
 
-Gerdes, et al.            Expires June 22, 2019                [Page 14]
+
+Gerdes, et al.            Expires June 23, 2019                [Page 14]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
+
+   server therefore MUST terminate existing DTLS sessions after the last
+   valid access token for this session has been deleted.
 
    As specified in Section 5.8.3 of draft-ietf-ace-oauth-authz [29], the
    resource server MUST notify the client with an error response with
@@ -831,16 +834,17 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
    Also, unprotected requests to the resource server may reveal
    information about the client, e.g., which resources the client
-   attempts to request or the data that the client wants to provide to
-   the resource server.  The client should not send confidential data in
-   an unprotected request.
 
 
 
-Gerdes, et al.            Expires June 22, 2019                [Page 15]
+Gerdes, et al.            Expires June 23, 2019                [Page 15]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
+
+   attempts to request or the data that the client wants to provide to
+   the resource server.  The client should not send confidential data in
+   an unprotected request.
 
    Note that some information might still leak after DTLS session is
    established, due to observable message sizes, the source, and the
@@ -882,9 +886,6 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
    Change Controller: Expert Review
 
-9.  References
-
-9.1.  Normative References
 
 
 
@@ -892,11 +893,14 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
 
 
-
-Gerdes, et al.            Expires June 22, 2019                [Page 16]
+Gerdes, et al.            Expires June 23, 2019                [Page 16]
 
 Internet-Draft                  CoAP-DTLS                  December 2018
 
+
+9.  References
+
+9.1.  Normative References
 
    [I-D.ietf-ace-oauth-authz]
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
@@ -938,21 +942,24 @@ Internet-Draft                  CoAP-DTLS                  December 2018
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
+
+
+
+
+
+
+
+Gerdes, et al.            Expires June 23, 2019                [Page 17]
+
+Internet-Draft                  CoAP-DTLS                  December 2018
+
+
 9.2.  Informative References
 
    [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
               Transport Layer Security (TLS)", RFC 6655,
               DOI 10.17487/RFC6655, July 2012,
               <https://www.rfc-editor.org/info/rfc6655>.
-
-
-
-
-
-Gerdes, et al.            Expires June 22, 2019                [Page 17]
-
-Internet-Draft                  CoAP-DTLS                  December 2018
-
 
    [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
               Weiler, S., and T. Kivinen, "Using Raw Public Keys in
@@ -995,6 +1002,14 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
    [4] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz
 
+
+
+
+Gerdes, et al.            Expires June 23, 2019                [Page 18]
+
+Internet-Draft                  CoAP-DTLS                  December 2018
+
+
    [5] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        16#section-5.1.2
 
@@ -1002,13 +1017,6 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
    [7] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        16#section-5.3
-
-
-
-Gerdes, et al.            Expires June 22, 2019                [Page 18]
-
-Internet-Draft                  CoAP-DTLS                  December 2018
-
 
    [8] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
        16#section-5.8.1
@@ -1050,6 +1058,14 @@ Internet-Draft                  CoAP-DTLS                  December 2018
    [25] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
         16#section-5.8.2
 
+
+
+
+Gerdes, et al.            Expires June 23, 2019                [Page 19]
+
+Internet-Draft                  CoAP-DTLS                  December 2018
+
+
    [26] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
         16#section-5.1.2
 
@@ -1058,13 +1074,6 @@ Internet-Draft                  CoAP-DTLS                  December 2018
 
    [28] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
         16#section-5.1.2
-
-
-
-Gerdes, et al.            Expires June 22, 2019                [Page 19]
-
-Internet-Draft                  CoAP-DTLS                  December 2018
-
 
    [29] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
         16#section-5.8.3
@@ -1107,6 +1116,12 @@ Authors' Addresses
    Email: goran.selander@ericsson.com
 
 
+
+Gerdes, et al.            Expires June 23, 2019                [Page 20]
+
+Internet-Draft                  CoAP-DTLS                  December 2018
+
+
    Ludwig Seitz
    RISE SICS
    Scheelevaegen 17
@@ -1117,4 +1132,45 @@ Authors' Addresses
 
 
 
-Gerdes, et al.            Expires June 22, 2019                [Page 20]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gerdes, et al.            Expires June 23, 2019                [Page 21]
