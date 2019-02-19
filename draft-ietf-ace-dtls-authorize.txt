@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: August 4, 2019                          Universitaet Bremen TZI
+Expires: August 23, 2019                         Universitaet Bremen TZI
                                                              G. Selander
                                                              Ericsson AB
                                                                 L. Seitz
                                                                RISE SICS
-                                                        January 31, 2019
+                                                       February 19, 2019
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 4, 2019.
+   This Internet-Draft will expire on August 23, 2019.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Gerdes, et al.           Expires August 4, 2019                 [Page 1]
+Gerdes, et al.           Expires August 23, 2019                [Page 1]
 
-Internet-Draft                  CoAP-DTLS                   January 2019
+Internet-Draft                  CoAP-DTLS                  February 2019
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -78,17 +78,17 @@ Table of Contents
      3.2.  RawPublicKey Mode . . . . . . . . . . . . . . . . . . . .   6
        3.2.1.  DTLS Channel Setup Between C and RS . . . . . . . . .   7
      3.3.  PreSharedKey Mode . . . . . . . . . . . . . . . . . . . .   8
-       3.3.1.  DTLS Channel Setup Between C and RS . . . . . . . . .  10
+       3.3.1.  DTLS Channel Setup Between C and RS . . . . . . . . .  11
      3.4.  Resource Access . . . . . . . . . . . . . . . . . . . . .  12
    4.  Dynamic Update of Authorization Information . . . . . . . . .  13
    5.  Token Expiration  . . . . . . . . . . . . . . . . . . . . . .  14
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
    7.  Privacy Considerations  . . . . . . . . . . . . . . . . . . .  15
    8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  16
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  16
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  16
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  17
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  17
      9.2.  Informative References  . . . . . . . . . . . . . . . . .  18
-     9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  18
+     9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  19
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  20
 
 1.  Introduction
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Gerdes, et al.           Expires August 4, 2019                 [Page 2]
+Gerdes, et al.           Expires August 23, 2019                [Page 2]
 
-Internet-Draft                  CoAP-DTLS                   January 2019
+Internet-Draft                  CoAP-DTLS                  February 2019
 
 
    The DTLS handshake [RFC7250] requires the client and server to prove
@@ -165,9 +165,9 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
 
 
-Gerdes, et al.           Expires August 4, 2019                 [Page 3]
+Gerdes, et al.           Expires August 23, 2019                [Page 3]
 
-Internet-Draft                  CoAP-DTLS                   January 2019
+Internet-Draft                  CoAP-DTLS                  February 2019
 
 
       C                            RS                   AS
@@ -221,9 +221,9 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
 
 
-Gerdes, et al.           Expires August 4, 2019                 [Page 4]
+Gerdes, et al.           Expires August 23, 2019                [Page 4]
 
-Internet-Draft                  CoAP-DTLS                   January 2019
+Internet-Draft                  CoAP-DTLS                  February 2019
 
 
       C                            RS                   AS
@@ -277,9 +277,9 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
 
 
-Gerdes, et al.           Expires August 4, 2019                 [Page 5]
+Gerdes, et al.           Expires August 23, 2019                [Page 5]
 
-Internet-Draft                  CoAP-DTLS                   January 2019
+Internet-Draft                  CoAP-DTLS                  February 2019
 
 
    confidentiality, integrity and authenticity, and enable the client to
@@ -333,9 +333,9 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
 
 
-Gerdes, et al.           Expires August 4, 2019                 [Page 6]
+Gerdes, et al.           Expires August 23, 2019                [Page 6]
 
-Internet-Draft                  CoAP-DTLS                   January 2019
+Internet-Draft                  CoAP-DTLS                  February 2019
 
 
    response also contains an access token and an "rs_cnf" parameter
@@ -389,9 +389,9 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
 
 
-Gerdes, et al.           Expires August 4, 2019                 [Page 7]
+Gerdes, et al.           Expires August 23, 2019                [Page 7]
 
-Internet-Draft                  CoAP-DTLS                   January 2019
+Internet-Draft                  CoAP-DTLS                  February 2019
 
 
    recommended in I-D.ietf-ace-oauth-authz [15], keys MUST be encoded as
@@ -445,9 +445,9 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
 
 
-Gerdes, et al.           Expires August 4, 2019                 [Page 8]
+Gerdes, et al.           Expires August 23, 2019                [Page 8]
 
-Internet-Draft                  CoAP-DTLS                   January 2019
+Internet-Draft                  CoAP-DTLS                  February 2019
 
 
       2.01 Created
@@ -473,65 +473,15 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
    The access token also comprises a "cnf" claim.  This claim usually
    contains a "COSE_Key" object that carries either the symmetric key
-   itself or or a key identifier that can be used by the resource server
-   to determine the shared secret.  If the access token carries a
-   symmetric key, the access token MUST be encrypted using a
+   itself or a key identifier that can be used by the resource server to
+   determine the secret key shared with the client.  If the access token
+   carries a symmetric key, the access token MUST be encrypted using a
    "COSE_Encrypt0" structure.  The AS MUST use the keying material
    shared with the RS to encrypt the token.
 
-   Instead of providing the keying material, the AS MAY include a key
-   derivation function and a salt in the access token that enables the
-   resource server to calculate the keying material for the
-   communication with C from the access token.  In this case, the token
-   contains a "cnf" structure that specifies the key derivation
-   algorithm and the salt that the AS has used to construct the shared
-   key.  AS and RS MUST use their shared keying material for the key
-   derivation, and the key derivation MUST follow Section 11 of RFC 8152
-   [18] with parameters as specified here.  The KDF specified in the
-   "alg" parameter SHOULD be HKDF-SHA-256.  The salt picked by the AS
-   must be uniformly random and is carried in the "salt" parameter.
-
-   The fields in the context information "COSE_KDF_Context"
-   (Section 11.2 of RFC 8152 [19]) MUST have the following values:
-
-   o  AlgorithmID = "ACE-CoAP-DTLS-salt"
-
-   o  PartyUInfo = PartyVInfo = ( null, null, null )
-
-
-
-
-Gerdes, et al.           Expires August 4, 2019                 [Page 9]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
-
-
-   o  keyDataLength is a uint equal the length of the key shared between
-      AS and RS in bits
-
-   o  protected MUST be a zero length bstr
-
-   o  other is a zero length bstr
-
-   o  SuppPrivInfo is omitted
-
-   The ACE_Salt "cnf" structure specifying HMAC-based key derivation of
-   a symmetric key with SHA-256 as hash function and a random salt value
-   is provided in Figure 5.
-
-   cnf : {
-     ACE_Salt : {
-       kty  : symmetric,
-       alg  : HKDF-SHA-256,
-       salt : h'eIiOFCa9lObw'
-     }
-   }
-
-         Figure 5: Key Derivation Specification in an Access Token
-
    A response that declines any operation on the requested resource is
-   constructed according to Section 5.2 of RFC 6749 [20], (cf.
-   Section 5.7.3. of draft-ietf-ace-oauth-authz [21]).
+   constructed according to Section 5.2 of RFC 6749 [18], (cf.
+   Section 5.7.3. of draft-ietf-ace-oauth-authz [19]).
 
        4.00 Bad Request
        Content-Format: application/ace+cbor
@@ -539,7 +489,78 @@ Internet-Draft                  CoAP-DTLS                   January 2019
          error: invalid_request
        }
 
-            Figure 6: Example Access Token Response With Reject
+            Figure 5: Example Access Token Response With Reject
+
+   The method for how the resource server determines the symmetric key
+   from an access token containing only a key identifier is application
+   specific, the remainder of this section provides one example.
+
+   The AS and the resource server are assumed to share a key derivation
+   key used to derive the symmetric key shared with the client from the
+   key identifier in the access token.  The key derivation key may be
+
+
+
+Gerdes, et al.           Expires August 23, 2019                [Page 9]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
+
+   derived from some other secret key shared between the AS and the
+   resource server.  Knowledge of the symmetric key shared with the
+   client must not reveal any information about the key derivation key
+   or other secret keys shared between AS and resource server.
+
+   In order to generate a new symmetric key to be used by client and
+   resource server, the AS generates a key identifier and uses the key
+   derivation key shared with the resource server to derive the
+   symmetric key as specified below.  Instead of providing the keying
+   material in the access token, the AS includes the key identifier in
+   the "kid" parameter, see Figure 6.  This key identifier enables the
+   resource server to calculate the keying material for the
+   communication with the client from the access token using the key
+   derivation key and following Section 11 of RFC 8152 [20] with
+   parameters as specified here.  The KDF to be used needs to be defined
+   by the application, for example HKDF-SHA-256.  The key identifier
+   picked by the AS needs to be unique for each access token where a
+   unique symmetric key is required.
+
+   The fields in the context information "COSE_KDF_Context"
+   (Section 11.2 of RFC 8152 [21]) have the following values:
+
+   o  AlgorithmID = "ACE-CoAP-DTLS-key-derivation"
+
+   o  PartyUInfo = PartyVInfo = ( null, null, null )
+
+   o  keyDataLength is a uint equal the length of the symmetric key
+      shared between C and RS in bits
+
+   o  protected MUST be a zero length bstr
+
+   o  other is a zero length bstr
+
+   o  SuppPrivInfo is omitted
+
+   The "cnf" structure in the access token is provided in Figure 6.
+
+   cnf : {
+     COSE_Key : {
+       kty  : symmetric,
+       alg  : TLS_PSK_WITH_AES_128_CCM_8,
+       kid : h'eIiOFCa9lObw'
+     }
+   }
+
+              Figure 6: Access Token without Keying Material
+
+
+
+
+
+Gerdes, et al.           Expires August 23, 2019               [Page 10]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
 
 3.3.1.  DTLS Channel Setup Between C and RS
 
@@ -554,14 +575,6 @@ Internet-Draft                  CoAP-DTLS                   January 2019
    channel with a resource server.  To use DTLS with pre-shared keys,
    the client follows the PSK key exchange algorithm specified in
    Section 2 of RFC 4279 [22] using the key conveyed in the "cnf"
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 10]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
-
-
    parameter of the AS response as PSK when constructing the premaster
    secret.
 
@@ -597,6 +610,14 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
    Note1:  As a resource server cannot provide a client with a
       meaningful PSK identity hint in response to the client's
+
+
+
+Gerdes, et al.           Expires August 23, 2019               [Page 11]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
+
       ClientHello message, the resource server SHOULD NOT send a
       ServerKeyExchange message.
 
@@ -610,14 +631,6 @@ Internet-Draft                  CoAP-DTLS                   January 2019
    of the token, and if the token was issued by an authorized AS.  This
    specification assumes that the access token is a PoP token as
    described in I-D.ietf-ace-oauth-authz [25] unless specifically stated
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 11]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
-
-
    otherwise.  Therefore, the access token is bound to a symmetric PoP
    key that is used as shared secret between the client and the resource
    server.
@@ -653,6 +666,14 @@ Internet-Draft                  CoAP-DTLS                   January 2019
    1.  The message was received on a secure channel that has been
        established using the procedure defined in this document.
 
+
+
+
+Gerdes, et al.           Expires August 23, 2019               [Page 12]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
+
    2.  The authorization information tied to the sending client is
        valid.
 
@@ -663,16 +684,6 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
    5.  The request method is an authorized action on the resource with
        respect to the authorization information.
-
-
-
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 12]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
-
 
    Incoming CoAP requests received on a secure DTLS channel that are not
    thus authorized MUST be rejected according to Section 5.8.2 of draft-
@@ -711,6 +722,14 @@ Internet-Draft                  CoAP-DTLS                   January 2019
    resource server has been established using this protocol.  If the
    client wants to update the authorization information, the token
    request MUST specify the key identifier of the existing DTLS channel
+
+
+
+Gerdes, et al.           Expires August 23, 2019               [Page 13]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
+
    between the client and the resource server in the "kid" parameter of
    the Client-to-AS request.  The authorization server MUST verify that
    the specified "kid" denotes a valid verifier for a proof-of-
@@ -722,14 +741,6 @@ Internet-Draft                  CoAP-DTLS                   January 2019
    When the authorization server issues a new access token to update
    existing authorization information, it MUST include the specified
    "kid" parameter in this access token.  A resource server MUST replace
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 13]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
-
-
    the authorization information of any existing DTLS session that is
    identified by this key identifier with the updated authorization
    information.
@@ -766,6 +777,15 @@ Internet-Draft                  CoAP-DTLS                   January 2019
    tokens may become invalid at any time (either because the token has
    expired or the responsible authorization server has revoked the
    token), the session may become useless at some point.  A resource
+
+
+
+
+Gerdes, et al.           Expires August 23, 2019               [Page 14]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
+
    server therefore MUST terminate existing DTLS sessions after the last
    valid access token for this session has been deleted.
 
@@ -773,18 +793,6 @@ Internet-Draft                  CoAP-DTLS                   January 2019
    resource server MUST notify the client with an error response with
    code 4.01 (Unauthorized) for any long running request before
    terminating the session.
-
-
-
-
-
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 14]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
-
 
 6.  Security Considerations
 
@@ -826,6 +834,14 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
    Also, unprotected requests to the resource server may reveal
    information about the client, e.g., which resources the client
+
+
+
+Gerdes, et al.           Expires August 23, 2019               [Page 15]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
+
    attempts to request or the data that the client wants to provide to
    the resource server.  The client should not send confidential data in
    an unprotected request.
@@ -833,14 +849,6 @@ Internet-Draft                  CoAP-DTLS                   January 2019
    Note that some information might still leak after DTLS session is
    established, due to observable message sizes, the source, and the
    destination addresses.
-
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 15]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
-
 
 8.  IANA Considerations
 
@@ -878,6 +886,18 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
    Change Controller: Expert Review
 
+
+
+
+
+
+
+
+Gerdes, et al.           Expires August 23, 2019               [Page 16]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
+
 9.  References
 
 9.1.  Normative References
@@ -888,27 +908,17 @@ Internet-Draft                  CoAP-DTLS                   January 2019
               Web Tokens (CWTs)", draft-ietf-ace-cwt-proof-of-
               possession-05 (work in progress), November 2018.
 
-
-
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 16]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
-
-
    [I-D.ietf-ace-oauth-authz]
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
               H. Tschofenig, "Authentication and Authorization for
               Constrained Environments (ACE) using the OAuth 2.0
-              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-18
-              (work in progress), January 2019.
+              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-21
+              (work in progress), February 2019.
 
    [I-D.ietf-ace-oauth-params]
               Seitz, L., "Additional OAuth Parameters for Authorization
               in Constrained Environments (ACE)", draft-ietf-ace-oauth-
-              params-03 (work in progress), January 2019.
+              params-04 (work in progress), February 2019.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -935,6 +945,15 @@ Internet-Draft                  CoAP-DTLS                   January 2019
               DOI 10.17487/RFC7925, July 2016,
               <https://www.rfc-editor.org/info/rfc7925>.
 
+
+
+
+
+Gerdes, et al.           Expires August 23, 2019               [Page 17]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
+
    [RFC8152]  Schaad, J., "CBOR Object Signing and Encryption (COSE)",
               RFC 8152, DOI 10.17487/RFC8152, July 2017,
               <https://www.rfc-editor.org/info/rfc8152>.
@@ -942,17 +961,6 @@ Internet-Draft                  CoAP-DTLS                   January 2019
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
-
-
-
-
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 17]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
-
 
 9.2.  Informative References
 
@@ -991,6 +999,17 @@ Internet-Draft                  CoAP-DTLS                   January 2019
               DOI 10.17487/RFC8422, August 2018,
               <https://www.rfc-editor.org/info/rfc8422>.
 
+
+
+
+
+
+
+Gerdes, et al.           Expires August 23, 2019               [Page 18]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
+
 9.3.  URIs
 
    [1] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
@@ -1001,14 +1020,6 @@ Internet-Draft                  CoAP-DTLS                   January 2019
    [3] https://tools.ietf.org/html/draft-ietf-ace-oauth-params
 
    [4] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz
-
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 18]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
-
 
    [5] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz
 
@@ -1040,14 +1051,22 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
    [17] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz
 
-   [18] https://tools.ietf.org/html/rfc8152#section-11
+   [18] https://tools.ietf.org/html/rfc6749#section-5.2
 
-   [19] https://tools.ietf.org/html/rfc8152#section-11.2
-
-   [20] https://tools.ietf.org/html/rfc6749#section-5.2
-
-   [21] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz#section-
+   [19] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz#section-
         5.7.3
+
+   [20] https://tools.ietf.org/html/rfc8152#section-11
+
+
+
+
+Gerdes, et al.           Expires August 23, 2019               [Page 19]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
+
+   [21] https://tools.ietf.org/html/rfc8152#section-11.2
 
    [22] https://tools.ietf.org/html/rfc4279#section-2
 
@@ -1056,15 +1075,6 @@ Internet-Draft                  CoAP-DTLS                   January 2019
    [24] https://tools.ietf.org/html/rfc7252
 
    [25] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz
-
-
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 19]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
-
 
    [26] https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-
         16#section-5.1.1
@@ -1103,6 +1113,15 @@ Authors' Addresses
    Email: bergmann@tzi.org
 
 
+
+
+
+
+Gerdes, et al.           Expires August 23, 2019               [Page 20]
+
+Internet-Draft                  CoAP-DTLS                  February 2019
+
+
    Carsten Bormann
    Universitaet Bremen TZI
    Postfach 330440
@@ -1111,15 +1130,6 @@ Authors' Addresses
 
    Phone: +49-421-218-63921
    Email: cabo@tzi.org
-
-
-
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 20]
-
-Internet-Draft                  CoAP-DTLS                   January 2019
 
 
    Goeran Selander
@@ -1163,14 +1173,4 @@ Internet-Draft                  CoAP-DTLS                   January 2019
 
 
 
-
-
-
-
-
-
-
-
-
-
-Gerdes, et al.           Expires August 4, 2019                [Page 21]
+Gerdes, et al.           Expires August 23, 2019               [Page 21]
