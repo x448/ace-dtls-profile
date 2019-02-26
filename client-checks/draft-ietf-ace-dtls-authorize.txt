@@ -698,13 +698,12 @@ Internet-Draft                  CoAP-DTLS                  February 2019
        information but not the requested action.
 
    The client cannot always know a priori if an Authorized Resource
-   Request will succeed.  Therefore, it must check the validity of its
-   keying material before sending a request or processing a response.
-   If the client repeatedly gets error responses containing AS Creation
-   Hints (cf.  Section 5.1.2 of [I-D.ietf-ace-oauth-authz] as response
-   to its requests, it SHOULD request a new access token from the
-   authorization server in order to continue communication with the
-   resource server.
+   Request will succeed.  It must check the validity of its keying
+   material before sending a request or processing a response.  If the
+   client repeatedly gets error responses containing AS Creation Hints
+   (cf.  Section 5.1.2 of [I-D.ietf-ace-oauth-authz] as response to its
+   requests, it SHOULD request a new access token from the authorization
+   server in order to continue communication with the resource server.
 
    Unauthorized requests that have been received over a DTLS session
    SHOULD be treated as non-fatal by the RS, i.e., the DTLS session
@@ -722,6 +721,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
    Figure 7 depicts the message flow where the C requests a new access
    token after a security association between the client and the
    resource server has been established using this protocol.  If the
+   client wants to update the authorization information, the token
 
 
 
@@ -730,7 +730,6 @@ Gerdes, et al.           Expires August 30, 2019               [Page 13]
 Internet-Draft                  CoAP-DTLS                  February 2019
 
 
-   client wants to update the authorization information, the token
    request MUST specify the key identifier of the existing DTLS channel
    between the client and the resource server in the "kid" parameter of
    the Client-to-AS request.  The authorization server MUST verify that
@@ -778,6 +777,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
    profile are always tied to a specific set of access tokens.  As these
    tokens may become invalid at any time (either because the token has
    expired or the responsible authorization server has revoked the
+   token), the session may become useless at some point.  A resource
 
 
 
@@ -786,7 +786,6 @@ Gerdes, et al.           Expires August 30, 2019               [Page 14]
 Internet-Draft                  CoAP-DTLS                  February 2019
 
 
-   token), the session may become useless at some point.  A resource
    server therefore MUST terminate existing DTLS sessions after the last
    valid access token for this session has been deleted.
 
@@ -833,7 +832,8 @@ Internet-Draft                  CoAP-DTLS                  February 2019
    provide the client with sufficient information to react on that
    particular error.
 
-
+   Also, unprotected requests to the resource server may reveal
+   information about the client, e.g., which resources the client
 
 
 
@@ -842,8 +842,6 @@ Gerdes, et al.           Expires August 30, 2019               [Page 15]
 Internet-Draft                  CoAP-DTLS                  February 2019
 
 
-   Also, unprotected requests to the resource server may reveal
-   information about the client, e.g., which resources the client
    attempts to request or the data that the client wants to provide to
    the resource server.  The client should not send confidential data in
    an unprotected request.
@@ -890,6 +888,8 @@ Internet-Draft                  CoAP-DTLS                  February 2019
               Constrained Environments (ACE) using the OAuth 2.0
               Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-21
               (work in progress), February 2019.
+
+
 
 
 
