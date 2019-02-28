@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: August 25, 2019                         Universitaet Bremen TZI
+Expires: September 1, 2019                       Universitaet Bremen TZI
                                                              G. Selander
                                                              Ericsson AB
                                                                 L. Seitz
                                                                RISE SICS
-                                                       February 21, 2019
+                                                       February 28, 2019
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 25, 2019.
+   This Internet-Draft will expire on September 1, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Gerdes, et al.           Expires August 25, 2019                [Page 1]
+Gerdes, et al.          Expires September 1, 2019               [Page 1]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Gerdes, et al.           Expires August 25, 2019                [Page 2]
+Gerdes, et al.          Expires September 1, 2019               [Page 2]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -165,7 +165,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019                [Page 3]
+Gerdes, et al.          Expires September 1, 2019               [Page 3]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -221,7 +221,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019                [Page 4]
+Gerdes, et al.          Expires September 1, 2019               [Page 4]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -277,7 +277,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019                [Page 5]
+Gerdes, et al.          Expires September 1, 2019               [Page 5]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -333,7 +333,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019                [Page 6]
+Gerdes, et al.          Expires September 1, 2019               [Page 6]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -389,7 +389,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019                [Page 7]
+Gerdes, et al.          Expires September 1, 2019               [Page 7]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -445,7 +445,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019                [Page 8]
+Gerdes, et al.          Expires September 1, 2019               [Page 8]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -501,7 +501,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019                [Page 9]
+Gerdes, et al.          Expires September 1, 2019               [Page 9]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -557,7 +557,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019               [Page 10]
+Gerdes, et al.          Expires September 1, 2019              [Page 10]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -613,7 +613,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019               [Page 11]
+Gerdes, et al.          Expires September 1, 2019              [Page 11]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -669,7 +669,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019               [Page 12]
+Gerdes, et al.          Expires September 1, 2019              [Page 12]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -698,11 +698,12 @@ Internet-Draft                  CoAP-DTLS                  February 2019
        information but not the requested action.
 
    The client cannot always know a priori if an Authorized Resource
-   Request will succeed.  If the client repeatedly gets error responses
-   containing AS Creation Hints (cf.  Section 5.1.2 of
-   [I-D.ietf-ace-oauth-authz] as response to its requests, it SHOULD
-   request a new access token from the authorization server in order to
-   continue communication with the resource server.
+   Request will succeed.  It must check the validity of its keying
+   material before sending a request or processing a response.  If the
+   client repeatedly gets error responses containing AS Creation Hints
+   (cf.  Section 5.1.2 of [I-D.ietf-ace-oauth-authz] as response to its
+   requests, it SHOULD request a new access token from the authorization
+   server in order to continue communication with the resource server.
 
    Unauthorized requests that have been received over a DTLS session
    SHOULD be treated as non-fatal by the RS, i.e., the DTLS session
@@ -721,15 +722,15 @@ Internet-Draft                  CoAP-DTLS                  February 2019
    token after a security association between the client and the
    resource server has been established using this protocol.  If the
    client wants to update the authorization information, the token
-   request MUST specify the key identifier of the existing DTLS channel
 
 
 
-Gerdes, et al.           Expires August 25, 2019               [Page 13]
+Gerdes, et al.          Expires September 1, 2019              [Page 13]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
 
+   request MUST specify the key identifier of the existing DTLS channel
    between the client and the resource server in the "kid" parameter of
    the Client-to-AS request.  The authorization server MUST verify that
    the specified "kid" denotes a valid verifier for a proof-of-
@@ -780,8 +781,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-
-Gerdes, et al.           Expires August 25, 2019               [Page 14]
+Gerdes, et al.          Expires September 1, 2019              [Page 14]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -837,7 +837,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019               [Page 15]
+Gerdes, et al.          Expires September 1, 2019              [Page 15]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -880,7 +880,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
               Jones, M., Seitz, L., Selander, G., Erdtman, S., and H.
               Tschofenig, "Proof-of-Possession Key Semantics for CBOR
               Web Tokens (CWTs)", draft-ietf-ace-cwt-proof-of-
-              possession-05 (work in progress), November 2018.
+              possession-06 (work in progress), February 2019.
 
    [I-D.ietf-ace-oauth-authz]
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
@@ -893,7 +893,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019               [Page 16]
+Gerdes, et al.          Expires September 1, 2019              [Page 16]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -949,7 +949,7 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019               [Page 17]
+Gerdes, et al.          Expires September 1, 2019              [Page 17]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -1005,7 +1005,7 @@ Authors' Addresses
 
 
 
-Gerdes, et al.           Expires August 25, 2019               [Page 18]
+Gerdes, et al.          Expires September 1, 2019              [Page 18]
 
 Internet-Draft                  CoAP-DTLS                  February 2019
 
@@ -1061,4 +1061,4 @@ Internet-Draft                  CoAP-DTLS                  February 2019
 
 
 
-Gerdes, et al.           Expires August 25, 2019               [Page 19]
+Gerdes, et al.          Expires September 1, 2019              [Page 19]
