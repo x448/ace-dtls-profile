@@ -535,8 +535,20 @@ li, p {
 </pre>
 <p class="figure">Figure 4: Example Access Token Response</p>
 <p id="rfc.section.3.3.p.4">The access token also comprises a <samp>cnf</samp> claim. This claim usually contains a <samp>COSE_Key</samp> object that carries either the symmetric key itself or a key identifier that can be used by the resource server to determine the secret key shared with the client. If the access token carries a symmetric key, the access token MUST be encrypted using a <samp>COSE_Encrypt0</samp> structure. The AS MUST use the keying material shared with the RS to encrypt the token.</p>
-<p id="rfc.section.3.3.p.5">A response that declines any operation on the requested resource is constructed according to Section 5.2 of <a href="#RFC6749" class="xref">[RFC6749]</a>, (cf. Section 5.6.3. of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>).</p>
+<p id="rfc.section.3.3.p.5">The <samp>cnf</samp> structure in the access token is provided in <a href="#kdf-cnf" class="xref">Figure 5</a>.</p>
 <div id="rfc.figure.5"></div>
+<div id="kdf-cnf"></div>
+<pre>
+cnf : {
+  COSE_Key : {
+    kty  : symmetric,
+    kid : h'eIiOFCa9lObw'
+  }
+}
+</pre>
+<p class="figure">Figure 5: Access Token without Keying Material</p>
+<p id="rfc.section.3.3.p.6">A response that declines any operation on the requested resource is constructed according to Section 5.2 of <a href="#RFC6749" class="xref">[RFC6749]</a>, (cf. Section 5.6.3. of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>).</p>
+<div id="rfc.figure.6"></div>
 <div id="token-reject"></div>
 <pre>
     4.00 Bad Request
@@ -545,12 +557,12 @@ li, p {
       error: invalid_request
     }
 </pre>
-<p class="figure">Figure 5: Example Access Token Response With Reject</p>
-<p id="rfc.section.3.3.p.6">The method for how the resource server determines the symmetric key from an access token containing only a key identifier is application specific, the remainder of this section provides one example.</p>
-<p id="rfc.section.3.3.p.7">The AS and the resource server are assumed to share a key derivation key used to derive the symmetric key shared with the client from the key identifier in the access token.  The key derivation key may be derived<br> from some other secret key shared between the AS and the resource server. This key needs to be securely stored and processed in the same way as the key used to protect the communication between AS and RS.</p>
-<p id="rfc.section.3.3.p.8">Knowledge of the symmetric key shared with the client must not reveal any information about the key derivation key or other secret keys shared between AS and resource server.</p>
-<p id="rfc.section.3.3.p.9">In order to generate a new symmetric key to be used by client and resource server, the AS generates a key identifier and uses the key derivation key shared with the resource server to derive the symmetric key as specified below. Instead of providing the keying material in the access token, the AS includes the key identifier in the <samp>kid</samp> parameter, see <a href="#kdf-cnf" class="xref">Figure 6</a>. This key identifier enables the resource server to calculate the keying material for the communication with the client from the access token using the key derivation key and following Section 11 of <a href="#RFC8152" class="xref">[RFC8152]</a> with parameters as specified here. The KDF to be used needs to be defined by the application, for example HKDF-SHA-256. The key identifier picked by the AS needs to be unique for each access token where a unique symmetric key is required.</p>
-<p id="rfc.section.3.3.p.10">The fields in the context information <samp>COSE_KDF_Context</samp> (Section 11.2 of <a href="#RFC8152" class="xref">[RFC8152]</a>) have the following values:</p>
+<p class="figure">Figure 6: Example Access Token Response With Reject</p>
+<p id="rfc.section.3.3.p.7">The method for how the resource server determines the symmetric key from an access token containing only a key identifier is application specific, the remainder of this section provides one example.</p>
+<p id="rfc.section.3.3.p.8">The AS and the resource server are assumed to share a key derivation key used to derive the symmetric key shared with the client from the key identifier in the access token.  The key derivation key may be derived<br> from some other secret key shared between the AS and the resource server. This key needs to be securely stored and processed in the same way as the key used to protect the communication between AS and RS.</p>
+<p id="rfc.section.3.3.p.9">Knowledge of the symmetric key shared with the client must not reveal any information about the key derivation key or other secret keys shared between AS and resource server.</p>
+<p id="rfc.section.3.3.p.10">In order to generate a new symmetric key to be used by client and resource server, the AS generates a key identifier and uses the key derivation key shared with the resource server to derive the symmetric key as specified below. Instead of providing the keying material in the access token, the AS includes the key identifier in the <samp>kid</samp> parameter, see <a href="#kdf-cnf" class="xref">Figure 5</a>. This key identifier enables the resource server to calculate the keying material for the communication with the client from the access token using the key derivation key and following Section 11 of <a href="#RFC8152" class="xref">[RFC8152]</a> with parameters as specified here. The KDF to be used needs to be defined by the application, for example HKDF-SHA-256. The key identifier picked by the AS needs to be unique for each access token where a unique symmetric key is required.</p>
+<p id="rfc.section.3.3.p.11">The fields in the context information <samp>COSE_KDF_Context</samp> (Section 11.2 of <a href="#RFC8152" class="xref">[RFC8152]</a>) have the following values:</p>
 <p></p>
 
 <ul>
@@ -561,18 +573,6 @@ li, p {
 <li>other is a zero length bstr</li>
 <li>SuppPrivInfo is omitted</li>
 </ul>
-<p id="rfc.section.3.3.p.12">The <samp>cnf</samp> structure in the access token is provided in <a href="#kdf-cnf" class="xref">Figure 6</a>.</p>
-<div id="rfc.figure.6"></div>
-<div id="kdf-cnf"></div>
-<pre>
-cnf : {
-  COSE_Key : {
-    kty  : symmetric,
-    kid : h'eIiOFCa9lObw'
-  }
-}
-</pre>
-<p class="figure">Figure 6: Access Token without Keying Material</p>
 <h1 id="rfc.section.3.3.1">
 <a href="#rfc.section.3.3.1">3.3.1.</a> <a href="#psk-dtls-channel" id="psk-dtls-channel">DTLS Channel Setup Between C and RS</a>
 </h1>
