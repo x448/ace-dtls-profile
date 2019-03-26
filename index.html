@@ -294,7 +294,7 @@ li, p {
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Gerdes, S., Bergmann, O., Bormann, C., Selander, G., and L. Seitz" />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-ace-dtls-authorize-08" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-ace-dtls-authorize-latest" />
   <meta name="dct.issued" scheme="ISO8601" content="2019-03-26" />
   <meta name="dct.abstract" content="This specification defines a profile of the ACE framework that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
   <meta name="description" content="This specification defines a profile of the ACE framework that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
@@ -348,7 +348,7 @@ li, p {
   </table>
 
   <p class="title">Datagram Transport Layer Security (DTLS) Profile for Authentication and Authorization for Constrained Environments (ACE)<br />
-  <span class="filename">draft-ietf-ace-dtls-authorize-08</span></p>
+  <span class="filename">draft-ietf-ace-dtls-authorize-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
 <p>This specification defines a profile of the ACE framework that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory.</p>
@@ -704,8 +704,8 @@ li, p {
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#as-commsec" id="as-commsec">Secure Communication with AS</a>
 </h1>
-<p id="rfc.section.6.p.1">As specified in the ACE framework (sections 5.6 and 5.7 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>), the requesting entity (RS and/or client) and the AS communicates via the token or introspection endpoints.  The use of CoAP and DTLS for this communication is RECOMMENDED in this profile, other protocols (such as HTTP and TLS or CoAP and OSCORE) MAY be used instead.</p>
-<p id="rfc.section.6.p.2">If DTLS is used, the requesting entity and the AS are expected to have pre-established credentials (e.g. PSK or RPK) in place.  How these credentials are established is out of scope for this profile.</p>
+<p id="rfc.section.6.p.1">As specified in the ACE framework (sections 5.6 and 5.7 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>), the requesting entity (RS and/or client) and the AS communicates via the token endpoint or introspection endpoint.  The use of CoAP and DTLS for this communication is RECOMMENDED in this profile, other protocols (such as HTTP and TLS or CoAP and OSCORE) MAY be used instead.</p>
+<p id="rfc.section.6.p.2">How credentials (e.g., PSK, RPK, X.509 cert) for using DTLS with the AS are established is out of scope for this profile.</p>
 <p id="rfc.section.6.p.3">If other means of securing the communication with the AS are used, the security protocol MUST fulfill the communication security requirements in Section 6.2 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>.</p>
 <h1 id="rfc.section.7">
 <a href="#rfc.section.7">7.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
