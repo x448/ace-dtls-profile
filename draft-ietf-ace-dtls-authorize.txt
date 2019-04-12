@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: September 27, 2019                      Universitaet Bremen TZI
+Expires: October 14, 2019                        Universitaet Bremen TZI
                                                              G. Selander
                                                              Ericsson AB
                                                                 L. Seitz
                                                                     RISE
-                                                          March 26, 2019
+                                                          April 12, 2019
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 27, 2019.
+   This Internet-Draft will expire on October 14, 2019.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Gerdes, et al.         Expires September 27, 2019               [Page 1]
+Gerdes, et al.          Expires October 14, 2019                [Page 1]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Gerdes, et al.         Expires September 27, 2019               [Page 2]
+Gerdes, et al.          Expires October 14, 2019                [Page 2]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    The DTLS handshake requires the client and server to prove that they
@@ -165,9 +165,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019               [Page 3]
+Gerdes, et al.          Expires October 14, 2019                [Page 3]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
       C                                RS                   AS
@@ -221,9 +221,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019               [Page 4]
+Gerdes, et al.          Expires October 14, 2019                [Page 4]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
       C                            RS                   AS
@@ -277,9 +277,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019               [Page 5]
+Gerdes, et al.          Expires October 14, 2019                [Page 5]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
 3.2.  RawPublicKey Mode
@@ -300,14 +300,14 @@ Internet-Draft                  CoAP-DTLS                     March 2019
       Content-Format: application/ace+cbor
       Payload:
       {
-        "grant_type" : "client_credentials",
-        "req_aud"    : "tempSensor4711",
-        "req_cnf"    : {
-          "COSE_Key" : {
-            "kty" : "EC2",
-            "crv" : "P-256",
-            "x"   : h'e866c35f4c3c81bb96a1...',
-            "y"   : h'2e25556be097c8778a20...'
+        grant_type : client_credentials,
+        req_aud    : "tempSensor4711",
+        req_cnf    : {
+          COSE_Key : {
+            kty : EC2,
+            crv : P-256,
+            x   : h'e866c35f4c3c81bb96a1...',
+            y   : h'2e25556be097c8778a20...'
           }
         }
       }
@@ -333,9 +333,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019               [Page 6]
+Gerdes, et al.          Expires October 14, 2019                [Page 6]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    ascertain that the RPK specified in "rs_cnf" belongs to the resource
@@ -355,16 +355,16 @@ Internet-Draft                  CoAP-DTLS                     March 2019
       Max-Age: 3600
       Payload:
       {
-        "access_token" : "b64'SlAV32hkKG ...
+        access_token : b64'SlAV32hkKG...
          (remainder of CWT omitted for brevity;
-         CWT contains clients RPK in the "cnf" claim)',
-        "expires_in" : "3600",
-        "rs_cnf"     : {
-          "COSE_Key"  : {
-            "kty" : "EC2",
-            "crv" : "P-256",
-            "x"   : h'd7cc072de2205bdc1537...',
-            "y"   : h'f95e1d4b851a2cc80fff...'
+         CWT contains clients RPK in the cnf claim)',
+        expires_in : 3600,
+        rs_cnf     : {
+          COSE_Key : {
+            kty : EC2,
+            crv : P-256,
+            x   : h'd7cc072de2205bdc1537...',
+            y   : h'f95e1d4b851a2cc80fff...'
           }
         }
       }
@@ -389,9 +389,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019               [Page 7]
+Gerdes, et al.          Expires October 14, 2019                [Page 7]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    An implementation that supports the RPK mode of this profile MUST at
@@ -445,9 +445,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019               [Page 8]
+Gerdes, et al.          Expires October 14, 2019                [Page 8]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    the access token.  If the token contains confidential data such as
@@ -469,7 +469,7 @@ Internet-Draft                  CoAP-DTLS                     March 2019
       Content-Format: application/ace+cbor
       Payload:
       {
-        "audience"    : "smokeSensor1807",
+        audience    : "smokeSensor1807",
       }
 
          Figure 5: Example Access Token Request, symmetric PoP-key
@@ -501,9 +501,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019               [Page 9]
+Gerdes, et al.          Expires October 14, 2019                [Page 9]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
       2.01 Created
@@ -511,16 +511,16 @@ Internet-Draft                  CoAP-DTLS                     March 2019
       Max-Age: 86400
       Payload:
       {
-         "access_token" : h'd08343a10...
+         access_token : h'd08343a10...
          (remainder of CWT omitted for brevity)
-         "token_type" : "pop",
-         "expires_in" : 86400,
-         "profile"    : "coap_dtls",
-         "cnf"        : {
-           "COSE_Key" : {
-             "kty" : "symmetric",
-             "kid" : h'3d027833fc6267ce',
-             "k"   : h'73657373696f6e6b6579'
+         token_type : pop,
+         expires_in : 86400,
+         profile    : coap_dtls,
+         cnf        : {
+           COSE_Key : {
+             kty : symmetric,
+             kid : h'3d027833fc6267ce',
+             k   : h'73657373696f6e6b6579'
            }
          }
       }
@@ -537,10 +537,10 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
    The "cnf" structure in the access token is provided in Figure 7.
 
-   "cnf" : {
-     "COSE_Key" : {
-       "kty" : "symmetric",
-       "kid" : h'eIiOFCa9lObw'
+   cnf : {
+     COSE_Key : {
+       kty : symmetric,
+       kid : h'6549694f464361396c4f6277'
      }
    }
 
@@ -557,16 +557,16 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 10]
+Gerdes, et al.          Expires October 14, 2019               [Page 10]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
        4.00 Bad Request
        Content-Format: application/ace+cbor
        Payload:
        {
-         "error" : "invalid_request"
+         error : invalid_request
        }
 
             Figure 8: Example Access Token Response With Reject
@@ -613,9 +613,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 11]
+Gerdes, et al.          Expires October 14, 2019               [Page 11]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    o  protected MUST be a zero length bstr
@@ -669,9 +669,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 12]
+Gerdes, et al.          Expires October 14, 2019               [Page 12]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    session setup is terminated with an "illegal_parameter" DTLS alert
@@ -725,9 +725,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 13]
+Gerdes, et al.          Expires October 14, 2019               [Page 13]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    The resource server SHOULD treat an incoming CoAP request as
@@ -781,9 +781,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 14]
+Gerdes, et al.          Expires October 14, 2019               [Page 14]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    resource and uploads this access token to the authz-info resource on
@@ -837,9 +837,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 15]
+Gerdes, et al.          Expires October 14, 2019               [Page 15]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
 5.  Token Expiration
@@ -860,7 +860,7 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
    As specified in the ACE framework (sections 5.6 and 5.7 of
    [I-D.ietf-ace-oauth-authz]), the requesting entity (RS and/or client)
-   and the AS communicates via the token endpoint or introspection
+   and the AS communicate via the token endpoint or introspection
    endpoint.  The use of CoAP and DTLS for this communication is
    RECOMMENDED in this profile, other protocols (such as HTTP and TLS or
    CoAP and OSCORE) MAY be used instead.
@@ -893,9 +893,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 16]
+Gerdes, et al.          Expires October 14, 2019               [Page 16]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    authorization information endpoint where the resource server needs to
@@ -949,9 +949,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 17]
+Gerdes, et al.          Expires October 14, 2019               [Page 17]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    Profile Description: Profile for delegating client authentication and
@@ -979,7 +979,7 @@ Internet-Draft                  CoAP-DTLS                     March 2019
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
               H. Tschofenig, "Authentication and Authorization for
               Constrained Environments (ACE) using the OAuth 2.0
-              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-23
+              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-24
               (work in progress), March 2019.
 
    [I-D.ietf-ace-oauth-params]
@@ -1005,9 +1005,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 18]
+Gerdes, et al.          Expires October 14, 2019               [Page 18]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    [RFC6749]  Hardt, D., Ed., "The OAuth 2.0 Authorization Framework",
@@ -1061,9 +1061,9 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 19]
+Gerdes, et al.          Expires October 14, 2019               [Page 19]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    [RFC8032]  Josefsson, S. and I. Liusvaara, "Edwards-Curve Digital
@@ -1117,9 +1117,9 @@ Authors' Addresses
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 20]
+Gerdes, et al.          Expires October 14, 2019               [Page 20]
 
-Internet-Draft                  CoAP-DTLS                     March 2019
+Internet-Draft                  CoAP-DTLS                     April 2019
 
 
    Goeran Selander
@@ -1173,4 +1173,4 @@ Internet-Draft                  CoAP-DTLS                     March 2019
 
 
 
-Gerdes, et al.         Expires September 27, 2019              [Page 21]
+Gerdes, et al.          Expires October 14, 2019               [Page 21]

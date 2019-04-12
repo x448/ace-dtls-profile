@@ -290,12 +290,12 @@ li, p {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.22.1 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.22.3 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Gerdes, S., Bergmann, O., Bormann, C., Selander, G., and L. Seitz" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-ace-dtls-authorize-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-03-26" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-04-12" />
   <meta name="dct.abstract" content="This specification defines a profile of the ACE framework that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
   <meta name="description" content="This specification defines a profile of the ACE framework that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory." />
 
@@ -319,7 +319,7 @@ li, p {
 <td class="right">C. Bormann</td>
 </tr>
 <tr>
-<td class="left">Expires: September 27, 2019</td>
+<td class="left">Expires: October 14, 2019</td>
 <td class="right">Universit&#228;t Bremen TZI</td>
 </tr>
 <tr>
@@ -340,7 +340,7 @@ li, p {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">March 26, 2019</td>
+<td class="right">April 12, 2019</td>
 </tr>
 
     	
@@ -356,7 +356,7 @@ li, p {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on September 27, 2019.</p>
+<p>This Internet-Draft will expire on October 14, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -482,14 +482,14 @@ li, p {
    Content-Format: application/ace+cbor
    Payload:
    {
-     "grant_type" : "client_credentials",
-     "req_aud"    : "tempSensor4711",
-     "req_cnf"    : {
-       "COSE_Key" : {
-         "kty" : "EC2",
-         "crv" : "P-256",
-         "x"   : h'e866c35f4c3c81bb96a1...',
-         "y"   : h'2e25556be097c8778a20...'
+     grant_type : client_credentials,
+     req_aud    : "tempSensor4711",
+     req_cnf    : {
+       COSE_Key : {
+         kty : EC2,
+         crv : P-256,
+         x   : h'e866c35f4c3c81bb96a1...',
+         y   : h'2e25556be097c8778a20...'
        }
      }
    }
@@ -507,16 +507,16 @@ li, p {
    Max-Age: 3600
    Payload:
    {
-     "access_token" : "b64'SlAV32hkKG ...
+     access_token : b64'SlAV32hkKG...
       (remainder of CWT omitted for brevity;
-      CWT contains clients RPK in the "cnf" claim)',
-     "expires_in" : "3600",
-     "rs_cnf"     : {
-       "COSE_Key"  : {
-         "kty" : "EC2",
-         "crv" : "P-256",
-         "x"   : h'd7cc072de2205bdc1537...',
-         "y"   : h'f95e1d4b851a2cc80fff...'
+      CWT contains clients RPK in the cnf claim)',
+     expires_in : 3600,
+     rs_cnf     : {
+       COSE_Key : {
+         kty : EC2,
+         crv : P-256,
+         x   : h'd7cc072de2205bdc1537...',
+         y   : h'f95e1d4b851a2cc80fff...'
        }
      }
    }
@@ -547,7 +547,7 @@ li, p {
    Content-Format: application/ace+cbor
    Payload:
    {
-     "audience"    : "smokeSensor1807",
+     audience    : "smokeSensor1807",
    }
 </pre>
 <p class="figure">Figure 5: Example Access Token Request, symmetric PoP-key</p>
@@ -560,16 +560,16 @@ li, p {
    Max-Age: 86400
    Payload:
    {
-      "access_token" : h'd08343a10...
+      access_token : h'd08343a10...
       (remainder of CWT omitted for brevity)
-      "token_type" : "pop",
-      "expires_in" : 86400,
-      "profile"    : "coap_dtls",
-      "cnf"        : {
-        "COSE_Key" : {
-          "kty" : "symmetric",
-          "kid" : h'3d027833fc6267ce',
-          "k"   : h'73657373696f6e6b6579'
+      token_type : pop,
+      expires_in : 86400,
+      profile    : coap_dtls,
+      cnf        : {
+        COSE_Key : {
+          kty : symmetric,
+          kid : h'3d027833fc6267ce',
+          k   : h'73657373696f6e6b6579'
         }
       }
    }
@@ -580,10 +580,10 @@ li, p {
 <div id="rfc.figure.7"></div>
 <div id="kdf-cnf"></div>
 <pre>
-"cnf" : {
-  "COSE_Key" : {
-    "kty" : "symmetric",
-    "kid" : h'eIiOFCa9lObw'
+cnf : {
+  COSE_Key : {
+    kty : symmetric,
+    kid : h'6549694f464361396c4f6277'
   }
 }
 </pre>
@@ -596,7 +596,7 @@ li, p {
     Content-Format: application/ace+cbor
     Payload:
     {
-      "error" : "invalid_request"
+      error : invalid_request
     }
 </pre>
 <p class="figure">Figure 8: Example Access Token Response With Reject</p>
@@ -704,7 +704,7 @@ li, p {
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#as-commsec" id="as-commsec">Secure Communication with AS</a>
 </h1>
-<p id="rfc.section.6.p.1">As specified in the ACE framework (sections 5.6 and 5.7 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>), the requesting entity (RS and/or client) and the AS communicates via the token endpoint or introspection endpoint.  The use of CoAP and DTLS for this communication is RECOMMENDED in this profile, other protocols (such as HTTP and TLS or CoAP and OSCORE) MAY be used instead.</p>
+<p id="rfc.section.6.p.1">As specified in the ACE framework (sections 5.6 and 5.7 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>), the requesting entity (RS and/or client) and the AS communicate via the token endpoint or introspection endpoint.  The use of CoAP and DTLS for this communication is RECOMMENDED in this profile, other protocols (such as HTTP and TLS or CoAP and OSCORE) MAY be used instead.</p>
 <p id="rfc.section.6.p.2">How credentials (e.g., PSK, RPK, X.509 cert) for using DTLS with the AS are established is out of scope for this profile.</p>
 <p id="rfc.section.6.p.3">If other means of securing the communication with the AS are used, the security protocol MUST fulfill the communication security requirements in Section 6.2 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>.</p>
 <h1 id="rfc.section.7">
@@ -744,7 +744,7 @@ li, p {
 <tr>
 <td class="reference"><b id="I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</b></td>
 <td class="top">
-<a>Seitz, L.</a>, <a>Selander, G.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-23">Authentication and Authorization for Constrained Environments (ACE) using the OAuth 2.0 Framework (ACE-OAuth)</a>", Internet-Draft draft-ietf-ace-oauth-authz-23, March 2019.</td>
+<a>Seitz, L.</a>, <a>Selander, G.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-24">Authentication and Authorization for Constrained Environments (ACE) using the OAuth 2.0 Framework (ACE-OAuth)</a>", Internet-Draft draft-ietf-ace-oauth-authz-24, March 2019.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-ace-oauth-params">[I-D.ietf-ace-oauth-params]</b></td>
