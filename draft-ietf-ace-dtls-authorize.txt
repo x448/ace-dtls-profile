@@ -5,12 +5,12 @@
 ACE Working Group                                              S. Gerdes
 Internet-Draft                                               O. Bergmann
 Intended status: Standards Track                              C. Bormann
-Expires: June 20, 2020                           Universitaet Bremen TZI
+Expires: August 8, 2020                          Universitaet Bremen TZI
                                                              G. Selander
                                                              Ericsson AB
                                                                 L. Seitz
                                                                Combitech
-                                                       December 18, 2019
+                                                       February 05, 2020
 
 
 Datagram Transport Layer Security (DTLS) Profile for Authentication and
@@ -43,19 +43,19 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on June 20, 2020.
+   This Internet-Draft will expire on August 8, 2020.
 
 Copyright Notice
 
-   Copyright (c) 2019 IETF Trust and the persons identified as the
+   Copyright (c) 2020 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
 
 
 
-Gerdes, et al.            Expires June 20, 2020                 [Page 1]
+Gerdes, et al.           Expires August 8, 2020                 [Page 1]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -86,9 +86,10 @@ Table of Contents
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  16
    8.  Privacy Considerations  . . . . . . . . . . . . . . . . . . .  17
    9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  17
-   10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  18
-     10.1.  Normative References . . . . . . . . . . . . . . . . . .  18
-     10.2.  Informative References . . . . . . . . . . . . . . . . .  19
+   10. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  18
+   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  18
+     11.1.  Normative References . . . . . . . . . . . . . . . . . .  18
+     11.2.  Informative References . . . . . . . . . . . . . . . . .  19
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  20
 
 1.  Introduction
@@ -108,10 +109,9 @@ Table of Contents
 
 
 
-
-Gerdes, et al.            Expires June 20, 2020                 [Page 2]
+Gerdes, et al.           Expires August 8, 2020                 [Page 2]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
    The DTLS handshake requires the client and server to prove that they
@@ -165,9 +165,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                 [Page 3]
+Gerdes, et al.           Expires August 8, 2020                 [Page 3]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
       C                                RS                   AS
@@ -221,9 +221,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                 [Page 4]
+Gerdes, et al.           Expires August 8, 2020                 [Page 4]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
       C                            RS                   AS
@@ -277,9 +277,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                 [Page 5]
+Gerdes, et al.           Expires August 8, 2020                 [Page 5]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
 3.2.  RawPublicKey Mode
@@ -333,9 +333,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                 [Page 6]
+Gerdes, et al.           Expires August 8, 2020                 [Page 6]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
    ascertain that the RPK specified in "rs_cnf" belongs to the resource
@@ -389,9 +389,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                 [Page 7]
+Gerdes, et al.           Expires August 8, 2020                 [Page 7]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
    An implementation that supports the RPK mode of this profile MUST at
@@ -445,9 +445,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                 [Page 8]
+Gerdes, et al.           Expires August 8, 2020                 [Page 8]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
    the access token.  If the token contains confidential data such as
@@ -501,9 +501,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                 [Page 9]
+Gerdes, et al.           Expires August 8, 2020                 [Page 9]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
       2.01 Created
@@ -557,9 +557,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                [Page 10]
+Gerdes, et al.           Expires August 8, 2020                [Page 10]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
        4.00 Bad Request
@@ -613,9 +613,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                [Page 11]
+Gerdes, et al.           Expires August 8, 2020                [Page 11]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
    o  protected MUST be a zero length bstr
@@ -669,9 +669,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                [Page 12]
+Gerdes, et al.           Expires August 8, 2020                [Page 12]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
    session setup is terminated with an "illegal_parameter" DTLS alert
@@ -725,9 +725,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                [Page 13]
+Gerdes, et al.           Expires August 8, 2020                [Page 13]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
    The resource server SHOULD treat an incoming CoAP request as
@@ -781,9 +781,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                [Page 14]
+Gerdes, et al.           Expires August 8, 2020                [Page 14]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
    resource and uploads this access token to the authz-info resource on
@@ -837,9 +837,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                [Page 15]
+Gerdes, et al.           Expires August 8, 2020                [Page 15]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
 5.  Token Expiration
@@ -893,9 +893,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                [Page 16]
+Gerdes, et al.           Expires August 8, 2020                [Page 16]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
    authorization information endpoint where the resource server needs to
@@ -949,9 +949,9 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-Gerdes, et al.            Expires June 20, 2020                [Page 17]
+Gerdes, et al.           Expires August 8, 2020                [Page 17]
 
-Internet-Draft                  CoAP-DTLS                  December 2019
+Internet-Draft                  CoAP-DTLS                  February 2020
 
 
    Profile Description: Profile for delegating client authentication and
@@ -965,9 +965,18 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
    Reference: [RFC-XXXX]
 
-10.  References
+10.  Acknowledgments
 
-10.1.  Normative References
+   Thanks to Jim Schaad for his contributions and reviews of this
+   document.  Special thanks to Ben Kaduk for his thorough review of
+   this document.
+
+   Ludwig Seitz worked on this document as part of the CelticNext
+   projects CyberWI, and CRITISEC with funding from Vinnova.
+
+11.  References
+
+11.1.  Normative References
 
    [I-D.ietf-ace-cwt-proof-of-possession]
               Jones, M., Seitz, L., Selander, G., Erdtman, S., and H.
@@ -979,18 +988,27 @@ Internet-Draft                  CoAP-DTLS                  December 2019
               Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
               H. Tschofenig, "Authentication and Authorization for
               Constrained Environments (ACE) using the OAuth 2.0
-              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-29
-              (work in progress), December 2019.
+              Framework (ACE-OAuth)", draft-ietf-ace-oauth-authz-32
+              (work in progress), February 2020.
 
    [I-D.ietf-ace-oauth-params]
               Seitz, L., "Additional OAuth Parameters for Authorization
               in Constrained Environments (ACE)", draft-ietf-ace-oauth-
-              params-07 (work in progress), December 2019.
+              params-12 (work in progress), February 2020.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
+
+
+
+
+
+Gerdes, et al.           Expires August 8, 2020                [Page 18]
+
+Internet-Draft                  CoAP-DTLS                  February 2020
+
 
    [RFC4279]  Eronen, P., Ed. and H. Tschofenig, Ed., "Pre-Shared Key
               Ciphersuites for Transport Layer Security (TLS)",
@@ -1000,15 +1018,6 @@ Internet-Draft                  CoAP-DTLS                  December 2019
    [RFC6347]  Rescorla, E. and N. Modadugu, "Datagram Transport Layer
               Security Version 1.2", RFC 6347, DOI 10.17487/RFC6347,
               January 2012, <https://www.rfc-editor.org/info/rfc6347>.
-
-
-
-
-
-Gerdes, et al.            Expires June 20, 2020                [Page 18]
-
-Internet-Draft                  CoAP-DTLS                  December 2019
-
 
    [RFC6749]  Hardt, D., Ed., "The OAuth 2.0 Authorization Framework",
               RFC 6749, DOI 10.17487/RFC6749, October 2012,
@@ -1033,7 +1042,7 @@ Internet-Draft                  CoAP-DTLS                  December 2019
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
-10.2.  Informative References
+11.2.  Informative References
 
    [RFC6655]  McGrew, D. and D. Bailey, "AES-CCM Cipher Suites for
               Transport Layer Security (TLS)", RFC 6655,
@@ -1046,6 +1055,17 @@ Internet-Draft                  CoAP-DTLS                  December 2019
               Layer Security (DTLS)", RFC 7250, DOI 10.17487/RFC7250,
               June 2014, <https://www.rfc-editor.org/info/rfc7250>.
 
+
+
+
+
+
+
+Gerdes, et al.           Expires August 8, 2020                [Page 19]
+
+Internet-Draft                  CoAP-DTLS                  February 2020
+
+
    [RFC7251]  McGrew, D., Bailey, D., Campagna, M., and R. Dugal, "AES-
               CCM Elliptic Curve Cryptography (ECC) Cipher Suites for
               TLS", RFC 7251, DOI 10.17487/RFC7251, June 2014,
@@ -1054,17 +1074,6 @@ Internet-Draft                  CoAP-DTLS                  December 2019
    [RFC7748]  Langley, A., Hamburg, M., and S. Turner, "Elliptic Curves
               for Security", RFC 7748, DOI 10.17487/RFC7748, January
               2016, <https://www.rfc-editor.org/info/rfc7748>.
-
-
-
-
-
-
-
-Gerdes, et al.            Expires June 20, 2020                [Page 19]
-
-Internet-Draft                  CoAP-DTLS                  December 2019
-
 
    [RFC8032]  Josefsson, S. and I. Liusvaara, "Edwards-Curve Digital
               Signature Algorithm (EdDSA)", RFC 8032,
@@ -1103,6 +1112,16 @@ Authors' Addresses
    Email: bergmann@tzi.org
 
 
+
+
+
+
+
+Gerdes, et al.           Expires August 8, 2020                [Page 20]
+
+Internet-Draft                  CoAP-DTLS                  February 2020
+
+
    Carsten Bormann
    Universitaet Bremen TZI
    Postfach 330440
@@ -1111,15 +1130,6 @@ Authors' Addresses
 
    Phone: +49-421-218-63921
    Email: cabo@tzi.org
-
-
-
-
-
-
-Gerdes, et al.            Expires June 20, 2020                [Page 20]
-
-Internet-Draft                  CoAP-DTLS                  December 2019
 
 
    Goeran Selander
@@ -1163,14 +1173,4 @@ Internet-Draft                  CoAP-DTLS                  December 2019
 
 
 
-
-
-
-
-
-
-
-
-
-
-Gerdes, et al.            Expires June 20, 2020                [Page 21]
+Gerdes, et al.           Expires August 8, 2020                [Page 21]
