@@ -291,12 +291,12 @@ li, p {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.39.0 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.40.1 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Gerdes, S., Bergmann, O., Bormann, C., Selander, G., and L. Seitz" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-ace-dtls-authorize-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2020-02-05" />
+  <meta name="dct.issued" scheme="ISO8601" content="2020-03-20" />
   <meta name="dct.abstract" content="This specification defines a profile of the ACE framework that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory. " />
   <meta name="description" content="This specification defines a profile of the ACE framework that allows constrained servers to delegate client authentication and authorization.  The protocol relies on DTLS for communication security between entities in a constrained network using either raw public keys or pre-shared keys. A resource-constrained server can use this protocol to delegate management of authorization information to a trusted host with less severe limitations regarding processing power and memory. " />
 
@@ -320,7 +320,7 @@ li, p {
 <td class="right">C. Bormann</td>
 </tr>
 <tr>
-<td class="left">Expires: August 8, 2020</td>
+<td class="left">Expires: September 21, 2020</td>
 <td class="right">Universit&#228;t Bremen TZI</td>
 </tr>
 <tr>
@@ -341,7 +341,7 @@ li, p {
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">February 05, 2020</td>
+<td class="right">March 20, 2020</td>
 </tr>
 
     	
@@ -357,7 +357,7 @@ li, p {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on August 8, 2020.</p>
+<p>This Internet-Draft will expire on September 21, 2020.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2020 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -428,7 +428,7 @@ li, p {
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#overview" id="overview">Protocol Overview</a>
 </h1>
-<p id="rfc.section.2.p.1">The CoAP-DTLS profile for ACE specifies the transfer of authentication information and, if necessary, authorization information between the client (C) and the resource server (RS) during setup of a DTLS session for CoAP messaging. It also specifies how C can use CoAP over DTLS to retrieve an access token from the authorization server (AS) for a protected resource hosted on the resource server.</p>
+<p id="rfc.section.2.p.1">The CoAP-DTLS profile for ACE specifies the transfer of authentication information and, if necessary, authorization information between the client (C) and the resource server (RS) during setup of a DTLS session for CoAP messaging. It also specifies how C can use CoAP over DTLS to retrieve an access token from the authorization server (AS) for a protected resource hosted on the resource server.  As specified in Section 6.7 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>, use of DTLS for one or both of these interactions is completely independent</p>
 <p id="rfc.section.2.p.2">This profile requires the client to retrieve an access token for protected resource(s) it wants to access on RS as specified in <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>. <a href="#at-retrieval" class="xref">Figure 1</a> shows the typical message flow in this scenario (messages in square brackets are optional):</p>
 <div id="rfc.figure.1"></div>
 <div id="at-retrieval"></div>
@@ -445,8 +445,8 @@ li, p {
 
 </pre>
 <p class="figure">Figure 1: Retrieving an Access Token</p>
-<p id="rfc.section.2.p.3">To determine the AS in charge of a resource hosted at the RS, C MAY send an initial Unauthorized Resource Request message to the RS. The RS then denies the request and sends an AS Request Creation Hints message containing the address of its AS back to the client as specified in Section 5.1.2 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>.</p>
-<p id="rfc.section.2.p.4">Once the client knows the authorization server&#8217;s address, it can send an access token request to the token endpoint at the AS as specified in <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>. As the access token request as well as the response may contain confidential data, the communication between the client and the authorization server MUST be confidentiality-protected and ensure authenticity. C may have been registered at the AS via the OAuth 2.0 client registration mechanism as outlined in Section 5.3 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>.</p>
+<p id="rfc.section.2.p.3">To determine the AS in charge of a resource hosted at the RS, C can send an initial Unauthorized Resource Request message to the RS. The RS then denies the request and sends an AS Request Creation Hints message containing the address of its AS back to the client as specified in Section 5.1.2 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>.</p>
+<p id="rfc.section.2.p.4">Once the client knows the authorization server&#8217;s address, it can send an access token request to the token endpoint at the AS as specified in <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>. As the access token request as well as the response may contain confidential data, the communication between the client and the authorization server must be confidentiality-protected and ensure authenticity. C may have been registered at the AS via the OAuth 2.0 client registration mechanism as outlined in Section 5.3 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>.</p>
 <p id="rfc.section.2.p.5">The access token returned by the authorization server can then be used by the client to establish a new DTLS session with the resource server. When the client intends to use an asymmetric proof-of-possession key in the DTLS handshake with the resource server, the client MUST upload the access token to the authz-info resource, i.e. the authz-info endpoint, on the resource server before starting the DTLS handshake, as described in Section 5.8.1 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>. In case the client uses a symmetric proof-of-possession key in the DTLS handshake, the procedure as above MAY be used, or alternatively, the access token MAY instead be transferred in the DTLS ClientKeyExchange message (see <a href="#psk-dtls-channel" class="xref">Section 3.3.1</a>).</p>
 <p><a href="#protocol-overview" class="xref">Figure 2</a> depicts the common protocol flow for the DTLS profile after the client C has retrieved the access token from the authorization server AS.</p>
 <div id="rfc.figure.2"></div>
@@ -467,16 +467,16 @@ li, p {
 <a href="#rfc.section.3">3.</a> <a href="#protocol-flow" id="protocol-flow">Protocol Flow</a>
 </h1>
 <p id="rfc.section.3.p.1">The following sections specify how CoAP is used to interchange access-related data between the resource server, the client and the authorization server so that the authorization server can provide the client and the resource server with sufficient information to establish a secure channel, and convey authorization information specific for this communication relationship to the resource server.</p>
-<p><a href="#C-AS-comm" class="xref">Section 3.1</a> describes how the communication between C and AS must be secured.  Depending on the used CoAP security mode (see also Section 9 of <a href="#RFC7252" class="xref">[RFC7252]</a>, the Client-to-AS request, AS-to-Client response and DTLS session establishment carry slightly different information. <a href="#rpk-mode" class="xref">Section 3.2</a> addresses the use of raw public keys while <a href="#psk-mode" class="xref">Section 3.3</a> defines how pre-shared keys are used in this profile.</p>
+<p><a href="#C-AS-comm" class="xref">Section 3.1</a> describes how the communication between C and AS must be secured.  Depending on the used CoAP security mode (see also Section 9 of <a href="#RFC7252" class="xref">[RFC7252]</a>, the Client-to-AS request, AS-to-Client response (see Section 5.6 of <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a>) and DTLS session establishment carry slightly different information. <a href="#rpk-mode" class="xref">Section 3.2</a> addresses the use of raw public keys while <a href="#psk-mode" class="xref">Section 3.3</a> defines how pre-shared keys are used in this profile.</p>
 <h1 id="rfc.section.3.1">
 <a href="#rfc.section.3.1">3.1.</a> <a href="#C-AS-comm" id="C-AS-comm">Communication between C and AS</a>
 </h1>
-<p id="rfc.section.3.1.p.1">To retrieve an access token for the resource that the client wants to access, the client requests an access token from the authorization server. Before C can request the access token, C and AS MUST establish a secure communication channel. C MUST securely have obtained keying material to communicate with AS. Furthermore, C MUST verify that AS is authorized to provide access tokens (including authorization information) about RS to C.  Also, AS MUST securely have obtained keying material for C, and obtained authorization rules approved by the resource owner (RO) concerning C and RS that relate to this keying material. C and AS MUST use their respective keying material for all exchanged messages. How the security association between C and AS is bootstrapped is not part of this document. C and AS MUST ensure the confidentiality, integrity and authenticity of all exchanged messages.</p>
+<p id="rfc.section.3.1.p.1">To retrieve an access token for the resource that the client wants to access, the client requests an access token from the authorization server. Before C can request the access token, C and AS MUST establish a secure communication channel. C MUST securely have obtained keying material to communicate with AS. Furthermore, C MUST verify that AS is authorized to provide access tokens (including authorization information) about RS to C.  Also, AS MUST securely have obtained keying material for C, and obtained authorization rules approved by the resource owner (RO) concerning C and RS that relate to this keying material. C and AS MUST use their respective keying material for all exchanged messages. How the security association between C and AS is bootstrapped is not part of this document. C and AS must ensure the confidentiality, integrity and authenticity of all exchanged messages.</p>
 <p id="rfc.section.3.1.p.2">Section <a href="#as-commsec" class="xref">Section 6</a> specifies how communication with the AS is secured.</p>
 <h1 id="rfc.section.3.2">
 <a href="#rfc.section.3.2">3.2.</a> <a href="#rpk-mode" id="rpk-mode">RawPublicKey Mode</a>
 </h1>
-<p id="rfc.section.3.2.p.1">After C and AS mutually authenticated each other and validated each other&#8217;s authorization, C sends a token request to AS&#8217;s token endpoint.  The client MUST add a <samp>req_cnf</samp> object carrying either its raw public key or a unique identifier for a public key that it has previously made known to the authorization server. To prove that the client is in possession of this key, C MUST use the same keying material that it uses to secure the communication with AS, e.g., the DTLS session.</p>
+<p id="rfc.section.3.2.p.1">When the client and the resource server use RawPublicKey authentication, the procedure is as follows: After C and AS mutually authenticated each other and validated each other&#8217;s authorization, C sends a token request to AS&#8217;s token endpoint.  The client MUST add a <samp>req_cnf</samp> object carrying either its raw public key or a unique identifier for a public key that it has previously made known to the authorization server. To prove that the client is in possession of this key, C MUST use the same keying material that it uses to secure the communication with AS, e.g., the DTLS session.</p>
 <p id="rfc.section.3.2.p.2">An example access token request from the client to the AS is depicted in <a href="#rpk-authorization-message-example" class="xref">Figure 3</a>.</p>
 <div id="rfc.figure.3"></div>
 <div id="rpk-authorization-message-example"></div>
@@ -499,7 +499,7 @@ li, p {
 </pre>
 <p class="figure">Figure 3: Access Token Request Example for RPK Mode</p>
 <p id="rfc.section.3.2.p.3">The example shows an access token request for the resource identified by the string &#8220;tempSensor4711&#8221; on the authorization server using a raw public key.</p>
-<p id="rfc.section.3.2.p.4">AS MUST check if the client that it communicates with is associated with the RPK in the cnf object before issuing an access token to it.  If AS determines that the request is to be authorized according to the respective authorization rules, it generates an access token response for C. The access token MUST be bound to the RPK of the client by means of the cnf claim.  The response MAY contain a <samp>profile</samp> parameter with the value <samp>coap_dtls</samp> to indicate that this profile MUST be used for communication between the client C and the resource server. The <samp>profile</samp> may be specified out-of-band, in which case it does not have to be sent. The response also contains an access token and an <samp>rs_cnf</samp> parameter containing information about the public key that is used by the resource server. AS MUST ascertain that the RPK specified in <samp>rs_cnf</samp> belongs to the resource server that C wants to communicate with. AS MUST protect the integrity of the token. If the access token contains confidential data, AS MUST also protect the confidentiality of the access token.</p>
+<p id="rfc.section.3.2.p.4">The AS MUST check if the client that it communicates with is associated with the RPK in the cnf object before issuing an access token to it.  If AS determines that the request is to be authorized according to the respective authorization rules, it generates an access token response for C. The access token MUST be bound to the RPK of the client by means of the cnf claim.  The response MAY contain a <samp>profile</samp> parameter with the value <samp>coap_dtls</samp> to indicate that this profile MUST be used for communication between the client C and the resource server. The <samp>profile</samp> may be specified out-of-band, in which case it does not have to be sent. The response also contains an access token and an <samp>rs_cnf</samp> parameter containing information about the public key that is used by the resource server. AS MUST ascertain that the RPK specified in <samp>rs_cnf</samp> belongs to the resource server that C wants to communicate with. AS MUST protect the integrity of the token. If the access token contains confidential data, AS MUST also protect the confidentiality of the access token.</p>
 <p id="rfc.section.3.2.p.5">C MUST ascertain that the access token response belongs to a certain previously sent access token request, as the request may specify the resource server with which C wants to communicate.</p>
 <p id="rfc.section.3.2.p.6">An example access token response from the AS to the client is depicted in <a href="#rpk-authorization-response-example" class="xref">Figure 4</a>.</p>
 <div id="rfc.figure.4"></div>
@@ -721,7 +721,7 @@ cnf : {
 <a href="#rfc.section.8">8.</a> <a href="#privacy-considerations" id="privacy-considerations">Privacy Considerations</a>
 </h1>
 <p id="rfc.section.8.p.1">This privacy considerations from section 7 of the <a href="#I-D.ietf-ace-oauth-authz" class="xref">[I-D.ietf-ace-oauth-authz]</a> apply also to this profile.</p>
-<p id="rfc.section.8.p.2">An unprotected response to an unauthorized request may disclose information about the resource server and/or its existing relationship with the client. It is advisable to include as little information as possible in an unencrypted response. When a DTLS session between the client and the resource server already exists, more detailed information MAY be included with an error response to provide the client with sufficient information to react on that particular error.</p>
+<p id="rfc.section.8.p.2">An unprotected response to an unauthorized request may disclose information about the resource server and/or its existing relationship with the client. It is advisable to include as little information as possible in an unencrypted response. When a DTLS session between a known client and the resource server already exists, more detailed information MAY be included with an error response to provide the client with sufficient information to react on that particular error.</p>
 <p id="rfc.section.8.p.3">Also, unprotected requests to the resource server may reveal information about the client, e.g., which resources the client attempts to request or the data that the client wants to provide to the resource server. The client SHOULD NOT send confidential data in an unprotected request.</p>
 <p id="rfc.section.8.p.4">Note that some information might still leak after DTLS session is established, due to observable message sizes, the source, and the destination addresses.</p>
 <h1 id="rfc.section.9">
@@ -731,7 +731,7 @@ cnf : {
 <p id="rfc.section.9.p.2">Note to RFC Editor: Please replace all occurrences of &#8220;[RFC-XXXX]&#8221; with the RFC number of this specification and delete this paragraph.</p>
 <p id="rfc.section.9.p.3">Profile name: coap_dtls</p>
 <p id="rfc.section.9.p.4">Profile Description: Profile for delegating client authentication and authorization in a constrained environment by establishing a Datagram Transport Layer Security (DTLS) channel between resource-constrained nodes.</p>
-<p id="rfc.section.9.p.5">Profile ID:  1</p>
+<p id="rfc.section.9.p.5">Profile ID:  TBD (suggested: 1)</p>
 <p id="rfc.section.9.p.6">Change Controller:  IESG</p>
 <p id="rfc.section.9.p.7">Reference:  [RFC-XXXX]</p>
 <h1 id="rfc.section.10">
@@ -752,7 +752,7 @@ cnf : {
 <tr>
 <td class="reference"><b id="I-D.ietf-ace-oauth-authz">[I-D.ietf-ace-oauth-authz]</b></td>
 <td class="top">
-<a>Seitz, L.</a>, <a>Selander, G.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-32">Authentication and Authorization for Constrained Environments (ACE) using the OAuth 2.0 Framework (ACE-OAuth)</a>", Internet-Draft draft-ietf-ace-oauth-authz-32, February 2020.</td>
+<a>Seitz, L.</a>, <a>Selander, G.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="https://tools.ietf.org/html/draft-ietf-ace-oauth-authz-33">Authentication and Authorization for Constrained Environments (ACE) using the OAuth 2.0 Framework (ACE-OAuth)</a>", Internet-Draft draft-ietf-ace-oauth-authz-33, February 2020.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-ace-oauth-params">[I-D.ietf-ace-oauth-params]</b></td>
@@ -780,6 +780,16 @@ cnf : {
 <a>Hardt, D.</a>, "<a href="https://tools.ietf.org/html/rfc6749">The OAuth 2.0 Authorization Framework</a>", RFC 6749, DOI 10.17487/RFC6749, October 2012.</td>
 </tr>
 <tr>
+<td class="reference"><b id="RFC7250">[RFC7250]</b></td>
+<td class="top">
+<a>Wouters, P.</a>, <a>Tschofenig, H.</a>, <a>Gilmore, J.</a>, <a>Weiler, S.</a> and <a>T. Kivinen</a>, "<a href="https://tools.ietf.org/html/rfc7250">Using Raw Public Keys in Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)</a>", RFC 7250, DOI 10.17487/RFC7250, June 2014.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7251">[RFC7251]</b></td>
+<td class="top">
+<a>McGrew, D.</a>, <a>Bailey, D.</a>, <a>Campagna, M.</a> and <a>R. Dugal</a>, "<a href="https://tools.ietf.org/html/rfc7251">AES-CCM Elliptic Curve Cryptography (ECC) Cipher Suites for TLS</a>", RFC 7251, DOI 10.17487/RFC7251, June 2014.</td>
+</tr>
+<tr>
 <td class="reference"><b id="RFC7252">[RFC7252]</b></td>
 <td class="top">
 <a>Shelby, Z.</a>, <a>Hartke, K.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/rfc7252">The Constrained Application Protocol (CoAP)</a>", RFC 7252, DOI 10.17487/RFC7252, June 2014.</td>
@@ -799,6 +809,11 @@ cnf : {
 <td class="top">
 <a>Leiba, B.</a>, "<a href="https://tools.ietf.org/html/rfc8174">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</a>", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017.</td>
 </tr>
+<tr>
+<td class="reference"><b id="RFC8422">[RFC8422]</b></td>
+<td class="top">
+<a>Nir, Y.</a>, <a>Josefsson, S.</a> and <a>M. Pegourie-Gonnard</a>, "<a href="https://tools.ietf.org/html/rfc8422">Elliptic Curve Cryptography (ECC) Cipher Suites for Transport Layer Security (TLS) Versions 1.2 and Earlier</a>", RFC 8422, DOI 10.17487/RFC8422, August 2018.</td>
+</tr>
 </tbody></table>
 <h1 id="rfc.references.2">
 <a href="#rfc.references.2">11.2.</a> Informative References</h1>
@@ -807,16 +822,6 @@ cnf : {
 <td class="reference"><b id="RFC6655">[RFC6655]</b></td>
 <td class="top">
 <a>McGrew, D.</a> and <a>D. Bailey</a>, "<a href="https://tools.ietf.org/html/rfc6655">AES-CCM Cipher Suites for Transport Layer Security (TLS)</a>", RFC 6655, DOI 10.17487/RFC6655, July 2012.</td>
-</tr>
-<tr>
-<td class="reference"><b id="RFC7250">[RFC7250]</b></td>
-<td class="top">
-<a>Wouters, P.</a>, <a>Tschofenig, H.</a>, <a>Gilmore, J.</a>, <a>Weiler, S.</a> and <a>T. Kivinen</a>, "<a href="https://tools.ietf.org/html/rfc7250">Using Raw Public Keys in Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS)</a>", RFC 7250, DOI 10.17487/RFC7250, June 2014.</td>
-</tr>
-<tr>
-<td class="reference"><b id="RFC7251">[RFC7251]</b></td>
-<td class="top">
-<a>McGrew, D.</a>, <a>Bailey, D.</a>, <a>Campagna, M.</a> and <a>R. Dugal</a>, "<a href="https://tools.ietf.org/html/rfc7251">AES-CCM Elliptic Curve Cryptography (ECC) Cipher Suites for TLS</a>", RFC 7251, DOI 10.17487/RFC7251, June 2014.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC7748">[RFC7748]</b></td>
@@ -832,11 +837,6 @@ cnf : {
 <td class="reference"><b id="RFC8392">[RFC8392]</b></td>
 <td class="top">
 <a>Jones, M.</a>, <a>Wahlstroem, E.</a>, <a>Erdtman, S.</a> and <a>H. Tschofenig</a>, "<a href="https://tools.ietf.org/html/rfc8392">CBOR Web Token (CWT)</a>", RFC 8392, DOI 10.17487/RFC8392, May 2018.</td>
-</tr>
-<tr>
-<td class="reference"><b id="RFC8422">[RFC8422]</b></td>
-<td class="top">
-<a>Nir, Y.</a>, <a>Josefsson, S.</a> and <a>M. Pegourie-Gonnard</a>, "<a href="https://tools.ietf.org/html/rfc8422">Elliptic Curve Cryptography (ECC) Cipher Suites for Transport Layer Security (TLS) Versions 1.2 and Earlier</a>", RFC 8422, DOI 10.17487/RFC8422, August 2018.</td>
 </tr>
 </tbody></table>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
