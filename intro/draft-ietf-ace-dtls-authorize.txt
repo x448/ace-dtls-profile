@@ -21,12 +21,12 @@ Abstract
 
    This specification defines a profile of the ACE framework that allows
    constrained servers to delegate client authentication and
-   authorization.  The protocol relies on DTLS for communication
-   security between entities in a constrained network using either raw
-   public keys or pre-shared keys.  A resource-constrained server can
-   use this protocol to delegate management of authorization information
-   to a trusted host with less severe limitations regarding processing
-   power and memory.
+   authorization.  The protocol relies on DTLS version 1.2 for
+   communication security between entities in a constrained network
+   using either raw public keys or pre-shared keys.  A resource-
+   constrained server can use this protocol to delegate management of
+   authorization information to a trusted host with less severe
+   limitations regarding processing power and memory.
 
 Status of This Memo
 
@@ -96,9 +96,9 @@ Table of Contents
 
    This specification defines a profile of the ACE framework
    [I-D.ietf-ace-oauth-authz].  In this profile, a client and a resource
-   server use CoAP [RFC7252] over DTLS [RFC6347] to communicate.  The
-   client obtains an access token, bound to a key (the proof-of-
-   possession key), from an authorization server to prove its
+   server use CoAP [RFC7252] over DTLS version 1.2 [RFC6347] to
+   communicate.  The client obtains an access token, bound to a key (the
+   proof-of-possession key), from an authorization server to prove its
    authorization to access protected resources hosted by the resource
    server.  Also, the client and the resource server are provided by the
    authorization server with the necessary keying material to establish
@@ -171,7 +171,9 @@ Internet-Draft                  CoAP-DTLS                     March 2020
 
 
    authorization server (AS) for a protected resource hosted on the
-   resource server.
+   resource server.  As specified in Section 6.7 of
+   [I-D.ietf-ace-oauth-authz], use of DTLS for one or both of these
+   interactions is completely independent
 
    This profile requires the client to retrieve an access token for
    protected resource(s) it wants to access on RS as specified in
@@ -191,7 +193,7 @@ Internet-Draft                  CoAP-DTLS                     March 2020
 
                    Figure 1: Retrieving an Access Token
 
-   To determine the AS in charge of a resource hosted at the RS, C MAY
+   To determine the AS in charge of a resource hosted at the RS, C can
    send an initial Unauthorized Resource Request message to the RS.  The
    RS then denies the request and sends an AS Request Creation Hints
    message containing the address of its AS back to the client as
@@ -201,7 +203,7 @@ Internet-Draft                  CoAP-DTLS                     March 2020
    an access token request to the token endpoint at the AS as specified
    in [I-D.ietf-ace-oauth-authz].  As the access token request as well
    as the response may contain confidential data, the communication
-   between the client and the authorization server MUST be
+   between the client and the authorization server must be
    confidentiality-protected and ensure authenticity.  C may have been
    registered at the AS via the OAuth 2.0 client registration mechanism
    as outlined in Section 5.3 of [I-D.ietf-ace-oauth-authz].
@@ -216,8 +218,6 @@ Internet-Draft                  CoAP-DTLS                     March 2020
    [I-D.ietf-ace-oauth-authz].  In case the client uses a symmetric
    proof-of-possession key in the DTLS handshake, the procedure as above
    MAY be used, or alternatively, the access token MAY instead be
-   transferred in the DTLS ClientKeyExchange message (see
-   Section 3.3.1).
 
 
 
@@ -225,6 +225,9 @@ Gerdes, et al.         Expires September 21, 2020               [Page 4]
 
 Internet-Draft                  CoAP-DTLS                     March 2020
 
+
+   transferred in the DTLS ClientKeyExchange message (see
+   Section 3.3.1).
 
    Figure 2 depicts the common protocol flow for the DTLS profile after
    the client C has retrieved the access token from the authorization
@@ -254,9 +257,10 @@ Internet-Draft                  CoAP-DTLS                     March 2020
    Section 3.1 describes how the communication between C and AS must be
    secured.  Depending on the used CoAP security mode (see also
    Section 9 of [RFC7252], the Client-to-AS request, AS-to-Client
-   response and DTLS session establishment carry slightly different
-   information.  Section 3.2 addresses the use of raw public keys while
-   Section 3.3 defines how pre-shared keys are used in this profile.
+   response (see Section 5.6 of [I-D.ietf-ace-oauth-authz]) and DTLS
+   session establishment carry slightly different information.
+   Section 3.2 addresses the use of raw public keys while Section 3.3
+   defines how pre-shared keys are used in this profile.
 
 3.1.  Communication between C and AS
 
@@ -270,10 +274,6 @@ Internet-Draft                  CoAP-DTLS                     March 2020
    have obtained keying material for C, and obtained authorization rules
    approved by the resource owner (RO) concerning C and RS that relate
    to this keying material.  C and AS MUST use their respective keying
-   material for all exchanged messages.  How the security association
-   between C and AS is bootstrapped is not part of this document.  C and
-   AS MUST ensure the confidentiality, integrity and authenticity of all
-   exchanged messages.
 
 
 
@@ -282,18 +282,24 @@ Gerdes, et al.         Expires September 21, 2020               [Page 5]
 Internet-Draft                  CoAP-DTLS                     March 2020
 
 
+   material for all exchanged messages.  How the security association
+   between C and AS is bootstrapped is not part of this document.  C and
+   AS must ensure the confidentiality, integrity and authenticity of all
+   exchanged messages.
+
    Section Section 6 specifies how communication with the AS is secured.
 
 3.2.  RawPublicKey Mode
 
-   After C and AS mutually authenticated each other and validated each
-   other's authorization, C sends a token request to AS's token
-   endpoint.  The client MUST add a "req_cnf" object carrying either its
-   raw public key or a unique identifier for a public key that it has
-   previously made known to the authorization server.  To prove that the
-   client is in possession of this key, C MUST use the same keying
-   material that it uses to secure the communication with AS, e.g., the
-   DTLS session.
+   When the client and the resource server use RawPublicKey
+   authentication, the procedure is as follows: After C and AS mutually
+   authenticated each other and validated each other's authorization, C
+   sends a token request to AS's token endpoint.  The client MUST add a
+   "req_cnf" object carrying either its raw public key or a unique
+   identifier for a public key that it has previously made known to the
+   authorization server.  To prove that the client is in possession of
+   this key, C MUST use the same keying material that it uses to secure
+   the communication with AS, e.g., the DTLS session.
 
    An example access token request from the client to the AS is depicted
    in Figure 3.
@@ -320,16 +326,10 @@ Internet-Draft                  CoAP-DTLS                     March 2020
    by the string "tempSensor4711" on the authorization server using a
    raw public key.
 
-   AS MUST check if the client that it communicates with is associated
-   with the RPK in the cnf object before issuing an access token to it.
-   If AS determines that the request is to be authorized according to
-   the respective authorization rules, it generates an access token
-   response for C.  The access token MUST be bound to the RPK of the
-   client by means of the cnf claim.  The response MAY contain a
-   "profile" parameter with the value "coap_dtls" to indicate that this
-   profile MUST be used for communication between the client C and the
-   resource server.  The "profile" may be specified out-of-band, in
-   which case it does not have to be sent.  The response also contains
+   The AS MUST check if the client that it communicates with is
+   associated with the RPK in the cnf object before issuing an access
+   token to it.  If AS determines that the request is to be authorized
+   according to the respective authorization rules, it generates an
 
 
 
@@ -338,12 +338,19 @@ Gerdes, et al.         Expires September 21, 2020               [Page 6]
 Internet-Draft                  CoAP-DTLS                     March 2020
 
 
-   an access token and an "rs_cnf" parameter containing information
-   about the public key that is used by the resource server.  AS MUST
-   ascertain that the RPK specified in "rs_cnf" belongs to the resource
-   server that C wants to communicate with.  AS MUST protect the
-   integrity of the token.  If the access token contains confidential
-   data, AS MUST also protect the confidentiality of the access token.
+   access token response for C.  The access token MUST be bound to the
+   RPK of the client by means of the cnf claim.  The response MAY
+   contain a "profile" parameter with the value "coap_dtls" to indicate
+   that this profile MUST be used for communication between the client C
+   and the resource server.  The "profile" may be specified out-of-band,
+   in which case it does not have to be sent.  The response also
+   contains an access token and an "rs_cnf" parameter containing
+   information about the public key that is used by the resource server.
+   AS MUST ascertain that the RPK specified in "rs_cnf" belongs to the
+   resource server that C wants to communicate with.  AS MUST protect
+   the integrity of the token.  If the access token contains
+   confidential data, AS MUST also protect the confidentiality of the
+   access token.
 
    C MUST ascertain that the access token response belongs to a certain
    previously sent access token request, as the request may specify the
@@ -379,13 +386,6 @@ Internet-Draft                  CoAP-DTLS                     March 2020
    server, C MUST send a "POST" request containing the new access token
    to the authz-info resource hosted by the resource server.  After the
    client
-   receives a confirmation that the RS has accepted the access token, it
-   SHOULD proceed to establish a new DTLS channel with the resource
-   server.  To use the RawPublicKey mode, the client MUST specify the
-   public key that AS defined in the "cnf" field of the access token
-   response in the SubjectPublicKeyInfo structure in the DTLS handshake
-   as specified in [RFC7250].
-
 
 
 
@@ -393,6 +393,13 @@ Gerdes, et al.         Expires September 21, 2020               [Page 7]
 
 Internet-Draft                  CoAP-DTLS                     March 2020
 
+
+   receives a confirmation that the RS has accepted the access token, it
+   SHOULD proceed to establish a new DTLS channel with the resource
+   server.  To use the RawPublicKey mode, the client MUST specify the
+   public key that AS defined in the "cnf" field of the access token
+   response in the SubjectPublicKeyInfo structure in the DTLS handshake
+   as specified in [RFC7250].
 
    An implementation that supports the RPK mode of this profile MUST at
    least support the ciphersuite TLS_ECDHE_ECDSA_WITH_AES_128_CCM_8
@@ -408,7 +415,7 @@ Internet-Draft                  CoAP-DTLS                     March 2020
       in [RFC7252].
 
    RS MUST check if the access token is still valid, if RS is the
-   intended destination, i.e., the audience, of the token, and if the
+   intended destination (i.e., the audience) of the token, and if the
    token was issued by an authorized AS.  The access token is
    constructed by the authorization server such that the resource server
    can associate the access token with the Client's public key.  The
@@ -420,9 +427,10 @@ Internet-Draft                  CoAP-DTLS                     March 2020
    token's "cnf" parameter.  If CBOR web tokens [RFC8392] are used as
    recommended in [I-D.ietf-ace-oauth-authz], keys MUST be encoded as
    specified in [I-D.ietf-ace-cwt-proof-of-possession].  RS MUST use the
-   keying material in the handshake that AS specified in the rs_cnf
-   parameter in the access token.  Thus, the handshake only finishes if
-   C and RS are able to use their respective keying material.
+   keying material that the AS specified in the rs_cnf parameter in the
+   access token for the DTLS handshake with the client.  Thus, the
+   handshake only finishes if C and RS are able to use their respective
+   keying material.
 
 3.3.  PreSharedKey Mode
 
@@ -435,14 +443,6 @@ Internet-Draft                  CoAP-DTLS                     March 2020
    that was previously generated by AS as a shared secret for the
    communication between this client and the resource server.
 
-   The authorization server MUST determine the authorization rules for
-   the C it communicates with as defined by RO and generate the access
-   token accordingly.  If the authorization server authorizes the
-   client, it returns an AS-to-Client response.  If the profile
-   parameter is present, it is set to "coap_dtls".  AS MUST ascertain
-   that the access token is generated for the resource server that C
-   wants to communicate with.  Also, AS MUST protect the integrity of
-
 
 
 Gerdes, et al.         Expires September 21, 2020               [Page 8]
@@ -450,17 +450,24 @@ Gerdes, et al.         Expires September 21, 2020               [Page 8]
 Internet-Draft                  CoAP-DTLS                     March 2020
 
 
-   the access token.  If the token contains confidential data such as
-   the symmetric key, the confidentiality of the token MUST also be
-   protected.  Depending on the requested token type and algorithm in
-   the access token request, the authorization server adds access
-   Information to the response that provides the client with sufficient
-   information to setup a DTLS channel with the resource server.  AS
-   adds a "cnf" parameter to the access information carrying a
-   "COSE_Key" object that informs the client about the symmetric key
+   The authorization server MUST determine the authorization rules for
+   the client it communicates with as defined by the resource owner and
+   generate the access token accordingly.  If the authorization server
+   authorizes the client, it returns an AS-to-Client response.  If the
+   profile parameter is present, it is set to "coap_dtls".  AS MUST
+   ascertain that the access token is generated for the resource server
+   that C wants to communicate with.  Also, AS MUST protect the
+   integrity of the access token.  If the token contains confidential
+   data such as the symmetric key, the confidentiality of the token MUST
+   also be protected.  Depending on the requested token type and
+   algorithm in the access token request, the authorization server adds
+   access Information to the response that provides the client with
+   sufficient information to setup a DTLS channel with the resource
+   server.  AS adds a "cnf" parameter to the access information carrying
+   a "COSE_Key" object that informs the client about the symmetric key
    that is to be used between C and the resource server.  The access
    token MUST be bound to the same symmetric key by means of the cnf
-   claim.
+   parameter.
 
    An example access token request for an access token with a symmetric
    proof-of-possession key is illustrated in Figure 5.
@@ -472,21 +479,14 @@ Internet-Draft                  CoAP-DTLS                     March 2020
         audience    : "smokeSensor1807",
       }
 
-         Figure 5: Example Access Token Request, symmetric PoP-key
+   Figure 5: Example Access Token Request, (implicit) symmetric PoP-key
 
-   An example access token response is illustrated in Figure 6.  In this
-   example, the authorization server returns a 2.01 response containing
-   a new access token and information for the client, including the
-   symmetric key in the cnf claim.  The information is transferred as a
-   CBOR data structure as specified in [I-D.ietf-ace-oauth-authz].
-
-
-
-
-
-
-
-
+   A corresponding example access token response is illustrated in
+   Figure 6.  In this example, the authorization server returns a 2.01
+   response containing a new access token and information for the
+   client, including the symmetric key in the cnf claim.  The
+   information is transferred as a CBOR data structure as specified in
+   [I-D.ietf-ace-oauth-authz].
 
 
 
@@ -513,7 +513,7 @@ Internet-Draft                  CoAP-DTLS                     March 2020
       {
          access_token : h'd08343a10...
          (remainder of CWT omitted for brevity)
-         token_type : pop,
+         token_type : PoP,
          expires_in : 86400,
          profile    : coap_dtls,
          cnf        : {
@@ -530,10 +530,10 @@ Internet-Draft                  CoAP-DTLS                     March 2020
    The access token also comprises a "cnf" claim.  This claim usually
    contains a "COSE_Key" object that carries either the symmetric key
    itself or a key identifier that can be used by the resource server to
-   determine the secret key shared with the client.  If the access token
-   carries a symmetric key, the access token MUST be encrypted using a
-   "COSE_Encrypt0" structure.  The AS MUST use the keying material
-   shared with the RS to encrypt the token.
+   determine the secret key it shares with the client.  If the access
+   token carries a symmetric key, the access token MUST be encrypted
+   using a "COSE_Encrypt0" structure.  The AS MUST use the keying
+   material shared with the RS to encrypt the token.
 
    The "cnf" structure in the access token is provided in Figure 7.
 
@@ -572,8 +572,8 @@ Internet-Draft                  CoAP-DTLS                     March 2020
             Figure 8: Example Access Token Response With Reject
 
    The method for how the resource server determines the symmetric key
-   from an access token containing only a key identifier is application
-   specific, the remainder of this section provides one example.
+   from an access token containing only a key identifier is application-
+   specific; the remainder of this section provides one example.
 
    The AS and the resource server are assumed to share a key derivation
    key used to derive the symmetric key shared with the client from the
@@ -627,8 +627,8 @@ Internet-Draft                  CoAP-DTLS                     March 2020
 3.3.1.  DTLS Channel Setup Between C and RS
 
    When a client receives an access token response from an authorization
-   server, C MUST ascertain that the access token response belongs to a
-   certain previously sent access token request, as the request may
+   server, C MUST ascertain that the access token response corresponds
+   to a certain previously sent access token request, as the request may
    specify the resource server with which C wants to communicate.
 
    C checks if the payload of the access token response contains an
@@ -656,16 +656,16 @@ Internet-Draft                  CoAP-DTLS                     March 2020
       assumed to have a human-readable form of any sort.
 
    If a resource server receives a ClientKeyExchange message that
-   contains a "psk_identity" with a length greater zero, it uses the
-   contents as index for its key store (i.e., treat the contents as key
-   identifier).  The resource server MUST check if it has one or more
-   access tokens that are associated with the specified key.
+   contains a "psk_identity" with a length greater than zero, it uses
+   the contents as an index for its key store (i.e., treat the contents
+   as a key identifier).  The resource server MUST check if it has one
+   or more access tokens that are associated with the specified key.
 
    If no key with a matching identifier is found, the resource server
    MAY process the contents of the "psk_identity" field as access token
    that is stored with the authorization information endpoint, before
    continuing the DTLS handshake.  If the contents of the "psk_identity"
-   do not yield a valid access token for the requesting client, the DTLS
+   do not yield a valid access token for the requesting client, the
 
 
 
@@ -674,8 +674,8 @@ Gerdes, et al.         Expires September 21, 2020              [Page 12]
 Internet-Draft                  CoAP-DTLS                     March 2020
 
 
-   session setup is terminated with an "illegal_parameter" DTLS alert
-   message.
+   resource server aborts the DTLS handshake with an "illegal_parameter"
+   alert.
 
    Note1:  As a resource server cannot provide a client with a
       meaningful PSK identity hint in response to the client's
@@ -688,8 +688,8 @@ Internet-Draft                  CoAP-DTLS                     March 2020
       resource server.
 
    When RS receives an access token, RS MUST check if the access token
-   is still valid, if RS is the intended destination, i.e., the audience
-   of the token, and if the token was issued by an authorized AS.  This
+   is still valid, if RS is the intended destination (i.e., the audience
+   of the token), and if the token was issued by an authorized AS.  This
    specification assumes that the access token is a PoP token as
    described in [I-D.ietf-ace-oauth-authz] unless specifically stated
    otherwise.  Therefore, the access token is bound to a symmetric PoP
